@@ -15,16 +15,15 @@
   var LS_OVERRIDES = "galileo_admin_overrides";   // 覆盖数据
   var LS_AUTH = "galileo_admin_auth";              // 登录态
   var LS_LOCK = "galileo_admin_lock";              // 锁定信息
+  var LS_KEYS = "galileo_admin_apikeys";           // API 密钥库
 
-  /* ============ 7 种类型注册表 ============ */
+  /* ============ 5 种类型注册表（行业实践 / OS 引擎不在后台管理）============ */
   var TYPES = [
     { key: "apps",       gvar: "APPS_DATA",       label: "应用市场",   short: "应用",  detailPage: "app-detail.html",      dataFile: "apps-data.js" },
     { key: "agents",     gvar: "AGENTS_DATA",     label: "Agent 市场", short: "Agent", detailPage: "agent-detail.html",    dataFile: "agents-data.js" },
     { key: "skills",     gvar: "SKILLS_DATA",     label: "Skill 市场", short: "Skill", detailPage: "skill-detail.html",    dataFile: "skills-data.js" },
     { key: "knowledge",  gvar: "KNOWLEDGE_DATA",  label: "知识库",     short: "知识",  detailPage: "knowledge-detail.html", dataFile: "knowledge-data.js" },
-    { key: "solutions",  gvar: "SOLUTIONS_DATA",  label: "解决方案",   short: "方案",  detailPage: "solution-detail.html",  dataFile: "solutions-data.js" },
-    { key: "industries", gvar: "INDUSTRIES_DATA", label: "行业实践",   short: "行业",  detailPage: "industry-detail.html",  dataFile: "industries-data.js" },
-    { key: "engines",    gvar: "ENGINES_DATA",    label: "OS 引擎",    short: "引擎",  detailPage: "engine-detail.html",    dataFile: "engines-data.js" }
+    { key: "solutions",  gvar: "SOLUTIONS_DATA",  label: "解决方案",   short: "方案",  detailPage: "solution-detail.html",  dataFile: "solutions-data.js" }
   ];
   function typeOf(key) { return TYPES.filter(function (t) { return t.key === key; })[0]; }
   function getData(t) { return window[t.gvar] || {}; }
@@ -233,6 +232,15 @@
     html += '</div>';
     html += '<div class="admin-nav-divider"></div>';
     html += '<div class="admin-nav-section">';
+    html += '<div class="admin-nav-label">开发者</div>';
+    var keyCount = loadKeys().length;
+    html += '<div class="admin-nav-item' + (state.currentType === "apikeys" ? " active" : "") + '" data-type="apikeys">' +
+      '<span><span class="nav-dot"></span>API 密钥</span>' +
+      '<span class="nav-count">' + keyCount + '</span>' +
+    '</div>';
+    html += '</div>';
+    html += '<div class="admin-nav-divider"></div>';
+    html += '<div class="admin-nav-section">';
     html += '<div class="admin-nav-label">数据</div>';
     html += '<div class="admin-nav-action" id="navExportAll">' +
       '<span style="display:flex;align-items:center;gap:8px;">' +
@@ -267,6 +275,11 @@
     var pane = document.getElementById("listpane");
     if (!state.currentType) {
       pane.innerHTML = '<div class="admin-empty">请从左侧选择内容类型</div>';
+      return;
+    }
+    // API 密钥视图
+    if (state.currentType === "apikeys") {
+      renderKeysListpane(pane);
       return;
     }
     var t = typeOf(state.currentType);
@@ -325,11 +338,237 @@
     });
   }
 
+  /* ============================================
+   * ============ API 密钥管理 ==================
+   * 密钥格式：gal_sk_live_<32位随机>（带前缀，便于辨认）
+   * 存储：galileo_admin_apikeys → [{ id, key, name, scope, createdAt, status }]
+   * 全站通用密钥，调用 Agent / Skill 时作鉴权凭证
+   * ============================================ */
+  function loadKeys() {
+    try { return JSON.parse(localStorage.getItem(LS_KEYS) || "[]"); }
+    catch (e) { return []; }
+  }
+  function saveKeys(arr) {
+    localStorage.setItem(LS_KEYS, JSON.stringify(arr));
+  }
+  // 生成随机字符串（crypto 优先，降级 Math.random）
+  function randStr(len) {
+    var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var out = "";
+    if (window.crypto && window.crypto.getRandomValues) {
+      var buf = new Uint32Array(len);
+      window.crypto.getRandomValues(buf);
+      for (var i = 0; i < len; i++) out += chars[buf[i] % chars.length];
+    } else {
+      for (var j = 0; j < len; j++) out += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return out;
+  }
+  function generateKey() {
+    return "gal_sk_live_" + randStr(32);
+  }
+  // 简易 id
+  function genId() {
+    return "k_" + Date.now().toString(36) + randStr(4).toLowerCase();
+  }
+
+  function addKey(name) {
+    var arr = loadKeys();
+    var rec = {
+      id: genId(),
+      key: generateKey(),
+      name: name || "未命名密钥",
+      scope: "all",          // 全站通用
+      createdAt: new Date().toISOString(),
+      lastUsed: null,
+      calls: 0,
+      status: "active"
+    };
+    arr.unshift(rec);
+    saveKeys(arr);
+    return rec;
+  }
+
+  function revokeKey(id) {
+    var arr = loadKeys().map(function (k) {
+      if (k.id === id) k.status = "revoked";
+      return k;
+    });
+    saveKeys(arr);
+  }
+  function deleteKey(id) {
+    saveKeys(loadKeys().filter(function (k) { return k.id !== id; }));
+  }
+
+  // 复制到剪贴板（带降级）
+  function copyText(text, cb) {
+    function done() { if (cb) cb(true); }
+    function fail() { if (cb) cb(false); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () {
+        fallbackCopy(text) ? done() : fail();
+      });
+    } else {
+      fallbackCopy(text) ? done() : fail();
+    }
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  /* ----- 渲染：密钥中间面板 ----- */
+  function renderKeysListpane(pane) {
+    var allKeys = loadKeys();
+    var keys = allKeys.filter(function (k) {
+      if (!state.search) return true;
+      var s = state.search.toLowerCase();
+      return (k.name || "").toLowerCase().indexOf(s) >= 0 ||
+        k.key.toLowerCase().indexOf(s) >= 0;
+    });
+
+    var html = '<div class="admin-list-header">' +
+      '<div class="admin-list-header-top">' +
+        '<h3>API 密钥（' + allKeys.length + '）</h3>' +
+        '<button class="admin-btn admin-btn-primary admin-btn-sm" id="newKeyBtn">+ 生成密钥</button>' +
+      '</div>' +
+      '<div class="admin-search">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<input type="text" id="searchInput" placeholder="搜索密钥名或前缀…" value="' + esc(state.search) + '">' +
+      '</div>' +
+    '</div>';
+
+    html += '<div class="admin-key-intro">' +
+      '<b>密钥用途：</b>供其他智能体（如 Coze / Dify / n8n / 自研系统）调用本平台 Agent / Skill 时鉴权。' +
+      '调用方式：在请求头加 <code>Authorization: Bearer gal_sk_live_xxxx</code>。' +
+    '</div>';
+
+    html += '<div class="admin-list-body admin-key-list">';
+    if (keys.length === 0) {
+      html += '<div class="admin-empty">暂无密钥，点击「生成密钥」创建</div>';
+    } else {
+      keys.forEach(function (k) {
+        var masked = k.status === "revoked"
+          ? '<span class="key-value revoked">' + esc(k.key) + '</span>'
+          : '<span class="key-value" data-full="' + esc(k.key) + '">' + esc(maskKey(k.key)) + '</span>';
+        var created = k.createdAt ? new Date(k.createdAt).toLocaleString("zh-CN", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }) : "—";
+        var lastUsed = k.lastUsed ? new Date(k.lastUsed).toLocaleString("zh-CN", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }) : "从未调用";
+        html += '<div class="admin-key-card' + (k.status === "revoked" ? " is-revoked" : "") + '" data-id="' + esc(k.id) + '">' +
+          '<div class="akc-head">' +
+            '<div class="akc-title">' +
+              '<span class="akc-name">' + esc(k.name) + '</span>' +
+              (k.status === "revoked"
+                ? '<span class="akc-status revoked">已吊销</span>'
+                : '<span class="akc-status active">生效中</span>') +
+            '</div>' +
+            '<span class="akc-created">创建于 ' + esc(created) + '</span>' +
+          '</div>' +
+          '<div class="akc-key-row">' + masked + '</div>' +
+          '<div class="akc-meta">' +
+            '<span>最近调用：' + esc(lastUsed) + '</span>' +
+            '<span>调用次数：' + esc(String(k.calls || 0)) + '</span>' +
+          '</div>' +
+          '<div class="akc-actions">' +
+            '<button class="admin-btn admin-btn-light admin-btn-sm" data-act="show" data-id="' + esc(k.id) + '">显示完整</button>' +
+            '<button class="admin-btn admin-btn-light admin-btn-sm" data-act="copy" data-id="' + esc(k.id) + '">复制</button>' +
+            (k.status === "revoked"
+              ? '<button class="admin-btn admin-btn-danger admin-btn-sm" data-act="del" data-id="' + esc(k.id) + '">删除</button>'
+              : '<button class="admin-btn admin-btn-danger admin-btn-sm" data-act="revoke" data-id="' + esc(k.id) + '">吊销</button>') +
+          '</div>' +
+        '</div>';
+      });
+    }
+    html += '</div>';
+    pane.innerHTML = html;
+
+    // 搜索
+    var si = document.getElementById("searchInput");
+    si.addEventListener("input", function () { state.search = si.value; renderKeysListpane(pane); });
+    // 新建
+    document.getElementById("newKeyBtn").addEventListener("click", promptNewKey);
+    // 卡片操作
+    pane.querySelectorAll("[data-act]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var act = btn.dataset.act, id = btn.dataset.id;
+        var rec = loadKeys().filter(function (k) { return k.id === id; })[0];
+        if (!rec) return;
+        if (act === "copy") {
+          copyText(rec.key, function (ok) {
+            toast(ok ? "密钥已复制到剪贴板" : "复制失败，请手动选择复制", ok ? "ok" : "err");
+          });
+        } else if (act === "show") {
+          // 切换显示
+          var span = pane.querySelector('.admin-key-card[data-id="' + id + '"] .key-value');
+          if (span) {
+            if (span.dataset.shown === "1") {
+              span.textContent = maskKey(rec.key);
+              span.dataset.shown = "0";
+              btn.textContent = "显示完整";
+            } else {
+              span.textContent = rec.key;
+              span.dataset.shown = "1";
+              btn.textContent = "隐藏";
+            }
+          }
+        } else if (act === "revoke") {
+          confirmDialog("确认吊销此密钥？", "吊销后使用此密钥的调用将立即失败。此操作不可恢复。\n\n密钥：「" + rec.name + "」", function () {
+            revokeKey(id);
+            toast("密钥已吊销", "ok");
+            renderAll();
+          }, true);
+        } else if (act === "del") {
+          confirmDialog("确认彻底删除？", "将彻底移除已吊销的密钥记录：「" + rec.name + "」", function () {
+            deleteKey(id);
+            toast("已删除", "ok");
+            renderAll();
+          }, true);
+        }
+      });
+    });
+  }
+
+  function maskKey(key) {
+    if (!key || key.length < 16) return "****";
+    return key.slice(0, 14) + "****" + key.slice(-4);
+  }
+
+  function promptNewKey() {
+    var name = window.prompt("请为密钥起个名字（便于识别用途，如「Coze 调用」「内部 ERP 对接」）：", "");
+    if (name === null) return; // 取消
+    name = name.trim() || "未命名密钥";
+    var rec = addKey(name);
+    // 立即复制 + 提示完整密钥（唯一一次完整展示的机会）
+    copyText(rec.key, function (ok) {
+      toast("密钥已生成" + (ok ? "并复制到剪贴板，请妥善保存" : "，请手动复制保存") + "（离开后将不再完整显示）", "ok");
+    });
+    renderAll();
+    // 弹出完整密钥让用户确认保存
+    setTimeout(function () {
+      window.alert("新密钥已生成（已复制）：\n\n" + rec.key + "\n\n请妥善保存，出于安全考虑，列表中默认掩码显示。\n点击「显示完整」可再次查看。");
+    }, 100);
+  }
+
   /* ============ 渲染：右侧编辑器 ============ */
   function renderEditor() {
     var ed = document.getElementById("editor");
     if (!state.currentType) {
       ed.innerHTML = emptyEditor("请选择内容类型", "从左侧菜单选择要管理的内容类型");
+      return;
+    }
+    // API 密钥视图（不使用右侧编辑器，密钥管理全部在中间列表完成）
+    if (state.currentType === "apikeys") {
+      ed.innerHTML = emptyEditor(
+        "API 密钥管理",
+        "在中间面板生成、复制、吊销密钥。密钥供其他智能体或第三方系统调用本平台 Agent / Skill 时鉴权使用。"
+      );
       return;
     }
     if (!state.currentKey) {

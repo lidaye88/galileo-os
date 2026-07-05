@@ -715,6 +715,112 @@
   gap: 10px;
 }
 
+/* ---------- API 密钥视图 ---------- */
+.admin-key-intro {
+  margin: 0 16px 16px;
+  padding: 12px 14px;
+  background: var(--indigo-50);
+  border-left: 3px solid var(--indigo-500);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.admin-key-intro code {
+  font-family: "SF Mono", "JetBrains Mono", monospace;
+  background: rgba(0,0,0,0.06);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11.5px;
+  color: var(--text-primary);
+}
+.admin-key-list {
+  padding: 0 16px 16px;
+}
+.admin-key-card {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: var(--bg-white);
+  transition: border-color var(--duration) var(--ease);
+}
+.admin-key-card:hover { border-color: var(--border-strong); }
+.admin-key-card.is-revoked {
+  background: var(--gray-50);
+  opacity: 0.75;
+}
+.admin-key-card .akc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+.admin-key-card .akc-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.admin-key-card .akc-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.admin-key-card .akc-status {
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+.admin-key-card .akc-status.active {
+  background: var(--accent-50);
+  color: var(--accent-600);
+}
+.admin-key-card .akc-status.revoked {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+.admin-key-card .akc-created {
+  font-size: 11.5px;
+  color: var(--text-quaternary);
+  white-space: nowrap;
+}
+.admin-key-card .akc-key-row {
+  margin-bottom: 10px;
+}
+.admin-key-card .key-value {
+  font-family: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+  font-size: 13px;
+  color: var(--accent-600);
+  background: var(--accent-50);
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  word-break: break-all;
+  letter-spacing: 0.02em;
+  user-select: all;
+}
+.admin-key-card .key-value.revoked {
+  color: var(--text-quaternary);
+  background: var(--gray-100);
+  text-decoration: line-through;
+}
+.admin-key-card .akc-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-quaternary);
+  margin-bottom: 12px;
+}
+.admin-key-card .akc-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 1024px) {
   .admin-layout { grid-template-columns: 160px 240px 1fr; }
