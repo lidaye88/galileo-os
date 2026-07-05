@@ -5,7 +5,7 @@
  * 参考	idmakers.cn 客服侧边栏
  * 功能：右侧悬浮 4 个操作按钮
  *   - 在线咨询（企业微信客服，新窗打开）
- *   - 申请邀请码（企业微信客服）
+ *   - 立即试用（打开登录弹窗并切到"提交申请"Tab）
  *   - 电话咨询（400 热线，移动端直接拨打）
  *   - 返回顶部（滚动超过 400px 才出现）
  * 全部通过 JS 动态注入，不污染 HTML。
@@ -44,10 +44,10 @@
         '<span class="cs-btn-icon">' + ICON.chat + '</span>' +
         '<span class="cs-btn-label">在线咨询</span>' +
       '</a>' +
-      // 申请邀请码
-      '<a href="' + KEFU_URL + '" target="_blank" rel="noopener" class="cs-btn" data-cs="invite">' +
+      // 立即试用（跳转到登录弹窗的"提交申请"Tab）
+      '<a href="#" class="cs-btn" data-cs="trial" onclick="if(window.GalileoAuth){GalileoAuth.showLogin();var t=setInterval(function(){var b=document.querySelector(\'.auth-tab:not(.active)\');if(b){b.click();clearInterval(t);}},50);}return false;">' +
         '<span class="cs-btn-icon">' + ICON.invite + '</span>' +
-        '<span class="cs-btn-label">申请邀请码</span>' +
+        '<span class="cs-btn-label">立即试用</span>' +
       '</a>' +
       // 电话咨询
       '<a href="tel:' + HOTLINE_TEL + '" class="cs-btn" data-cs="phone">' +

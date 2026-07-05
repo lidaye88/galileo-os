@@ -655,7 +655,6 @@
             '<a href="tel:' + esc(a.phone) + '" class="aac-phone">📞 ' + esc(a.phone) + '</a>' +
             '<span class="aac-company">🏢 ' + esc(a.company || "—") + '</span>' +
             '<span class="aac-role">' + esc(a.role || "—") + '</span>' +
-            (a.inviteCode ? '<span class="aac-invite">🎟️ ' + esc(a.inviteCode) + '</span>' : '') +
           '</div>' +
           (a.interest ? '<div class="aac-row"><span class="aac-k">想用</span><span class="aac-v">' + esc(a.interest) + '</span></div>' : '') +
           (a.desc ? '<div class="aac-row"><span class="aac-k">需求</span><span class="aac-v">' + esc(a.desc) + '</span></div>' : '') +

@@ -24,8 +24,6 @@ window.GalileoAuth = (function () {
   var state = {
     loggedIn: false,
     user: null,        // { phone, name, role }
-    inviteVerified: false,   // 注册时邀请码是否已验证
-    verifiedInviteCode: "",  // 已验证的邀请码（回显用）
     pendingTarget: null // 当前要使用的能力名
   };
 
@@ -76,22 +74,22 @@ window.GalileoAuth = (function () {
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
         '<div class="modal-icon">🔐</div>' +
-        '<h3>' + (isLogin ? '登录到 Galileo OS' : '提交使用申请') + '</h3>' +
+        '<h3>' + (isLogin ? '登录到 Galileo OS' : '申请试用') + '</h3>' +
         '<p>' + (isLogin
           ? '登录后即可使用平台能力' + (state.pendingTarget ? '（当前：' + esc(state.pendingTarget) + '）' : '')
-          : '当前为邀请注册制，暂未开放公开注册。请填写以下信息，我们审核通过后为您开通账号。') + '</p>' +
+          : '平台为非开放注册。登记您的试用需求，资源就绪后我们会短信通知您开通。') + '</p>' +
       '</div>' +
       '<div class="modal-body">' +
         '<div class="auth-tabs">' +
           '<button class="auth-tab ' + (isLogin ? 'active' : '') + '" onclick="GalileoAuth._switch(\'login\')">登录</button>' +
-          '<button class="auth-tab ' + (!isLogin ? 'active' : '') + '" onclick="GalileoAuth._switch(\'apply\')">提交申请</button>' +
+          '<button class="auth-tab ' + (!isLogin ? 'active' : '') + '" onclick="GalileoAuth._switch(\'apply\')">申请试用</button>' +
         '</div>' +
 
         (isLogin ?
           // ===== 登录表单 =====
           '<div class="invite-note" style="margin-bottom:20px;background:#FEF3C7;border:1px solid #FCD34D;">' +
             '<span class="invite-note-icon">💡</span>' +
-            '<div>当前为<strong>邀请注册制</strong>，登录需管理员开通。还没有账号？<a href="#" onclick="GalileoAuth._switch(\'apply\');return false" style="color:var(--accent-600);font-weight:600;">点此提交申请 →</a></div>' +
+            '<div>平台为<strong>非开放注册</strong>，登录需管理员开通。还没有账号？<a href="#" onclick="GalileoAuth._switch(\'apply\');return false" style="color:var(--accent-600);font-weight:600;">点此申请试用 →</a></div>' +
           '</div>' +
           '<form onsubmit="return GalileoAuth._doLogin(event)">' +
             '<div class="form-group">' +
@@ -108,63 +106,43 @@ window.GalileoAuth = (function () {
             '<button type="submit" class="btn btn-accent btn-lg full" style="margin-top:8px;">登录</button>' +
           '</form>'
         :
-          // ===== 提交申请表单（两步式：先验证邀请码，再填信息）=====
+          // ===== 申请试用登记表单（无需邀请码，直接登记）=====
+          '<div class="invite-note" style="margin-bottom:20px;background:var(--accent-50);border:1px solid var(--accent-500);">' +
+            '<span class="invite-note-icon">🚀</span>' +
+            '<div>平台当前为<strong>非开放注册</strong>。填写下方信息登记试用需求，我们会在资源就绪后通过短信主动联系您开通。</div>' +
+          '</div>' +
           '<form onsubmit="return GalileoAuth._doApply(event)">' +
-            // 第 1 步：邀请码（必先验证）
-            (state.inviteVerified ?
-              // 已验证：折叠显示已通过的邀请码
-              '<div class="form-group">' +
-                '<label class="form-label">邀请码 <span style="color:var(--accent-600);">✓ 已验证</span></label>' +
-                '<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--accent-50);border:1px solid var(--accent-500);border-radius:var(--radius-sm);">' +
-                  '<span style="font-family:SF Mono,monospace;font-size:15px;letter-spacing:0.1em;color:var(--accent-600);font-weight:600;">' + esc(state.verifiedInviteCode) + '</span>' +
-                  '<a href="#" onclick="GalileoAuth._resetInvite();return false" style="font-size:12px;color:var(--text-tertiary);">更换</a>' +
-                '</div>' +
-              '</div>'
-            :
-              // 未验证：显示邀请码输入 + 验证按钮，其余字段禁用
-              '<div class="form-group">' +
-                '<label class="form-label">邀请码 <span style="color:#B91C1C;">*</span> <span style="font-weight:400;color:var(--text-tertiary);font-size:12px;">（请先验证邀请码，再填写以下信息）</span></label>' +
-                '<div class="input-with-btn">' +
-                  '<input class="form-input" type="text" id="applyInvite" placeholder="如 GALILEO-XXXX" style="text-transform:uppercase;letter-spacing:0.05em;">' +
-                  '<button type="button" class="btn-send-code" onclick="GalileoAuth._verifyApplyInvite(this)">验证</button>' +
-                '</div>' +
-                '<div id="apply-invite-error" style="display:none;color:#B91C1C;font-size:12.5px;margin-top:6px;"></div>' +
-              '</div>'
-            ) +
-            // 第 2 步：基础信息（邀请码未验证时禁用 + 模糊）
-            '<fieldset class="apply-fields' + (state.inviteVerified ? '' : ' locked') + '"' + (state.inviteVerified ? '' : ' disabled') + ' style="border:none;padding:0;margin:0;' + (state.inviteVerified ? '' : 'opacity:0.45;pointer-events:none;') + '">' +
-              '<div class="form-group">' +
-                '<label class="form-label">姓名 <span style="color:#B91C1C;">*</span></label>' +
-                '<input class="form-input" type="text" name="name" required placeholder="如何称呼您">' +
+            '<div class="form-group">' +
+              '<label class="form-label">姓名 <span style="color:#B91C1C;">*</span></label>' +
+              '<input class="form-input" type="text" name="name" required placeholder="如何称呼您">' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">手机号 <span style="color:#B91C1C;">*</span></label>' +
+              '<input class="form-input" type="tel" name="phone" required placeholder="用于接收开通通知（短信）" maxlength="11">' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">企业名称 <span style="color:#B91C1C;">*</span></label>' +
+              '<input class="form-input" type="text" name="company" required placeholder="您所在的企业">' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">您的身份 <span style="color:#B91C1C;">*</span></label>' +
+              '<div class="role-select">' +
+                '<button type="button" class="role-chip" data-role="工业企业" onclick="GalileoAuth._pickRole(this)">工业企业</button>' +
+                '<button type="button" class="role-chip" data-role="OPC 合作伙伴" onclick="GalileoAuth._pickRole(this)">OPC 合作伙伴</button>' +
+                '<button type="button" class="role-chip" data-role="开发者" onclick="GalileoAuth._pickRole(this)">开发者</button>' +
+                '<button type="button" class="role-chip" data-role="设备供应商" onclick="GalileoAuth._pickRole(this)">设备供应商</button>' +
+                '<button type="button" class="role-chip" data-role="服务商" onclick="GalileoAuth._pickRole(this)">服务商</button>' +
               '</div>' +
-              '<div class="form-group">' +
-                '<label class="form-label">手机号 <span style="color:#B91C1C;">*</span></label>' +
-                '<input class="form-input" type="tel" name="phone" required placeholder="便于我们联系您开通" maxlength="11">' +
-              '</div>' +
-              '<div class="form-group">' +
-                '<label class="form-label">企业名称 <span style="color:#B91C1C;">*</span></label>' +
-                '<input class="form-input" type="text" name="company" required placeholder="您所在的企业">' +
-              '</div>' +
-              '<div class="form-group">' +
-                '<label class="form-label">您的身份 <span style="color:#B91C1C;">*</span></label>' +
-                '<div class="role-select">' +
-                  '<button type="button" class="role-chip" data-role="工业企业" onclick="GalileoAuth._pickRole(this)">工业企业</button>' +
-                  '<button type="button" class="role-chip" data-role="OPC 合作伙伴" onclick="GalileoAuth._pickRole(this)">OPC 合作伙伴</button>' +
-                  '<button type="button" class="role-chip" data-role="开发者" onclick="GalileoAuth._pickRole(this)">开发者</button>' +
-                  '<button type="button" class="role-chip" data-role="设备供应商" onclick="GalileoAuth._pickRole(this)">设备供应商</button>' +
-                  '<button type="button" class="role-chip" data-role="服务商" onclick="GalileoAuth._pickRole(this)">服务商</button>' +
-                '</div>' +
-              '</div>' +
-              '<div class="form-group">' +
-                '<label class="form-label">想使用的能力（选填）</label>' +
-                '<input class="form-input" type="text" name="interest" placeholder="如：MES、排产 Agent、设备预测维护…"' + (state.pendingTarget ? ' value="' + esc(state.pendingTarget) + '"' : '') + '>' +
-              '</div>' +
-              '<div class="form-group">' +
-                '<label class="form-label">需求描述（选填）</label>' +
-                '<textarea class="form-input" name="desc" rows="3" placeholder="简单描述您的场景或痛点，便于我们精准对接" style="resize:vertical;font-family:inherit;"></textarea>' +
-              '</div>' +
-              '<button type="submit" class="btn btn-accent btn-lg full" style="margin-top:8px;">提交申请</button>' +
-            '</fieldset>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">想使用的能力（选填）</label>' +
+              '<input class="form-input" type="text" name="interest" placeholder="如：MES、排产 Agent、设备预测维护…"' + (state.pendingTarget ? ' value="' + esc(state.pendingTarget) + '"' : '') + '>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">需求描述（选填）</label>' +
+              '<textarea class="form-input" name="desc" rows="3" placeholder="简单描述您的场景或痛点，便于我们精准对接" style="resize:vertical;font-family:inherit;"></textarea>' +
+            '</div>' +
+            '<button type="submit" class="btn btn-accent btn-lg full" style="margin-top:8px;">提交试用申请</button>' +
           '</form>'
         ) +
       '</div>' +
@@ -232,7 +210,7 @@ window.GalileoAuth = (function () {
       '<div class="modal-header">' +
         '<div class="modal-success-icon">✅</div>' +
         '<h3>申请已提交</h3>' +
-        '<p>' + esc(rec.name) + '，感谢您的申请！我们会在 <strong>1 个工作日内</strong> 联系您（' + esc(rec.phone) + '）开通账号，请保持手机畅通。</p>' +
+        '<p>' + esc(rec.name) + '，试用申请已登记！我们会在 <strong>资源就绪后</strong> 通过短信（' + esc(rec.phone) + '）通知您开通，请保持手机畅通。</p>' +
       '</div>' +
       '<div class="modal-body">' +
         '<div class="invite-note">' +
@@ -320,11 +298,6 @@ window.GalileoAuth = (function () {
   function _doApply(e) {
     e.preventDefault();
     var f = e.target;
-    // 邀请码必须已验证
-    if (!state.inviteVerified || !state.verifiedInviteCode) {
-      _tip("请先验证邀请码");
-      return false;
-    }
     var name = f.name.value.trim();
     var phone = f.phone.value.trim();
     var company = f.company.value.trim();
@@ -338,7 +311,7 @@ window.GalileoAuth = (function () {
     if (!company) { _tip("请填写企业名称"); return false; }
     if (!role) { _tip("请选择您的身份"); return false; }
 
-    // 生成申请记录，存 localStorage（后台读取）
+    // 生成试用申请记录，存 localStorage（后台读取）
     var rec = {
       id: "a_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
       name: name,
@@ -347,7 +320,6 @@ window.GalileoAuth = (function () {
       role: role,
       interest: interest,
       desc: desc,
-      inviteCode: state.verifiedInviteCode,
       createdAt: new Date().toISOString(),
       status: "pending"   // pending / contacted / opened / ignored
     };
@@ -356,45 +328,8 @@ window.GalileoAuth = (function () {
     arr.unshift(rec);
     try { localStorage.setItem(LS_APPS, JSON.stringify(arr)); } catch (err) {}
 
-    // 提交后重置邀请码状态
-    state.inviteVerified = false;
-    state.verifiedInviteCode = "";
-
     showApplySuccess(rec);
     return false;
-  }
-
-  // 注册申请：验证邀请码（实时校验，通过后解锁下方字段）
-  function _verifyApplyInvite(btn) {
-    var input = document.getElementById("applyInvite");
-    var errBox = document.getElementById("apply-invite-error");
-    if (!input) return;
-    var code = input.value.trim().toUpperCase();
-    if (errBox) errBox.style.display = "none";
-
-    if (!code) {
-      if (errBox) { errBox.textContent = "请输入邀请码"; errBox.style.display = "block"; }
-      return;
-    }
-    // 复用与 _doInvite 相同的校验规则
-    var valid = /^(GALILEO|DEMO|OPC)-[A-Z0-9]{4,}$/.test(code);
-    if (!valid) {
-      if (errBox) { errBox.textContent = "邀请码无效，请检查后重试，或联系客服获取"; errBox.style.display = "block"; }
-      return;
-    }
-    // 验证通过 → 解锁
-    state.inviteVerified = true;
-    state.verifiedInviteCode = code;
-    _tip("邀请码验证通过");
-    // 重新渲染 apply 表单（显示已验证态 + 解锁字段）
-    renderLogin("apply");
-  }
-
-  // 注册申请：重置邀请码（点"更换"时）
-  function _resetInvite() {
-    state.inviteVerified = false;
-    state.verifiedInviteCode = "";
-    renderLogin("apply");
   }
 
   // 邀请码提交（演示版：GALILEO-xxx 通用码，或 DEMO-xxx 通过）
@@ -501,8 +436,6 @@ window.GalileoAuth = (function () {
     // 内部方法（供 onclick 调用）
     _doLogin: _doLogin,
     _doApply: _doApply,
-    _verifyApplyInvite: _verifyApplyInvite,
-    _resetInvite: _resetInvite,
     _doInvite: _doInvite,
     _doContact: _doContact,
     _sendCode: _sendCode,

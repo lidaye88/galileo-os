@@ -977,9 +977,13 @@ section.spacing-lg { padding: 160px 0; }
 }
 .footer-top {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
   gap: 40px;
   padding-bottom: 48px;
+}
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
 }
 .footer .brand { margin-bottom: 18px; }
 .footer-desc {
@@ -1022,28 +1026,30 @@ section.spacing-lg { padding: 160px 0; }
 
 /* 页脚微信公众号二维码 */
 .footer-qr {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 14px;
-  margin-top: 24px;
-  padding: 14px;
+  margin-top: 28px;
+  padding: 14px 18px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   max-width: 280px;
   transition: all var(--duration) var(--ease);
 }
 .footer-qr:hover {
   background: rgba(255,255,255,0.06);
   border-color: rgba(0,217,163,0.25);
+  transform: translateY(-2px);
 }
 .footer-qr .qr-img {
-  width: 72px; height: 72px;
+  width: 84px; height: 84px;
   border-radius: var(--radius-sm);
   background: #fff;
-  padding: 4px;
+  padding: 5px;
   flex-shrink: 0;
   box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 .footer-qr .qr-text {
   display: flex;
@@ -1342,7 +1348,7 @@ section.spacing-lg { padding: 160px 0; }
   .stats-light .stat:last-child { border-bottom: none; }
   .step { grid-template-columns: 1fr; gap: 16px; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .footer-top > div:first-child { grid-column: 1 / -1; }
+  .footer-top > div:first-child, .footer-brand-col { grid-column: 1 / -1; }
   .footer-locations { flex-direction: column; align-items: flex-start; }
   .footer-legal { flex-direction: column; align-items: flex-start; }
   .hero-cta { flex-direction: column; align-items: stretch; }
@@ -2469,6 +2475,27 @@ section.spacing-lg { padding: 160px 0; }
 .brand-logo-dark { display: none; }   /* 深底用 */
 .brand-logo-light { display: block; } /* 浅底用 */
 
+/* ===== 新完整 logo（图形+文字一体）===== */
+.brand-logo-only {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.brand-full-logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+.brand-full-logo.brand-logo-dark { display: none; }
+.brand-full-logo.brand-logo-light { display: block; }
+/* 透明深色导航：显示白字版 */
+.nav-transparent:not(.nav-scrolled) .brand-full-logo.brand-logo-light { display: none; }
+.nav-transparent:not(.nav-scrolled) .brand-full-logo.brand-logo-dark { display: block; }
+.nav-transparent.nav-scrolled .brand-full-logo.brand-logo-light { display: block; }
+.nav-transparent.nav-scrolled .brand-full-logo.brand-logo-dark { display: none; }
+/* 滚动后 logo 高度收紧一点 */
+.nav-transparent.nav-scrolled .brand-full-logo { height: 26px; }
+
 /* 在透明深色导航上（首页 hero）切换为白色版 */
 .nav-transparent .brand-logo-light,
 .nav-dark .brand-logo-light { display: none; }
@@ -2498,17 +2525,13 @@ section.spacing-lg { padding: 160px 0; }
 .nav-transparent {
   position: sticky;
   top: 0;
-  background: transparent;
-  border-bottom-color: transparent;
+  z-index: 100;
+  /* 顶部态：极淡深色毛玻璃（比纯透明更易识别导航边界，又不像之前那么黑）*/
+  background: rgba(15, 20, 25, 0.28);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
-}
-/* 底部极淡的白色光晕分隔线（替代黑色蒙版，更通透）*/
-.nav-transparent:not(.nav-scrolled)::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 20%, rgba(255,255,255,0.18) 80%, transparent);
 }
 /* 透明态：文字/logo 纯白（靠 hero 深色背景保证对比，无需阴影）*/
 .nav-transparent:not(.nav-scrolled) .nav-links a {
