@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#FFFFFF"/>
+  <!-- 占位：微信公众号二维码，待替换为真实图片 -->
+  <rect x="20" y="20" width="160" height="160" fill="none" stroke="#CBD0D6" stroke-width="2" stroke-dasharray="6 4" rx="8"/>
+  <g fill="#9BA3AD" font-family="-apple-system,sans-serif" text-anchor="middle">
+    <text x="100" y="95" font-size="13" font-weight="600">微信公众号</text>
+    <text x="100" y="115" font-size="11">二维码占位</text>
+  </g>
+  <!-- 装饰性二维码角标 -->
+  <g fill="#0F1419">
+    <rect x="40" y="40" width="30" height="30" rx="4"/>
+    <rect x="130" y="40" width="30" height="30" rx="4"/>
+    <rect x="40" y="130" width="30" height="30" rx="4"/>
+  </g>
+  <g fill="#FFFFFF">
+    <rect x="48" y="48" width="14" height="14" rx="2"/>
+    <rect x="138" y="48" width="14" height="14" rx="2"/>
+    <rect x="48" y="138" width="14" height="14" rx="2"/>
+  </g>
+  <g fill="#0F1419">
+    <rect x="52" y="52" width="6" height="6"/>
+    <rect x="142" y="52" width="6" height="6"/>
+    <rect x="52" y="142" width="6" height="6"/>
+  </g>
+</svg>
