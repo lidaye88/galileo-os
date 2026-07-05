@@ -2498,40 +2498,50 @@ section.spacing-lg { padding: 160px 0; }
 .nav-transparent {
   position: sticky;
   top: 0;
-  background: linear-gradient(180deg, rgba(15,20,25,0.72) 0%, rgba(15,20,25,0.42) 60%, rgba(15,20,25,0) 100%);
+  background: transparent;
   border-bottom-color: transparent;
-  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
-/* 透明态：文字/logo 为纯白 + 文字阴影增强对比 */
-.nav-transparent .nav-links a {
+/* 底部极淡的白色光晕分隔线（替代黑色蒙版，更通透）*/
+.nav-transparent:not(.nav-scrolled)::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 20%, rgba(255,255,255,0.18) 80%, transparent);
+}
+/* 透明态：文字/logo 纯白（靠 hero 深色背景保证对比，无需阴影）*/
+.nav-transparent:not(.nav-scrolled) .nav-links a {
   color: var(--text-inverse);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
-.nav-transparent .nav-links a:hover {
+.nav-transparent:not(.nav-scrolled) .nav-links a:hover {
   color: var(--text-inverse);
-  background: rgba(255, 255, 255, 0.14);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
 }
-.nav-transparent .nav-links a.active {
+.nav-transparent:not(.nav-scrolled) .nav-links a.active {
   color: var(--accent-400);
+  opacity: 1;
 }
-.nav-transparent .brand .brand-name {
+.nav-transparent:not(.nav-scrolled) .brand .brand-name {
   color: var(--text-inverse);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
 }
-.nav-transparent .brand .brand-sub {
-  color: rgba(255,255,255,0.78);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+.nav-transparent:not(.nav-scrolled) .brand .brand-sub {
+  color: rgba(255,255,255,0.7);
 }
 /* 透明态显示白色 logo */
 .nav-transparent .brand-logo-light { display: none; }
 .nav-transparent .brand-logo-dark { display: block; }
 
-/* 滚动后：变白色 sticky 背景 */
+/* 滚动后：毛玻璃白底 + 极轻投影（柔和分层，非黑色硬阴影）*/
 .nav-transparent.nav-scrolled {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom-color: var(--border-subtle);
+  border-bottom-color: transparent;
+  box-shadow: 0 1px 0 rgba(15,20,25,0.04), 0 4px 16px -8px rgba(15,20,25,0.08);
 }
 .nav-transparent.nav-scrolled .nav-links a {
   color: var(--text-secondary);
