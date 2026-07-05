@@ -1,25 +1,24 @@
 /* ============================================
  * Galileo OS · 准入弹窗系统
- * 对应 PRD 第 6-8 章：登录/注册/邀请码/咨询 闭环
  *
- * 状态机：
- *   clickUse(能力名)
- *     ├─ 未登录 → showLogin()  → 登录成功 → showInvite()
- *     └─ 已登录 → showInvite() → 校验通过 → showSuccess()
- *                                    └─ 无邀请码 → showContact()
+ * 当前为邀请注册制（暂未开放公开注册）：
+ *   - 全站「登录」按钮 → showLogin() 打开登录弹窗
+ *   - 登录弹窗两个 Tab：
+ *       · 登录：手机号+验证码（演示版，需管理员开通后可用）
+ *       · 提交申请：填写信息 → 存 localStorage → 后台审核 → 线下开通
+ *   - 申请记录在 admin.html「申请留言」视图查看
  *
  * 用法：
  *   <script src="auth-modal.js"></script>
- *   GalileoAuth.init();                          // 初始化（注入弹窗 DOM）
- *   GalileoAuth.clickUse("排产算法 Skill");        // 触发使用流程
- *   GalileoAuth.showLogin();                     // 直接打开登录
- *   GalileoAuth.showInvite("Agent名");            // 直接打开邀请码
- *   GalileoAuth.showContact("能力名");            // 直接打开咨询
+ *   GalileoAuth.init();              // 初始化（注入弹窗 DOM）
+ *   GalileoAuth.showLogin();         // 打开登录弹窗
+ *   GalileoAuth.showLogin('能力名'); // 带 pendingTarget
  * ============================================ */
 
 window.GalileoAuth = (function () {
   var KEFU = "https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7";
   var STORAGE_KEY = "galileo_auth_state";
+  var LS_APPS = "galileo_applications";   // 申请记录（后台读取）
 
   // 内存状态（模拟登录态）
   var state = {
@@ -76,17 +75,23 @@ window.GalileoAuth = (function () {
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
         '<div class="modal-icon">🔐</div>' +
-        '<h3>' + (isLogin ? '登录到 Galileo OS' : '注册账号') + '</h3>' +
-        '<p>' + (isLogin ? '登录后即可申请使用「' + esc(state.pendingTarget || '能力') + '」' : '注册后可浏览全部能力详情，申请使用') + '</p>' +
+        '<h3>' + (isLogin ? '登录到 Galileo OS' : '提交使用申请') + '</h3>' +
+        '<p>' + (isLogin
+          ? '登录后即可使用平台能力' + (state.pendingTarget ? '（当前：' + esc(state.pendingTarget) + '）' : '')
+          : '当前为邀请注册制，暂未开放公开注册。请填写以下信息，我们审核通过后为您开通账号。') + '</p>' +
       '</div>' +
       '<div class="modal-body">' +
         '<div class="auth-tabs">' +
           '<button class="auth-tab ' + (isLogin ? 'active' : '') + '" onclick="GalileoAuth._switch(\'login\')">登录</button>' +
-          '<button class="auth-tab ' + (!isLogin ? 'active' : '') + '" onclick="GalileoAuth._switch(\'register\')">注册</button>' +
+          '<button class="auth-tab ' + (!isLogin ? 'active' : '') + '" onclick="GalileoAuth._switch(\'apply\')">提交申请</button>' +
         '</div>' +
 
         (isLogin ?
-          // 登录表单
+          // ===== 登录表单 =====
+          '<div class="invite-note" style="margin-bottom:20px;background:#FEF3C7;border:1px solid #FCD34D;">' +
+            '<span class="invite-note-icon">💡</span>' +
+            '<div>当前为<strong>邀请注册制</strong>，登录需管理员开通。还没有账号？<a href="#" onclick="GalileoAuth._switch(\'apply\');return false" style="color:var(--accent-600);font-weight:600;">点此提交申请 →</a></div>' +
+          '</div>' +
           '<form onsubmit="return GalileoAuth._doLogin(event)">' +
             '<div class="form-group">' +
               '<label class="form-label">手机号</label>' +
@@ -102,54 +107,44 @@ window.GalileoAuth = (function () {
             '<button type="submit" class="btn btn-accent btn-lg full" style="margin-top:8px;">登录</button>' +
           '</form>'
         :
-          // 注册表单
-          '<form onsubmit="return GalileoAuth._doRegister(event)">' +
-            '<div class="invite-note" style="margin-bottom:20px;background:var(--accent-50);border:1px solid var(--accent-500);">' +
-              '<span class="invite-note-icon">🎟️</span>' +
-              '<div>注册后使用能力需<strong>邀请码</strong>。还没有邀请码？<a href="' + KEFU + '" target="_blank" rel="noopener" style="color:var(--accent-600);font-weight:600;">点击联系客服获取 →</a></div>' +
+          // ===== 提交申请表单 =====
+          '<form onsubmit="return GalileoAuth._doApply(event)">' +
+            '<div class="form-group">' +
+              '<label class="form-label">姓名 <span style="color:#B91C1C;">*</span></label>' +
+              '<input class="form-input" type="text" name="name" required placeholder="如何称呼您">' +
             '</div>' +
             '<div class="form-group">' +
               '<label class="form-label">手机号 <span style="color:#B91C1C;">*</span></label>' +
-              '<input class="form-input" type="tel" name="phone" placeholder="用于登录和客服联系" required maxlength="11">' +
+              '<input class="form-input" type="tel" name="phone" required placeholder="便于我们联系您开通" maxlength="11">' +
             '</div>' +
             '<div class="form-group">' +
-              '<label class="form-label">验证码 <span style="color:#B91C1C;">*</span></label>' +
-              '<div class="input-with-btn">' +
-                '<input class="form-input" type="text" name="code" placeholder="短信验证码" required maxlength="6">' +
-                '<button type="button" class="btn-send-code" onclick="GalileoAuth._sendCode(this)">获取验证码</button>' +
-              '</div>' +
+              '<label class="form-label">企业名称 <span style="color:#B91C1C;">*</span></label>' +
+              '<input class="form-input" type="text" name="company" required placeholder="您所在的企业">' +
             '</div>' +
             '<div class="form-group">' +
-              '<label class="form-label">姓名（选填）</label>' +
-              '<input class="form-input" type="text" name="name" placeholder="如何称呼您">' +
-            '</div>' +
-            '<div class="form-group">' +
-              '<label class="form-label">企业名称（选填）</label>' +
-              '<input class="form-input" type="text" name="company" placeholder="您所在的企业">' +
-            '</div>' +
-            '<div class="form-group">' +
-              '<label class="form-label">您的身份</label>' +
+              '<label class="form-label">您的身份 <span style="color:#B91C1C;">*</span></label>' +
               '<div class="role-select">' +
-                '<button type="button" class="role-chip" data-role="企业用户" onclick="GalileoAuth._pickRole(this)">工业企业</button>' +
-                '<button type="button" class="role-chip" data-role="OPC" onclick="GalileoAuth._pickRole(this)">OPC 合作伙伴</button>' +
+                '<button type="button" class="role-chip" data-role="工业企业" onclick="GalileoAuth._pickRole(this)">工业企业</button>' +
+                '<button type="button" class="role-chip" data-role="OPC 合作伙伴" onclick="GalileoAuth._pickRole(this)">OPC 合作伙伴</button>' +
                 '<button type="button" class="role-chip" data-role="开发者" onclick="GalileoAuth._pickRole(this)">开发者</button>' +
                 '<button type="button" class="role-chip" data-role="设备供应商" onclick="GalileoAuth._pickRole(this)">设备供应商</button>' +
                 '<button type="button" class="role-chip" data-role="服务商" onclick="GalileoAuth._pickRole(this)">服务商</button>' +
               '</div>' +
             '</div>' +
-            '<button type="submit" class="btn btn-accent btn-lg full" style="margin-top:8px;">注册</button>' +
+            '<div class="form-group">' +
+              '<label class="form-label">想使用的能力（选填）</label>' +
+              '<input class="form-input" type="text" name="interest" placeholder="如：MES、排产 Agent、设备预测维护…"' + (state.pendingTarget ? ' value="' + esc(state.pendingTarget) + '"' : '') + '>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">需求描述（选填）</label>' +
+              '<textarea class="form-input" name="desc" rows="3" placeholder="简单描述您的场景或痛点，便于我们精准对接" style="resize:vertical;font-family:inherit;"></textarea>' +
+            '</div>' +
+            '<button type="submit" class="btn btn-accent btn-lg full" style="margin-top:8px;">提交申请</button>' +
           '</form>'
         ) +
-
-        '<div class="divider-or">其他方式</div>' +
-        '<div class="third-auth">' +
-          '<button class="third-auth-btn" title="微信登录（即将开放）" onclick="GalileoAuth._tip(\'微信登录即将开放\')">💬</button>' +
-          '<button class="third-auth-btn" title="企业微信（即将开放）" onclick="GalileoAuth._tip(\'企业微信登录即将开放\')">🏢</button>' +
-          '<button class="third-auth-btn" title="飞书（即将开放）" onclick="GalileoAuth._tip(\'飞书登录即将开放\')">🦜</button>' +
-        '</div>' +
       '</div>' +
       '<div class="modal-footer">' +
-        '<p class="form-footer">登录即代表同意 <a href="#" onclick="return false">服务协议</a> 与 <a href="#" onclick="return false">隐私政策</a></p>' +
+        '<p class="form-footer">提交即代表同意 <a href="#" onclick="return false">服务协议</a> 与 <a href="#" onclick="return false">隐私政策</a></p>' +
       '</div>';
   }
 
@@ -204,6 +199,27 @@ window.GalileoAuth = (function () {
     state.inviteVerified = true;
   }
 
+  /* ---------- 渲染申请成功页 ---------- */
+  function showApplySuccess(rec) {
+    var modal = document.getElementById("auth-modal");
+    modal.innerHTML =
+      '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
+      '<div class="modal-header">' +
+        '<div class="modal-success-icon">✅</div>' +
+        '<h3>申请已提交</h3>' +
+        '<p>' + esc(rec.name) + '，感谢您的申请！我们会在 <strong>1 个工作日内</strong> 联系您（' + esc(rec.phone) + '）开通账号，请保持手机畅通。</p>' +
+      '</div>' +
+      '<div class="modal-body">' +
+        '<div class="invite-note">' +
+          '<span class="invite-note-icon">⚡</span>' +
+          '<div>需求比较急？可以<a href="' + KEFU + '" target="_blank" rel="noopener" style="color:var(--accent-600);font-weight:500;">点击联系客服企业微信</a>，加速开通。</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="modal-footer">' +
+        '<button class="btn btn-outline btn-lg full" onclick="GalileoAuth.close()">完成</button>' +
+      '</div>';
+  }
+
   /* ---------- 渲染咨询留资 ---------- */
   function showContact(target) {
     state.pendingTarget = target || state.pendingTarget;
@@ -251,18 +267,14 @@ window.GalileoAuth = (function () {
   }
 
   /* ---------- 业务动作 ---------- */
-  // 核心：点击使用的主入口（PRD 10.1 / 10.2 流程）
+  // 核心：点击使用的主入口
   function clickUse(target) {
     init();
     state.pendingTarget = target;
-    if (!state.loggedIn) {
-      showLogin(target);  // 未登录 → 登录
-    } else {
-      showInvite(target); // 已登录 → 邀请码
-    }
+    showLogin(target);  // 统一打开登录弹窗
   }
 
-  // 登录提交（演示版：验证码 000000 通过）
+  // 登录提交（演示版：验证码任意 4 位通过）
   function _doLogin(e) {
     e.preventDefault();
     var f = e.target;
@@ -274,24 +286,46 @@ window.GalileoAuth = (function () {
     state.loggedIn = true;
     state.user = { phone: phone, name: "", role: "" };
     persist();
-    // PRD 6.4：登录后自动进入邀请码校验
-    showInvite(state.pendingTarget);
+    _tip("登录成功");
+    close();
     return false;
   }
 
-  // 注册提交
-  function _doRegister(e) {
+  // 提交申请（替代原 _doRegister）
+  function _doApply(e) {
     e.preventDefault();
     var f = e.target;
+    var name = f.name.value.trim();
     var phone = f.phone.value.trim();
-    var code = f.code.value.trim();
+    var company = f.company.value.trim();
+    var roleEl = f.querySelector('.role-chip.selected');
+    var role = roleEl ? roleEl.dataset.role || roleEl.textContent : '';
+    var interest = f.interest ? f.interest.value.trim() : (state.pendingTarget || '');
+    var desc = f.desc ? f.desc.value.trim() : '';
+
+    if (!name) { _tip("请填写姓名"); return false; }
     if (!/^1\d{10}$/.test(phone)) { _tip("请输入正确的手机号"); return false; }
-    if (code.length < 4) { _tip("请输入验证码"); return false; }
-    state.loggedIn = true;
-    state.user = { phone: phone, name: f.name.value.trim(), role: "" };
-    persist();
-    // PRD 6.4：注册成功后自动进入邀请码
-    showInvite(state.pendingTarget);
+    if (!company) { _tip("请填写企业名称"); return false; }
+    if (!role) { _tip("请选择您的身份"); return false; }
+
+    // 生成申请记录，存 localStorage（后台读取）
+    var rec = {
+      id: "a_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      name: name,
+      phone: phone,
+      company: company,
+      role: role,
+      interest: interest,
+      desc: desc,
+      createdAt: new Date().toISOString(),
+      status: "pending"   // pending / contacted / opened / ignored
+    };
+    var arr = [];
+    try { arr = JSON.parse(localStorage.getItem(LS_APPS) || "[]"); } catch (err) {}
+    arr.unshift(rec);
+    try { localStorage.setItem(LS_APPS, JSON.stringify(arr)); } catch (err) {}
+
+    showApplySuccess(rec);
     return false;
   }
 
@@ -393,7 +427,7 @@ window.GalileoAuth = (function () {
     isLoggedIn: isLoggedIn,
     // 内部方法（供 onclick 调用）
     _doLogin: _doLogin,
-    _doRegister: _doRegister,
+    _doApply: _doApply,
     _doInvite: _doInvite,
     _doContact: _doContact,
     _sendCode: _sendCode,

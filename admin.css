@@ -821,6 +821,144 @@
   flex-wrap: wrap;
 }
 
+/* ---------- 申请留言视图 ---------- */
+.admin-app-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.admin-app-filter {
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-white);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration) var(--ease);
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.admin-app-filter:hover { border-color: var(--border-strong); color: var(--text-primary); }
+.admin-app-filter.active {
+  background: var(--accent-600);
+  border-color: var(--accent-600);
+  color: var(--text-inverse);
+}
+.admin-app-filter .af-count {
+  font-size: 10.5px;
+  background: rgba(0,0,0,0.08);
+  padding: 0 6px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.admin-app-filter.active .af-count { background: rgba(255,255,255,0.25); }
+
+.admin-app-list { padding: 0 16px 16px; }
+.admin-app-card {
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--text-quaternary);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: var(--bg-white);
+  transition: border-color var(--duration) var(--ease);
+}
+.admin-app-card:hover { border-color: var(--border-strong); }
+.admin-app-card.pending { border-left-color: #F59E0B; }
+.admin-app-card.contacted { border-left-color: var(--indigo-500); }
+.admin-app-card.opened { border-left-color: var(--accent-600); }
+.admin-app-card.ignored { opacity: 0.65; border-left-color: var(--text-quaternary); }
+
+.admin-app-card .aac-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+.admin-app-card .aac-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.admin-app-card .aac-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.admin-app-card .aac-status {
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+.admin-app-card .aac-status.pending { background: #FEF3C7; color: #92400E; }
+.admin-app-card .aac-status.contacted { background: var(--indigo-50); color: #3730A3; }
+.admin-app-card .aac-status.opened { background: var(--accent-50); color: var(--accent-600); }
+.admin-app-card .aac-status.ignored { background: var(--gray-100); color: var(--text-secondary); }
+.admin-app-card .aac-created {
+  font-size: 11.5px;
+  color: var(--text-quaternary);
+  white-space: nowrap;
+}
+.admin-app-card .aac-info {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.admin-app-card .aac-phone {
+  color: var(--accent-600);
+  text-decoration: none;
+  font-weight: 500;
+  font-family: "SF Mono", monospace;
+}
+.admin-app-card .aac-phone:hover { text-decoration: underline; }
+.admin-app-card .aac-row {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+.admin-app-card .aac-k {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--text-quaternary);
+  background: var(--gray-100);
+  padding: 1px 7px;
+  border-radius: var(--radius-sm);
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+.admin-app-card .aac-v { color: var(--text-primary); }
+.admin-app-card .aac-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.admin-app-card .aac-status-select {
+  padding: 5px 10px;
+  font-size: 12.5px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-white);
+  color: var(--text-primary);
+  font-family: inherit;
+  cursor: pointer;
+}
+.admin-app-card .aac-status-select:focus {
+  outline: none;
+  border-color: var(--accent-500);
+}
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 1024px) {
   .admin-layout { grid-template-columns: 160px 240px 1fr; }

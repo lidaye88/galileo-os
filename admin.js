@@ -33,7 +33,8 @@
     currentType: null,    // "apps" | ...
     currentKey: null,     // 选中的条目 key
     mode: "visual",       // "visual" | "code"
-    search: ""
+    search: "",
+    appFilter: "all"      // 申请留言筛选状态
   };
 
   /* ============ localStorage 读写 ============ */
@@ -239,6 +240,15 @@
       '<span class="nav-count">' + keyCount + '</span>' +
     '</div>';
     html += '</div>';
+    html += '<div class="admin-nav-section">';
+    html += '<div class="admin-nav-label">用户</div>';
+    var apps = loadApplications();
+    var pendingN = apps.filter(function (a) { return a.status === "pending"; }).length;
+    html += '<div class="admin-nav-item' + (state.currentType === "applications" ? " active" : "") + (pendingN > 0 ? " dirty" : "") + '" data-type="applications">' +
+      '<span><span class="nav-dot"></span>申请留言</span>' +
+      '<span class="nav-count">' + pendingN + '</span>' +
+    '</div>';
+    html += '</div>';
     html += '<div class="admin-nav-divider"></div>';
     html += '<div class="admin-nav-section">';
     html += '<div class="admin-nav-label">数据</div>';
@@ -280,6 +290,11 @@
     // API 密钥视图
     if (state.currentType === "apikeys") {
       renderKeysListpane(pane);
+      return;
+    }
+    // 申请留言视图
+    if (state.currentType === "applications") {
+      renderApplicationsListpane(pane);
       return;
     }
     var t = typeOf(state.currentType);
@@ -556,6 +571,141 @@
     }, 100);
   }
 
+  /* ============================================
+   * ============ 申请留言管理 ==================
+   * 数据源：localStorage.galileo_applications（前台 auth-modal.js 写入）
+   * 字段：id / name / phone / company / role / interest / desc / createdAt / status
+   * 状态：pending 待处理 → contacted 已联系 / opened 已开通 / ignored 已忽略
+   * ============================================ */
+  var LS_APPS = "galileo_applications";
+  function loadApplications() {
+    try { return JSON.parse(localStorage.getItem(LS_APPS) || "[]"); }
+    catch (e) { return []; }
+  }
+  function saveApplications(arr) {
+    localStorage.setItem(LS_APPS, JSON.stringify(arr));
+  }
+  function updateAppStatus(id, status) {
+    saveApplications(loadApplications().map(function (a) {
+      if (a.id === id) a.status = status;
+      return a;
+    }));
+  }
+  function deleteApplication(id) {
+    saveApplications(loadApplications().filter(function (a) { return a.id !== id; }));
+  }
+
+  var APP_STATUS = {
+    pending:   { label: "待处理", cls: "pending" },
+    contacted: { label: "已联系", cls: "contacted" },
+    opened:    { label: "已开通", cls: "opened" },
+    ignored:   { label: "已忽略", cls: "ignored" }
+  };
+
+  /* ----- 渲染：申请中间面板 ----- */
+  function renderApplicationsListpane(pane) {
+    var allApps = loadApplications();
+    // 按当前筛选状态过滤（存到临时变量）
+    if (!state.appFilter) state.appFilter = "all";
+    var apps = allApps.filter(function (a) {
+      if (state.appFilter === "all") return true;
+      return a.status === state.appFilter;
+    }).filter(function (a) {
+      if (!state.search) return true;
+      var s = state.search.toLowerCase();
+      return (a.name || "").toLowerCase().indexOf(s) >= 0 ||
+        (a.phone || "").toLowerCase().indexOf(s) >= 0 ||
+        (a.company || "").toLowerCase().indexOf(s) >= 0;
+    });
+
+    var html = '<div class="admin-list-header">' +
+      '<div class="admin-list-header-top">' +
+        '<h3>申请留言（共 ' + allApps.length + ' 条）</h3>' +
+      '</div>' +
+      '<div class="admin-app-filters">';
+    ["all", "pending", "contacted", "opened", "ignored"].forEach(function (st) {
+      var label = st === "all" ? "全部" : APP_STATUS[st].label;
+      var n = st === "all" ? allApps.length : allApps.filter(function (a) { return a.status === st; }).length;
+      html += '<button class="admin-app-filter' + (state.appFilter === st ? " active" : "") + '" data-st="' + st + '">' +
+        label + ' <span class="af-count">' + n + '</span></button>';
+    });
+    html += '</div>' +
+      '<div class="admin-search">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<input type="text" id="searchInput" placeholder="搜索姓名/手机/企业…" value="' + esc(state.search) + '">' +
+      '</div>' +
+    '</div>';
+
+    html += '<div class="admin-list-body admin-app-list">';
+    if (apps.length === 0) {
+      html += '<div class="admin-empty">暂无申请记录</div>';
+    } else {
+      apps.forEach(function (a) {
+        var st = APP_STATUS[a.status] || APP_STATUS.pending;
+        var created = a.createdAt ? new Date(a.createdAt).toLocaleString("zh-CN", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }) : "—";
+        html += '<div class="admin-app-card ' + st.cls + '" data-id="' + esc(a.id) + '">' +
+          '<div class="aac-head">' +
+            '<div class="aac-title">' +
+              '<span class="aac-name">' + esc(a.name) + '</span>' +
+              '<span class="aac-status ' + st.cls + '">' + st.label + '</span>' +
+            '</div>' +
+            '<span class="aac-created">' + esc(created) + '</span>' +
+          '</div>' +
+          '<div class="aac-info">' +
+            '<a href="tel:' + esc(a.phone) + '" class="aac-phone">📞 ' + esc(a.phone) + '</a>' +
+            '<span class="aac-company">🏢 ' + esc(a.company || "—") + '</span>' +
+            '<span class="aac-role">' + esc(a.role || "—") + '</span>' +
+          '</div>' +
+          (a.interest ? '<div class="aac-row"><span class="aac-k">想用</span><span class="aac-v">' + esc(a.interest) + '</span></div>' : '') +
+          (a.desc ? '<div class="aac-row"><span class="aac-k">需求</span><span class="aac-v">' + esc(a.desc) + '</span></div>' : '') +
+          '<div class="aac-actions">' +
+            '<select class="aac-status-select" data-id="' + esc(a.id) + '">' +
+              Object.keys(APP_STATUS).map(function (k) {
+                return '<option value="' + k + '"' + (a.status === k ? " selected" : "") + ">" + APP_STATUS[k].label + "</option>";
+              }).join("") +
+            '</select>' +
+            '<a href="tel:' + esc(a.phone) + '" class="admin-btn admin-btn-light admin-btn-sm">拨打</a>' +
+            '<button class="admin-btn admin-btn-danger admin-btn-sm" data-act="del" data-id="' + esc(a.id) + '">删除</button>' +
+          '</div>' +
+        '</div>';
+      });
+    }
+    html += '</div>';
+    pane.innerHTML = html;
+
+    // 筛选切换
+    pane.querySelectorAll(".admin-app-filter").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        state.appFilter = btn.dataset.st;
+        state.search = "";
+        renderApplicationsListpane(pane);
+      });
+    });
+    // 搜索
+    var si = document.getElementById("searchInput");
+    si.addEventListener("input", function () { state.search = si.value; renderApplicationsListpane(pane); });
+    // 状态下拉
+    pane.querySelectorAll(".aac-status-select").forEach(function (sel) {
+      sel.addEventListener("change", function () {
+        updateAppStatus(sel.dataset.id, sel.value);
+        toast("状态已更新为「" + APP_STATUS[sel.value].label + "」", "ok");
+        renderSidenav();
+        renderApplicationsListpane(pane);
+      });
+    });
+    // 删除
+    pane.querySelectorAll('[data-act="del"]').forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.dataset.id;
+        confirmDialog("确认删除？", "将彻底删除此申请记录，不可恢复。", function () {
+          deleteApplication(id);
+          toast("已删除", "ok");
+          renderAll();
+        }, true);
+      });
+    });
+  }
+
   /* ============ 渲染：右侧编辑器 ============ */
   function renderEditor() {
     var ed = document.getElementById("editor");
@@ -568,6 +718,14 @@
       ed.innerHTML = emptyEditor(
         "API 密钥管理",
         "在中间面板生成、复制、吊销密钥。密钥供其他智能体或第三方系统调用本平台 Agent / Skill 时鉴权使用。"
+      );
+      return;
+    }
+    // 申请留言视图（不使用右侧编辑器，申请管理全部在中间列表完成）
+    if (state.currentType === "applications") {
+      ed.innerHTML = emptyEditor(
+        "申请留言管理",
+        "在中间面板查看用户提交的申请，可标记处理状态（已联系/已开通/已忽略）或删除。线下联系用户完成开通。"
       );
       return;
     }
