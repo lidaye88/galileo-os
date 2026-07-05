@@ -2228,23 +2228,30 @@ section.spacing-lg { padding: 160px 0; }
 .nav-transparent {
   position: sticky;
   top: 0;
-  background: transparent;
+  background: linear-gradient(180deg, rgba(15,20,25,0.72) 0%, rgba(15,20,25,0.42) 60%, rgba(15,20,25,0) 100%);
   border-bottom-color: transparent;
   transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
 }
-/* 透明态：文字/logo 为白色 */
+/* 透明态：文字/logo 为纯白 + 文字阴影增强对比 */
 .nav-transparent .nav-links a {
-  color: var(--text-inverse-2);
+  color: var(--text-inverse);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
 }
 .nav-transparent .nav-links a:hover {
   color: var(--text-inverse);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.14);
 }
 .nav-transparent .nav-links a.active {
   color: var(--accent-400);
 }
-.nav-transparent .brand .brand-name { color: var(--text-inverse); }
-.nav-transparent .brand .brand-sub { color: var(--text-inverse-3); }
+.nav-transparent .brand .brand-name {
+  color: var(--text-inverse);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+}
+.nav-transparent .brand .brand-sub {
+  color: rgba(255,255,255,0.78);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
 /* 透明态显示白色 logo */
 .nav-transparent .brand-logo-light { display: none; }
 .nav-transparent .brand-logo-dark { display: block; }
