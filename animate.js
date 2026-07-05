@@ -209,7 +209,7 @@
       initParallax();
       initNodePulse();
       initCardShine();
-      initNavHide();
+      // initNavHide 已移除（会导致导航滚动消失）
     });
   }
 
