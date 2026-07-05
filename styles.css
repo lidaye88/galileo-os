@@ -2565,7 +2565,8 @@ section.spacing-lg { padding: 160px 0; }
 .nav-transparent {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  transform: none !important;
   /* 顶部态：完全透明，让 hero 深色背景透出，白字 logo 清晰可读 */
   background: transparent;
   border-bottom-color: transparent;
