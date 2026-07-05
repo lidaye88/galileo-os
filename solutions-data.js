@@ -764,6 +764,150 @@ window.SOLUTIONS_DATA = {
   },
   pricing: { model: "SaaS 或节能分润", price: "—", unit: "", note: "可选节能效果分成模式" },
   changelog: [{ version: "v3.5", date: "2026-06-08", content: "双碳核算模块；行业标杆更新；节能机会库扩充。" }]
+},
+
+"metallurgy-industry": {
+  type: "industry",
+  industryId: "metallurgy-industry",
+  name: "冶金行业解决方案",
+  icon: "⚙️",
+  category: "冶金钢铁",
+  categoryKey: "industry",
+  status: "live",
+  version: "v2.8",
+  updatedAt: "2026-05-20",
+  provider: "思为交互 · 冶金方案",
+  tags: ["炼钢", "轧制", "炉窑", "能耗", "质量"],
+  oneLine: "覆盖炼钢、轧制、炉窑全流程，工艺优化与能耗管控双线发力。",
+  overview: "冶金行业高温、连续、高能耗，工艺参数微调即影响成材率与能耗。方案沉淀炼钢/轧制工艺模型、炉窑燃烧优化、连铸坯质量追踪等经验，结合能耗管控与预测维护，帮助钢厂在保质量前提下压降成本。",
+  painPoints: ["炉窑能耗高，燃烧效率优化难", "轧制成材率波动大", "连铸坯质量追溯困难", "高温设备故障停机损失大"],
+  approach: "工艺优化 Agent 持续调参，预测维护 Agent 监控关键设备，能耗管理对标行业标杆，质量数据全链路追溯。",
+  components: {
+    agents: [{ name: "工艺优化 Agent", id: "process-optim" }, { name: "预测维护 Agent", id: "predictive-maintenance" }],
+    skills: [{ name: "工艺寻优", id: "process-optimization" }, { name: "能耗分析", id: "energy-analysis" }],
+    apps: ["MES 生产管理", "EAM 设备管理", "EMS 能耗管理"],
+    templates: ["冶金行业模板"]
+  },
+  typicalFlow: ["炉窑燃烧优化", "炼钢工艺调参", "连铸坯质量追踪", "轧制成材率提升", "能耗对标改进"],
+  expectedValue: [{ num: "+2%", label: "成材率" }, { num: "-5%", label: "工序能耗" }, { num: "-30%", label: "突发停机" }],
+  roles: ["炼钢厂长", "轧制车间主任", "设备经理", "质量经理"],
+  deployment: "私有化为主，支持对接 DCS 与计量系统。",
+  threshold: "需邀请码开通。",
+  case: {
+    title: "某特钢厂轧制成材率提升",
+    desc: "客户轧制成材率长期在 94% 徘徊。方案上线工艺寻优后，关键参数自动微调，3 个月内成材率稳定至 96.2%，年增效益超 800 万元。",
+    metrics: [{ num: "94→96.2%", label: "成材率" }, { num: "800万", label: "年增效益" }, { num: "3 个月", label: "见效周期" }]
+  },
+  pricing: { model: "私有化 + 年服务费", price: "—", unit: "", note: "按产线规模报价" },
+  changelog: [{ version: "v2.8", date: "2026-05-20", content: "轧制工艺模型升级；炉窑能耗对标库扩充。" }]
+},
+
+"food-industry": {
+  type: "industry",
+  industryId: "food-industry",
+  name: "食品饮料解决方案",
+  icon: "🍼",
+  category: "食品饮料",
+  categoryKey: "industry",
+  status: "live",
+  version: "v2.3",
+  updatedAt: "2026-06-12",
+  provider: "思为交互 · 食品饮料方案",
+  tags: ["配方管理", "批次追溯", "质量安全", "合规"],
+  oneLine: "配方保密与批次追溯并重，覆盖从原料到成品的质量合规全链路。",
+  overview: "食品饮料行业配方是核心资产，同时面临严格的批次追溯与质量合规要求。方案提供配方版本管控、批次正反向追溯、保质期管理、HACCP 合规记录，结合视觉质检识别包装缺陷，帮助企业在保障食品安全的前提下提升良率。",
+  painPoints: ["配方管理混乱，版本可追溯性差", "批次召回时追溯耗时", "保质期管理粗放，过期风险", "HACCP 记录靠人工，合规成本高"],
+  approach: "质量分析 Agent 管控批次，配方管理 Skill 保护核心资产，追溯 Skill 实现正反向秒级查询，视觉质检识别包装缺陷。",
+  components: {
+    agents: [{ name: "质量分析 Agent", id: "quality-analysis" }, { name: "合规检查 Agent", id: "compliance-check" }],
+    skills: [{ name: "批次追溯", id: "batch-traceability" }, { name: "缺陷识别", id: "defect-detection" }, { name: "配方管理", id: "recipe-management" }],
+    apps: ["QMS 质量管理", "MES 生产管理", "LIMS 实验室管理"],
+    templates: ["食品饮料行业模板"]
+  },
+  typicalFlow: ["配方版本管控", "原料批次绑定", "生产过程记录", "成品批次追溯", "保质期预警"],
+  expectedValue: [{ num: "秒级", label: "批次追溯" }, { num: "100%", label: "HACCP 合规" }, { num: "-50%", label: "召回成本" }],
+  roles: ["生产经理", "质量经理", "合规专员", "厂长"],
+  deployment: "SaaS 或私有化，支持扫码追溯。",
+  threshold: "需邀请码开通。",
+  case: {
+    title: "某乳品厂批次追溯上线",
+    desc: "客户原靠纸质记录追溯一批次需 4 小时。方案上线后扫码即查，追溯时间缩至 10 秒，保质期预警减少过期损耗 60%。",
+    metrics: [{ num: "4h→10s", label: "追溯时间" }, { num: "-60%", label: "过期损耗" }, { num: "100%", label: "合规覆盖" }]
+  },
+  pricing: { model: "SaaS 按产线计费", price: "—", unit: "", note: "含追溯与质检模块" },
+  changelog: [{ version: "v2.3", date: "2026-06-12", content: "保质期预警优化；批次追溯性能提升。" }]
+},
+
+"machining-industry": {
+  type: "industry",
+  industryId: "machining-industry",
+  name: "机械加工解决方案",
+  icon: "🔩",
+  category: "机械加工",
+  categoryKey: "industry",
+  status: "live",
+  version: "v3.0",
+  updatedAt: "2026-06-01",
+  provider: "思为交互 · 机械加工方案",
+  tags: ["数控", "排产", "刀具管理", "良率"],
+  oneLine: "离散制造典型场景，从数控程序管理到智能排产、刀具寿命管控全覆盖。",
+  overview: "机械加工是离散制造的典型代表，多品种小批量、换型频繁、刀具损耗快。方案沉淀数控程序版本管理、约束排产、刀具寿命预测、首件质检等能力，帮助车间在频繁换型中保持高设备利用率与稳定良率。",
+  painPoints: ["多品种小批量排产复杂", "换型频繁，设备利用率低", "刀具寿命靠经验，断刀导致废品", "数控程序版本混乱"],
+  approach: "生产调度 Agent 智能排产，预测维护 Agent 监控刀具寿命，数控程序 Skill 管控版本，质检 Skill 把关首件。",
+  components: {
+    agents: [{ name: "生产调度 Agent", id: "production-scheduling" }, { name: "预测维护 Agent", id: "predictive-maintenance" }],
+    skills: [{ name: "排产优化", id: "production-planning" }, { name: "刀具寿命预测", id: "tool-life-prediction" }, { name: "数控程序管理", id: "nc-program" }],
+    apps: ["MES 生产管理", "EAM 设备管理", "QMS 质量管理"],
+    templates: ["机械加工行业模板"]
+  },
+  typicalFlow: ["订单排产", "数控程序下发", "刀具寿命监控", "首件质检", "换型优化"],
+  expectedValue: [{ num: "+15%", label: "设备利用率" }, { num: "-40%", label: "断刀废品" }, { num: "10min", label: "换型响应" }],
+  roles: ["生产计划员", "车间主任", "设备经理", "质量工程师"],
+  deployment: "SaaS 或私有化，支持对接数控系统。",
+  threshold: "需邀请码开通。",
+  case: {
+    title: "某机加工厂智能排产",
+    desc: "客户 20 台数控设备原靠人工排产，换型频繁导致利用率仅 58%。方案上线后排产自动优化，利用率提升至 75%，断刀废品下降 40%。",
+    metrics: [{ num: "58→75%", label: "设备利用率" }, { num: "-40%", label: "断刀废品" }, { num: "10min", label: "换型响应" }]
+  },
+  pricing: { model: "SaaS 按设备计费", price: "—", unit: "", note: "含排产与刀具管理" },
+  changelog: [{ version: "v3.0", date: "2026-06-01", content: "刀具寿命预测上线；排产算法升级。" }]
+},
+
+"mining-industry": {
+  type: "industry",
+  industryId: "mining-industry",
+  name: "矿山采选解决方案",
+  icon: "⛏️",
+  category: "矿山采选",
+  categoryKey: "industry",
+  status: "live",
+  version: "v2.5",
+  updatedAt: "2026-05-15",
+  provider: "思为交互 · 矿山方案",
+  tags: ["采矿", "选矿", "安全", "设备", "能耗"],
+  oneLine: "覆盖采矿到选矿全链路，安全监控、设备管控、能耗优化三位一体。",
+  overview: "矿山行业环境恶劣、设备重型化、安全要求极高。方案覆盖采掘设备预测维护、选矿工艺优化、尾矿库安全监测、井下人员定位、能耗管控等场景，帮助矿山在保障安全前提下提升回收率与设备可用率。",
+  painPoints: ["重型设备突发故障损失大", "选矿回收率波动", "尾矿库/井下安全监测分散", "能耗成本高"],
+  approach: "预测维护 Agent 监控重型设备，工艺优化 Agent 调选矿参数，安全巡检 Agent 覆盖关键风险点，能耗管理对标行业标杆。",
+  components: {
+    agents: [{ name: "预测维护 Agent", id: "predictive-maintenance" }, { name: "安全巡检 Agent", id: "safety-inspection" }, { name: "工艺优化 Agent", id: "process-optim" }],
+    skills: [{ name: "振动分析", id: "vibration-analysis" }, { name: "能耗分析", id: "energy-analysis" }, { name: "风险识别", id: "risk-detection" }],
+    apps: ["EAM 设备管理", "EMS 能耗管理", "安全管控", "经营驾驶舱"],
+    templates: ["矿山行业模板"]
+  },
+  typicalFlow: ["采掘设备监控", "选矿工艺调优", "尾矿库安全监测", "能耗对标改进", "回收率提升"],
+  expectedValue: [{ num: "+3%", label: "选矿回收率" }, { num: "-25%", label: "突发停机" }, { num: "100%", label: "安全监测覆盖" }],
+  roles: ["矿长", "设备经理", "安全总监", "选矿工程师"],
+  deployment: "私有化为主，支持井下网络与传感直连。",
+  threshold: "需邀请码开通。",
+  case: {
+    title: "某金属矿选矿回收率提升",
+    desc: "客户选矿回收率波动大。方案上线工艺寻优后，关键参数自动调优，3 个月内回收率稳定提升 3 个百分点，年增效益超 1200 万元。",
+    metrics: [{ num: "+3pp", label: "回收率" }, { num: "1200万", label: "年增效益" }, { num: "-25%", label: "突发停机" }]
+  },
+  pricing: { model: "私有化 + 年服务费", price: "—", unit: "", note: "按矿山规模报价" },
+  changelog: [{ version: "v2.5", date: "2026-05-15", content: "选矿工艺模型升级；尾矿库监测接入。" }]
 }
 
 

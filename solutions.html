@@ -12,7 +12,7 @@
 <!-- ==================== 顶部导航 ==================== -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="brand brand-logo-only"><img src="assets/galileo-logo-new.png" alt="Galileo OS 工业智能开放平台" class="brand-full-logo"></a>
+    <a href="index.html" class="brand brand-logo-only"><img src="assets/galileo-logo-new.png" alt="Galileo OS" class="brand-full-logo"><span class="brand-wordmark">Galileo OS</span></a>
     <div class="nav-links">
       <a href="index.html">首页</a>
       <a href="solutions.html" class="active">解决方案</a>
@@ -122,8 +122,8 @@
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow center">行业覆盖</span>
-      <h2>深耕 12+ 工业行业</h2>
-      <p class="lead">每个行业都有专属的端到端方案，沉淀行业 Know-How、推荐 Agent 与 Skill。</p>
+      <h2>深耕工业，覆盖远不止于此</h2>
+      <p class="lead">以下为已沉淀专属方案的行业。未列出的行业同样可覆盖——平台能力可组合，咨询客服获取定制方案。</p>
     </div>
     <div class="pill-cloud" id="industryCloud"></div>
   </div>
@@ -858,6 +858,8 @@
       var href = "industry-detail.html?id=" + esc(s.industryId || id);
       html += '<a href="' + href + '" class="chip" style="text-decoration:none;">' + (s.icon || "") + " " + esc(s.category) + '</a>';
     });
+    // 末尾：更多行业（未展示不代表不能覆盖，咨询客服）
+    html += '<a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="chip chip-more" style="text-decoration:none;">+ 更多行业咨询</a>';
     cloud.innerHTML = html;
   }
 

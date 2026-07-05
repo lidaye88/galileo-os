@@ -939,6 +939,19 @@ section.spacing-lg { padding: 160px 0; }
   color: var(--accent-600);
   background: var(--accent-50);
 }
+/* 「更多行业」特殊样式：强调色 + 虚线边框，区别于已落地行业 */
+.chip.chip-more {
+  background: linear-gradient(135deg, var(--accent-50) 0%, var(--indigo-50) 100%);
+  border: 1px dashed var(--accent-500);
+  color: var(--accent-600);
+  font-weight: 600;
+}
+.chip.chip-more:hover {
+  background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-600) 100%);
+  color: var(--text-inverse);
+  border-color: var(--accent-600);
+  border-style: solid;
+}
 
 /* ============================================
    角色卡（合作页）
@@ -2481,10 +2494,22 @@ section.spacing-lg { padding: 160px 0; }
   align-items: center;
   text-decoration: none;
 }
+/* logo 图旁边的文字标识（让品牌名清晰可见）*/
+.brand-wordmark {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+/* 透明深色导航：文字标识用白色 */
+.nav-transparent:not(.nav-scrolled) .brand-wordmark { color: var(--text-inverse); }
 .brand-full-logo {
-  height: 30px;
+  height: 38px;
   width: auto;
   display: block;
+  transition: height 0.3s ease;
 }
 .brand-full-logo.brand-logo-dark { display: none; }
 .brand-full-logo.brand-logo-light { display: block; }
@@ -2494,7 +2519,7 @@ section.spacing-lg { padding: 160px 0; }
 .nav-transparent.nav-scrolled .brand-full-logo.brand-logo-light { display: block; }
 .nav-transparent.nav-scrolled .brand-full-logo.brand-logo-dark { display: none; }
 /* 滚动后 logo 高度收紧一点 */
-.nav-transparent.nav-scrolled .brand-full-logo { height: 26px; }
+.nav-transparent.nav-scrolled .brand-full-logo { height: 32px; }
 
 /* 在透明深色导航上（首页 hero）切换为白色版 */
 .nav-transparent .brand-logo-light,
@@ -2526,11 +2551,9 @@ section.spacing-lg { padding: 160px 0; }
   position: sticky;
   top: 0;
   z-index: 100;
-  /* 顶部态：极淡深色毛玻璃（比纯透明更易识别导航边界，又不像之前那么黑）*/
-  background: rgba(15, 20, 25, 0.28);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  /* 顶部态：完全透明，让 hero 深色背景透出，白字 logo 清晰可读 */
+  background: transparent;
+  border-bottom-color: transparent;
   transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
 /* 透明态：文字/logo 纯白（靠 hero 深色背景保证对比，无需阴影）*/
