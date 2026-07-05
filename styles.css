@@ -190,6 +190,7 @@ p { color: var(--text-secondary); }
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border-subtle);
+  transform: none !important;   /* 兜底：强制可见，防止被滚动隐藏 */
 }
 .nav-dark {
   background: rgba(15, 20, 25, 0.85);
@@ -2494,17 +2495,30 @@ section.spacing-lg { padding: 160px 0; }
   align-items: center;
   text-decoration: none;
 }
-/* logo 图旁边的文字标识（让品牌名清晰可见）*/
+/* logo 图旁边的文字标识（主名 + 副名，两行紧凑排版）*/
 .brand-wordmark {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
   margin-left: 4px;
   white-space: nowrap;
 }
-/* 透明深色导航：文字标识用白色 */
-.nav-transparent:not(.nav-scrolled) .brand-wordmark { color: var(--text-inverse); }
+.brand-wordmark .bw-main {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.brand-wordmark .bw-sub {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+/* 透明深色导航（未滚动）：文字标识用白色 */
+.nav-transparent:not(.nav-scrolled) .brand-wordmark .bw-main { color: var(--text-inverse); }
+.nav-transparent:not(.nav-scrolled) .brand-wordmark .bw-sub { color: rgba(255,255,255,0.7); }
 .brand-full-logo {
   height: 38px;
   width: auto;

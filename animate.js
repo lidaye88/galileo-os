@@ -192,27 +192,10 @@
     });
   }
 
-  // ---------- 8. 导航栏滚动收起（移动端） ----------
+  // ---------- 8. 导航栏滚动收起（已禁用：会导致导航消失，体验不佳）----------
   function initNavHide() {
-    var nav = document.querySelector('.nav');
-    if (!nav) return;
-    var lastScroll = 0;
-    var threshold = 100;
-
-    window.addEventListener('scroll', function () {
-      var current = window.scrollY;
-      // 只在小屏生效
-      if (window.innerWidth > 768) return;
-
-      if (current > threshold && current > lastScroll) {
-        // 向下滚动 - 隐藏
-        nav.style.transform = 'translateY(-100%)';
-      } else {
-        // 向上滚动 - 显示
-        nav.style.transform = '';
-      }
-      lastScroll = current;
-    }, { passive: true });
+    // 原功能：移动端向下滚动时隐藏导航。用户反馈"导航消失"，已禁用。
+    // 导航始终保持 sticky 可见，仅通过 nav-transparent 的滚动变色区分状态。
   }
 
   // ---------- 9. 初始化所有动效 ----------
