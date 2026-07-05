@@ -1,0 +1,48 @@
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 编辑器 / IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+
+# ===== Python（本地预览用 http.server）=====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# ===== Node（未来可能引入）=====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== 本地临时脚本（构建过程中产生的 _ 前缀文件）=====
+_*.py
+_*.js
+_*.html
+_*.sh
+
+# ===== 日志 / 缓存 =====
+*.log
+.cache/
+
+# ===== 构建产物（如有）=====
+dist/
+build/
+
+# ===== 环境变量 / 密钥（切勿提交）=====
+.env
+.env.local
+.env.*.local
+*.pem
+*.key

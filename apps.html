@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>应用市场 · 成品应用 | Galileo OS</title>
+<meta name="description" content="Galileo OS 应用市场：覆盖生产、设备、质量、能耗、安全、仓储、销售、物流、经营全业务链的工厂业务系统。每个应用都是多 Agent + 多 Skill + 行业 Know-How 的组合成品，工厂在用、开箱即用。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ==================== 顶部导航 ==================== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" style="gap:10px;">
+      <img src="assets/galileo-logo-nav.png" alt="Galileo OS" class="brand-logo">
+      <span class="brand-text-block"><span class="brand-name">Galileo OS</span><span class="brand-sub">工业 Agent 生态</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="apps.html" class="active">应用市场</a>
+      <a href="agents.html">Agent 市场</a>
+      <a href="skills.html">Skill 市场</a>
+      <a href="knowledge.html">知识库</a>
+      <a href="platform.html">操作系统</a>
+      <a href="partner-opc.html">OPC 生态</a>
+    </div>
+    <div class="nav-cta">
+      <a href="javascript:void(0)" onclick="GalileoAuth.showLogin()" class="btn btn-outline btn-sm">登录</a>
+      <a href="javascript:void(0)" onclick="GalileoAuth.clickUse('应用')" class="btn btn-accent btn-sm">申请邀请码</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== 1. Hero ==================== -->
+<header class="hero-light">
+  <div class="container">
+    <span class="eyebrow">应用市场 · 工厂业务系统</span>
+    <h1>工厂业务系统，开箱即用</h1>
+    <p class="lead" style="max-width:780px;margin-top:24px;">
+      覆盖<strong style="color:var(--text-primary);">生产、设备、质量、能耗、安全、仓储、销售、物流、经营</strong>全业务链——这些不是概念演示，是<strong style="color:var(--text-primary);">工厂真正在用的业务系统</strong>，多 Agent + 多 Skill + 行业 Know-How 组合，业务人员登录即用。
+    </p>
+    <div class="hero-cta mt-40" style="margin-bottom:64px;">
+      <a href="#market" class="btn btn-accent btn-lg">浏览应用</a>
+      <a href="#compose" class="btn btn-outline btn-lg">应用由什么组成</a>
+    </div>
+
+    <div class="stats-light">
+      <div class="stat">
+        <div class="num">12<small>个</small></div>
+        <div class="label">工厂业务系统，开箱即用</div>
+      </div>
+      <div class="stat">
+        <div class="num">4<small>大类</small></div>
+        <div class="label">核心业务 / 运营保障 / 协同 / 经营分析</div>
+      </div>
+      <div class="stat">
+        <div class="num">全链路</div>
+        <div class="label">生产到经营，覆盖工厂全业务</div>
+      </div>
+      <div class="stat">
+        <div class="num">SaaS+私有</div>
+        <div class="label">灵活部署，支持信创</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== 2. Skill / Agent / 应用 的关系 ==================== -->
+<section>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow center">能力层级</span>
+      <h2>Skill → Agent → 应用</h2>
+      <p class="lead">从最细的能力单元，到岗位数字员工，再到开箱即用的成品应用——粒度递增，开箱度递增。</p>
+    </div>
+
+    <div class="grid grid-3">
+      <a href="skills.html" class="overview-card" style="text-decoration:none;color:inherit;">
+        <div class="oc-icon">🧩</div>
+        <div class="oc-eyebrow">最细粒度</div>
+        <h3>Skill · 能力单元</h3>
+        <p>单一职责的最小能力，如一次排产、一次 CV 识别、一次 PLC 读写。开发者可上架分润。</p>
+        <span class="arrow-link">浏览 Skill 市场 →</span>
+      </a>
+
+      <a href="agents.html" class="overview-card" style="text-decoration:none;color:inherit;">
+        <div class="oc-icon">🤖</div>
+        <div class="oc-eyebrow">岗位镜像</div>
+        <h3>Agent · 数字员工</h3>
+        <p>由多个 Skill 编排而成，替代或辅助一个岗位（调度员、质量主管、设备主管）的工作。</p>
+        <span class="arrow-link">浏览 Agent 市场 →</span>
+      </a>
+
+      <div class="overview-card" style="border-color:var(--accent-500);box-shadow:0 4px 16px rgba(0,217,163,0.12);">
+        <div class="oc-icon" style="background:var(--accent-50);border-color:var(--accent-500);">APP</div>
+        <div class="oc-eyebrow">工厂在用</div>
+        <h3>应用 · 业务系统</h3>
+        <p>多 Agent + 多 Skill + 行业 Know-How 的完整封装。这不是概念演示，是工厂真正在用的业务系统：MES、EAM、QMS、EMS……登录即用，带完整 UI 与权限。</p>
+        <span class="arrow-link" style="color:var(--accent-600);">你正在这里 ↓</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. 应用市场（分类 Tab + 卡片） ==================== -->
+<section class="bg-subtle" id="market">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">应用市场</span>
+      <h2>十二大工厂业务系统，按需挑选</h2>
+      <p class="lead">覆盖生产、设备、质量、能耗、安全、仓储、销售、物流、经营全业务链——这是工厂数字化真正在跑的业务系统。点击卡片查看完整功能、能力组成与真实案例。</p>
+    </div>
+
+    <!-- 分类 Tab -->
+    <div class="tabs" id="appTabs">
+      <button class="tab active" data-cat="all">全部</button>
+      <button class="tab" data-cat="core">核心业务系统</button>
+      <button class="tab" data-cat="operation">运营保障系统</button>
+      <button class="tab" data-cat="collaboration">业务协同系统</button>
+      <button class="tab" data-cat="analytics">经营分析</button>
+    </div>
+
+    <!-- 卡片网格（JS 动态渲染） -->
+    <div class="grid grid-3" id="appGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== 4. 全业务链价值强调 ==================== -->
+<section class="bg-dark" id="compose">
+  <div class="container">
+    <div class="split">
+      <div>
+        <span class="eyebrow on-dark">为什么是一套打通的业务系统</span>
+        <h2>工厂不需要孤立的软件，<br>需要一套打通的业务链</h2>
+        <p class="lead" style="margin:24px 0;">
+          接单→排产→生产→质检→入库→发货→结算，工厂的业务是一条链。
+          但大多数工厂的软件是割裂的：销售一套、生产一套、仓库一套、财务一套，数据对不上、流程断点反复出错。
+          Galileo OS 的业务系统覆盖生产、设备、质量、能耗、安全、仓储、销售、物流、经营全链路，<strong style="color:#fff;">数据同源、流程互通、AI 加持</strong>。
+        </p>
+        <ul class="feature-list" style="margin-bottom:32px;">
+          <li>核心业务：MES 生产 / EAM 设备 / QMS 质量——工厂产能与品质的根基</li>
+          <li>运营保障：EMS 能源 / HSE 安环 / SCADA 采集——降本与合规的底线</li>
+          <li>业务协同：销售 / WMS 仓储 / 物流调度——把货准时送达客户</li>
+          <li>经营分析：BI / 驾驶舱 / 大屏——让管理决策用数据说话</li>
+        </ul>
+        <a href="app-detail.html?id=mes" class="btn btn-accent btn-lg">了解 MES 生产管理系统 →</a>
+      </div>
+      <div>
+        <div class="card-dark" style="padding:36px;">
+          <div style="font-size:48px;margin-bottom:20px;font-weight:700;letter-spacing:2px;">MES</div>
+          <h3 style="margin-bottom:16px;">真实场景</h3>
+          <p style="color:var(--text-inverse-2);font-size:15px;line-height:1.7;margin-bottom:20px;">
+            OPC 老李的注塑工厂 12 台注塑机，原来靠 Excel 排产、微信群报工，每天对进度要 2 小时。带着 MES 标准模板进场，<strong style="color:#fff;">3 天完成上线</strong>：工单扫码报工、设备产量自动采集、车间看板实时呈现。插单响应从半天缩到 10 分钟，设备利用率从 58% 提升到 78%。
+          </p>
+          <div class="case-metrics" style="border-color:var(--border-dark);margin-top:24px;">
+            <div class="case-metric" style="border-color:var(--border-dark);background:rgba(255,255,255,0.03);">
+              <div class="cm-num" style="font-size:24px;">3 天</div>
+              <div class="cm-label" style="color:var(--text-inverse-3);">标准模板上线</div>
+            </div>
+            <div class="case-metric" style="border-color:var(--border-dark);background:rgba(255,255,255,0.03);">
+              <div class="cm-num" style="font-size:24px;">58→78%</div>
+              <div class="cm-label" style="color:var(--text-inverse-3);">设备利用率</div>
+            </div>
+            <div class="case-metric" style="border-color:var(--border-dark);background:rgba(255,255,255,0.03);">
+              <div class="cm-num" style="font-size:24px;">实时</div>
+              <div class="cm-label" style="color:var(--text-inverse-3);">报工与看板</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. CTA Band ==================== -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <span class="eyebrow center on-dark">开始使用</span>
+      <h2>把成品应用，装进你的工厂</h2>
+      <p>选好应用，申请使用后我们会安排商务对接开通。也可以先用 Skill 和 Agent 自己组合，随时升级到成品应用。</p>
+      <div class="hero-cta">
+        <a href="javascript:void(0)" onclick="GalileoAuth.clickUse('应用市场')" class="btn btn-accent btn-lg">申请邀请码</a>
+        <a href="solutions.html" class="btn btn-ghost-light btn-lg">查看场景解决方案</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. Footer ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand" style="gap:10px;">
+          <img src="assets/galileo-logo-nav-white.png" alt="Galileo OS" class="brand-logo">
+          <span class="brand-text-block"><span class="brand-name" style="color:var(--text-inverse);">Galileo OS</span><span class="brand-sub" style="color:var(--text-inverse-3);">工业 Agent 生态</span></span>
+        </a>
+        <p class="footer-desc">思为交互旗下工业智能操作系统。以 Agent 为核心，把工艺、设备、质量、能耗的行业经验沉淀为数字员工——让每个工厂 7×24 小时智能运转，降本增效看得见。</p>
+        <div class="footer-contact">
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <span class="fc-label">客服热线</span>
+              <a href="tel:4000580097" class="fc-value">400-058-0097</a>
+            </div>
+          </div>
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <span class="fc-label">商务邮箱</span>
+              <a href="mailto:waynezheng@idmakers.cn" class="fc-value">waynezheng@idmakers.cn</a>
+            </div>
+          </div>
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <span class="fc-label">公司地址</span>
+              <span class="fc-value">成都市高新区盛安街401号凯旋南城 B 座 1502</span>
+            </div>
+          </div>
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <div>
+              <span class="fc-label">在线咨询</span>
+              <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="fc-value">企业微信客服 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>平台</h5>
+        <ul>
+          <li><a href="platform.html">操作系统</a></li>
+          <li><a href="agents.html">Agent 市场</a></li>
+          <li><a href="skills.html">Skill 市场</a></li>
+          <li><a href="apps.html">应用市场</a></li>
+          <li><a href="knowledge.html">知识库市场</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>解决方案</h5>
+        <ul>
+          <li><a href="solutions.html">场景方案</a></li>
+          <li><a href="industries.html">行业实践</a></li>
+          <li><a href="developers.html">开发者中心</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>生态合作</h5>
+        <ul>
+          <li><a href="partner-opc.html">成为 OPC</a></li>
+          <li><a href="developers.html">开发者计划</a></li>
+          <li><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener">申请邀请码</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>关于思为</h5>
+        <ul>
+          <li><a href="https://idmakers.cn/" target="_blank" rel="noopener">思为交互官网</a></li>
+          <li><a href="https://idmakers.cn/aboutus.html" target="_blank" rel="noopener">关于我们</a></li>
+          <li><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener">联系客服</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-locations">
+      <span class="fl-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        办公地点
+      </span>
+      <div class="fl-cities">
+        <span class="fl-city">成都</span>
+        <span class="fl-city">拉萨</span>
+        <span class="fl-city">乌鲁木齐</span>
+        <span class="fl-city">重庆</span>
+        <span class="fl-city">巴黎</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-quals">
+        <span class="fq-badge solid">国家高新技术企业</span>
+        <span class="fq-badge">国家工业互联网联盟核心单位</span>
+        <span class="fq-badge">200+ 知识产权</span>
+        <span class="fq-badge">10 年工业物联网积累</span>
+      </div>
+      <div class="footer-legal">
+        <span>© 2014–2026 四川思为交互科技有限公司 · 保留所有权利</span>
+        <div class="fl-links">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">蜀ICP备15031909号-1</a>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002007794" target="_blank" rel="noopener">川公网安备 51019002007794 号</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="apps-data.js"></script>
+<script src="admin-runtime.js"></script>
+<script src="auth-modal.js"></script>
+<script src="animate.js"></script>
+<script>
+(function () {
+  var statusMap = {
+    live:  { cls: "badge-live",  text: "已上架" },
+    beta:  { cls: "badge-beta",  text: "内测中" },
+    soon:  { cls: "badge-soon",  text: "即将上架" },
+    invite:{ cls: "badge-invite", text: "邀约开放" }
+  };
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  // 渲染所有应用卡片
+  function renderCards(filter) {
+    var grid = document.getElementById("appGrid");
+    var data = window.APPS_DATA;
+    var html = "";
+    Object.keys(data).forEach(function (id) {
+      var a = data[id];
+      if (filter !== "all" && a.categoryKey !== filter) return;
+      var st = statusMap[a.status] || statusMap.live;
+      // 取前 3 个标签
+      var tags = (a.tags || []).slice(0, 3).map(function (t) {
+        return '<span class="oc-tag">' + esc(t) + '</span>';
+      }).join("");
+      // 模块数
+      var moduleCount = (a.modules || []).length;
+      html += '<a href="app-detail.html?id=' + id + '" class="overview-card" style="text-decoration:none;color:inherit;">';
+      html += '<div class="oc-icon">' + a.icon + '</div>';
+      html += '<div class="flex items-center gap-8 mb-16" style="flex-wrap:wrap;">';
+      html += '<span class="badge ' + st.cls + '">' + st.text + '</span>';
+      html += '<span class="badge badge-invite">' + esc(a.category) + '</span>';
+      html += '</div>';
+      html += '<h3 style="font-size:22px;margin-bottom:10px;">' + esc(a.name) + '</h3>';
+      html += '<p style="font-size:14px;color:var(--text-secondary);margin-bottom:18px;line-height:1.6;">' + esc(a.oneLine) + '</p>';
+      html += '<div class="oc-meta">' + tags + '</div>';
+      var knowCount = (a.components.knowledge||[]).length;
+      var compStr = moduleCount + ' 个功能模块 · 含 ' + (a.components.agents||[]).length + ' 个 Agent · ' + (a.components.skills||[]).length + ' 个 Skill';
+      if (knowCount > 0) compStr += ' · ' + knowCount + ' 个知识包';
+      html += '<div style="font-size:13px;color:var(--text-tertiary);margin-bottom:16px;">' + compStr + '</div>';
+      html += '<span class="arrow-link">查看详情 →</span>';
+      html += '</a>';
+    });
+    grid.innerHTML = html;
+  }
+
+  // Tab 切换
+  var tabs = document.querySelectorAll('#appTabs .tab');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.classList.remove('active'); });
+      t.classList.add('active');
+      renderCards(t.getAttribute('data-cat'));
+    });
+  });
+
+  // 初始渲染全部
+  renderCards('all');
+})();
+</script>
+
+</body>
+</html>

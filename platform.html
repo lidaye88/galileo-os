@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工业操作系统 · 六大引擎 | Galileo OS</title>
+<meta name="description" content="Galileo OS 工业操作系统六大引擎详解：全协议 IoT 中枢、全域数据中台、异构模型路由编排、AI 自然语言造物、3D 数字孪生、AIOps 自愈运维。平台只做底座，把对业务的理解力交由生态。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ==================== 顶部导航 ==================== -->
+<nav class="nav nav-transparent" id="topNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" style="gap:10px;">
+      <img src="assets/galileo-logo-nav.png" alt="Galileo OS" class="brand-logo brand-logo-light">
+      <img src="assets/galileo-logo-nav-white.png" alt="Galileo OS" class="brand-logo brand-logo-dark">
+      <span class="brand-text-block"><span class="brand-name">Galileo OS</span><span class="brand-sub">工业 Agent 生态</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="apps.html">应用市场</a>
+      <a href="agents.html">Agent 市场</a>
+      <a href="skills.html">Skill 市场</a>
+      <a href="knowledge.html">知识库</a>
+      <a href="platform.html" class="active">操作系统</a>
+      <a href="partner-opc.html">OPC 生态</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="btn btn-ghost-light btn-sm">登录</a>
+      <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="btn btn-accent btn-sm">申请邀请码</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== 1. Hero（深色） ==================== -->
+<header class="hero hero-grid-bg hero-glow">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="pill-group">
+        <span class="pill"><span class="dot"></span>OS 级引擎</span>
+        <span class="pill">云原生底座</span>
+        <span class="pill">多模态造物</span>
+        <span class="pill">边缘自治</span>
+      </div>
+
+      <span class="eyebrow on-dark">Galileo OS · 工业操作系统</span>
+
+      <h1>定义下一代工业底层系统的<br>交互语言</h1>
+
+      <p class="lead">
+        平台只做底座，把对业务的理解力交由生态。六大 OS 级引擎，工业全栈能力——
+        从物理世界的连接，到数据的治理、模型的编排、应用的生成、空间的可视化，再到运维的自愈，
+        形成一个完整闭环。
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="#" onclick="GalileoAuth.clickUse('申请使用');return false">申请使用</a>
+        <a class="btn btn-ghost-light btn-lg" href="#" onclick="GalileoAuth.clickUse('查看架构文档');return false">查看架构文档</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">6<small>大</small></div>
+          <div class="label">OS 级引擎，工业全栈能力底座</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">百万<small>级</small></div>
+          <div class="label">高并发设备数据上云能力</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">毫秒<small>级</small></div>
+          <div class="label">弱网/断网反向控制时延</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">全<small>协议</small></div>
+          <div class="label">兼容主流工业协议与老旧设备</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== 2. 平台战略克制原则（split） ==================== -->
+<section>
+  <div class="container">
+    <div class="split">
+      <div class="split-text">
+        <span class="eyebrow">战略克制</span>
+        <h2>平台只做底座，<br>把业务的理解力交由生态</h2>
+        <p class="lead">
+          这是 Galileo OS 最核心的战略判断：平台方绝不陷入非标实施的泥沼，而是专注打造六大技术引擎，做稳、做深、做透底座。
+        </p>
+        <p class="mt-16">
+          工业的复杂性不在技术本身，而在千行千业的业务语境。没有一个中心化团队能理解所有行业的 Know-How——这恰恰是 OPC 生态、Agent 与 Skill 市场存在的理由。平台提供引擎与武器，懂行业的人来理解业务、沉淀资产、完成交付。
+        </p>
+        <ul class="feature-list mt-32">
+          <li><strong>专注底座，不抢业务：</strong>平台方守在技术底座，把场景与经验留给生态与客户。</li>
+          <li><strong>能力可复用、可分发：</strong>一次造物，全网调用；经验沉淀即资产。</li>
+          <li><strong>开放而非封闭：</strong>开源算法、大模型、自研配方都能接入，拼乐高而非锁死。</li>
+          <li><strong>标准化出海：</strong>底座统一，模板可复制，让工厂像开店一样扩张。</li>
+        </ul>
+      </div>
+
+      <div class="visual-block">
+        <div class="pill-group">
+          <span class="pill"><span class="dot"></span>底座层</span>
+          <span class="pill">能力层</span>
+          <span class="pill">生态层</span>
+        </div>
+        <h3 style="color:var(--text-inverse);">三层架构，各司其职</h3>
+        <p class="mt-16" style="color:var(--text-inverse-2);font-size:15px;">
+          底座稳如磐石，能力像乐高一样组合，生态自由生长——清晰分层，是工业系统能跑得久、扩得开的前提。
+        </p>
+        <div class="mt-32" style="display:grid;gap:14px;">
+          <div class="card-dark">
+            <h4>底座 · 六大引擎</h4>
+            <p>IoT · 数据 · 模型 · AI造物 · 孪生 · 运维</p>
+          </div>
+          <div class="card-dark">
+            <h4>能力 · Agent + Skill</h4>
+            <p>把经验封装成可计费、可分发的数字资产</p>
+          </div>
+          <div class="card-dark">
+            <h4>生态 · OPC + 开发者</h4>
+            <p>懂行业的人，理解业务、完成交付、沉淀复利</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. 六大引擎详解（核心章节） ==================== -->
+<section class="bg-subtle">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow center">六大引擎</span>
+      <h2>一个底座，六块拼图</h2>
+      <p class="lead">从连接物理世界，到治理数据、编排模型、生成应用、可视化空间、自愈运维——六大引擎环环相扣，构成完整的工业智能闭环。</p>
+    </div>
+
+    <div class="grid grid-2">
+      <!-- 引擎 01 -->
+      <div class="card">
+        <div class="card-icon accent">01</div>
+        <span class="badge badge-live">连接物理世界</span>
+        <h3 class="mt-16">全协议工业 IoT 中枢</h3>
+        <p>
+          工业智能的第一公里，是让机器开口说话。向下兼容海量 PLC 与老旧工业协议，解决"哑设备通网"的世纪难题；向上支持百万级高并发数据上云，配合边缘计算，在弱网甚至断网工况下仍能完成毫秒级反向控制与自闭环。
+        </p>
+        <ul class="feature-list mt-24">
+          <li><strong>全协议兼容：</strong>覆盖主流工业协议与存量老旧设备，无缝接入。</li>
+          <li><strong>百万并发：</strong>高吞吐数据上云，扛得住工厂级规模。</li>
+          <li><strong>边缘计算：</strong>数据就近处理，时延与带宽双优化。</li>
+          <li><strong>断网自治：</strong>弱网/断网场景下反向控制与自闭环不中断。</li>
+        </ul>
+      </div>
+
+      <!-- 引擎 02 -->
+      <div class="card">
+        <div class="card-icon accent">02</div>
+        <span class="badge badge-live">数据即燃料</span>
+        <h3 class="mt-16">全域数据资产与智能中台</h3>
+        <p>
+          数据是工业 AI 的燃料，但未经治理的原油无法点燃引擎。DataOps 中台打通 IoT 与业务系统的孤岛，提供可视化数据清洗、治理与主题域建模——最终为大模型输送带"行业语境"的高质量数据，而非冷冰冰的原始字段。
+        </p>
+        <ul class="feature-list mt-24">
+          <li><strong>数据治理：</strong>可视化清洗、质检、脱敏，把原油炼成精炼油。</li>
+          <li><strong>主题域建模：</strong>按业务域组织数据，让 AI 读得懂、调得动。</li>
+          <li><strong>DataOps 流程：</strong>从采集到使用的全链路可观测、可追溯。</li>
+          <li><strong>行业语境注入：</strong>为大模型提供带业务语义的高质量燃料。</li>
+        </ul>
+      </div>
+
+      <!-- 引擎 03 -->
+      <div class="card">
+        <div class="card-icon accent">03</div>
+        <span class="badge badge-live">云原生加工厂</span>
+        <h3 class="mt-16">异构模型路由与微服务编排引擎</h3>
+        <p>
+          这是平台的"加工厂"——模型调度中枢。让 OPC 把开源算法、通用大模型、CV 视觉模型、客户自研配方像拼乐高一样融合，封装成 Skill 与业务流。微服务架构支持无限横向扩展，再复杂的加工逻辑都能被拆解、编排、复用。
+        </p>
+        <ul class="feature-list mt-24">
+          <li><strong>模型路由：</strong>多模型智能调度，按场景选最优解。</li>
+          <li><strong>乐高编排：</strong>算法、大模型、CV、自研配方自由拼装。</li>
+          <li><strong>微服务化：</strong>每个能力独立部署、独立演进、独立计费。</li>
+          <li><strong>横向扩展：</strong>云原生架构，承载规模无上限。</li>
+        </ul>
+      </div>
+
+      <!-- 引擎 04 -->
+      <div class="card">
+        <div class="card-icon accent">04</div>
+        <span class="badge badge-live">革命性护城河</span>
+        <h3 class="mt-16">AI 自然语言与多模态开发引擎</h3>
+        <p>
+          彻底消除代码门槛，是 Galileo OS 最具颠覆性的能力。一线工艺员、机修工、仓管员用对话即可造物——AI 自动生成数据库表结构、前端 UI、后端流转引擎。多模态输入（语音、文档、截图）皆可驱动，让"造系统"这件事从程序员专利变成全员能力。
+        </p>
+        <ul class="feature-list mt-24">
+          <li><strong>自然语言造物：</strong>说什么，就生成什么；对话即开发。</li>
+          <li><strong>自动生成全栈：</strong>表结构 + 前端界面 + 后端流转一次成型。</li>
+          <li><strong>一线人员可用：</strong>不需要懂代码，只需要懂你的业务。</li>
+          <li><strong>多模态输入：</strong>语音、文档、图像皆可驱动造物。</li>
+        </ul>
+      </div>
+
+      <!-- 引擎 05 -->
+      <div class="card">
+        <div class="card-icon accent">05</div>
+        <span class="badge badge-live">工业空间计算</span>
+        <h3 class="mt-16">3D 数字孪生渲染与管控引擎</h3>
+        <p>
+          工厂的"数字镜像"。CAD/BIM 轻量化导入，设备空间位置与 IoT 实时数据低延迟绑定——所见即所得地管理整座工厂。点击设备即查状态、看趋势、下指令。未来更将支持自然语言直接生成 3D 场景，空间计算让工业管理从"看报表"进化到"逛工厂"。
+        </p>
+        <ul class="feature-list mt-24">
+          <li><strong>CAD/BIM 导入：</strong>轻量化承载，原有设计资产直接复用。</li>
+          <li><strong>实时绑定：</strong>设备位置与 IoT 数据低延迟联动。</li>
+          <li><strong>空间计算：</strong>在三维空间中查询、管控、调度。</li>
+          <li><strong>所见即所得：</strong>点设备即看状态，所见即所管。</li>
+        </ul>
+      </div>
+
+      <!-- 引擎 06 -->
+      <div class="card">
+        <div class="card-icon accent">06</div>
+        <span class="badge badge-live">AIOps 自愈网络</span>
+        <h3 class="mt-16">一体化智能运维引擎</h3>
+        <p>
+          系统越庞大，运维越关键。AIOps 引擎做全栈深度诊断，自动追踪微服务日志链路，AI 毫秒级根因分析——不再靠人肉翻日志。热拔插与无感热更新让系统在不停机的前提下持续演进，把故障消灭在爆发之前。
+        </p>
+        <ul class="feature-list mt-24">
+          <li><strong>根因分析：</strong>AI 毫秒级定位故障源头，告别人肉排查。</li>
+          <li><strong>热拔插：</strong>组件在线替换，业务零中断。</li>
+          <li><strong>无感热更新：</strong>系统持续演进，用户无感知。</li>
+          <li><strong>故障前置：</strong>预警先于爆发，把问题消灭在萌芽。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4. 引擎之间的协同（bg-subtle 风格，steps） ==================== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">引擎协同</span>
+      <h2>六大引擎，如何串成闭环</h2>
+      <p class="lead">引擎不是孤立的能力清单，而是一条完整的数据—智能—应用—运维闭环。从物理世界进来，最终回到物理世界的优化。</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h3>IoT 中枢 · 采集</h3>
+          <p>连接物理世界。从 PLC、传感器、老旧设备实时采集数据，把车间里的每一台机器、每一根管道变成数字世界的源头活水。</p>
+          <div class="step-tags">
+            <span class="tag">设备接入</span>
+            <span class="tag">实时采集</span>
+            <span class="tag">边缘处理</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h3>数据中台 · 治理</h3>
+          <p>把原油炼成精炼油。清洗、治理、主题域建模，为大模型注入行业语境——让后续的 AI 不是在猜数据，而是在懂业务。</p>
+          <div class="step-tags">
+            <span class="tag">数据治理</span>
+            <span class="tag">主题域建模</span>
+            <span class="tag">行业语境</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h3>模型编排 · 加工</h3>
+          <p>云原生加工厂。开源算法、大模型、CV、自研配方被编排成 Skill 与业务流，按需调度，把数据加工成可复用的智能能力。</p>
+          <div class="step-tags">
+            <span class="tag">模型路由</span>
+            <span class="tag">Skill 封装</span>
+            <span class="tag">微服务</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h3>AI 造物 · 生成应用</h3>
+          <p>对话即造物。AI 引擎把上面加工出的能力，自动生成数据库、界面、流转引擎，组合成一个个面向具体业务的应用。</p>
+          <div class="step-tags">
+            <span class="tag">自然语言</span>
+            <span class="tag">全栈生成</span>
+            <span class="tag">应用上线</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h3>数字孪生 · 可视化</h3>
+          <p>把工厂搬进三维空间。设备、数据、应用在孪生场景里所见即所得地呈现与管控——管理者从"看报表"进化到"逛工厂"。</p>
+          <div class="step-tags">
+            <span class="tag">空间计算</span>
+            <span class="tag">实时绑定</span>
+            <span class="tag">所见即所得</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num accent">06</div>
+        <div>
+          <h3>AIOps · 自愈闭环</h3>
+          <p>闭环回到物理世界。运维引擎全栈诊断、根因分析、热更新自愈，把优化指令反向传回设备与流程——故障前置，系统常青。</p>
+          <div class="step-tags">
+            <span class="tag">根因分析</span>
+            <span class="tag">无感热更新</span>
+            <span class="tag">故障前置</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. 数据中台深度（bg-dark） ==================== -->
+<section class="bg-dark">
+  <div class="container">
+    <div class="split">
+      <div class="split-text">
+        <span class="eyebrow on-dark">DataOps 深度</span>
+        <h2>构建"工业可信数据空间"</h2>
+        <p class="lead">
+          数据中台不只是技术设施，更是工业智能的地基。我们响应国家数据要素政策，让企业数据从"沉睡的负债"变成"可计价的资产"。
+        </p>
+        <p class="mt-16">
+          打通 IoT 与业务系统的孤岛，是把数据"盘活"的第一步。在此基础上，DataOps 流程让数据治理可视化、可追溯、可复用——最终为大模型提供带行业语境的高质量燃料，而不是一堆冷冰冰的原始字段。
+        </p>
+        <ul class="feature-list mt-32">
+          <li><strong>打通孤岛：</strong>IoT、ERP、MES、WMS 数据汇聚成统一资产。</li>
+          <li><strong>高质量燃料：</strong>治理后的数据让大模型输出更准、更稳、更可信。</li>
+          <li><strong>可信数据空间：</strong>权属清晰、流转可控、安全合规。</li>
+          <li><strong>响应数据要素：</strong>让数据可计价、可交易、可入表，盘活企业存量价值。</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="grid" style="gap:16px;">
+          <div class="card-dark">
+            <div class="metric">
+              <div class="big accent">100%</div>
+              <div class="desc">数据可追溯，全链路 DataOps 流程</div>
+            </div>
+          </div>
+          <div class="card-dark">
+            <div class="metric">
+              <div class="big accent">N 倍</div>
+              <div class="desc">大模型输出质量提升（行业语境加持）</div>
+            </div>
+          </div>
+          <div class="card-dark">
+            <div class="metric">
+              <div class="big accent">0</div>
+              <div class="desc">数据孤岛，IoT 与业务系统全打通</div>
+            </div>
+          </div>
+          <div class="card-dark">
+            <div class="metric">
+              <div class="big accent">可入表</div>
+              <div class="desc">数据资产化，响应数据要素政策</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. 部署方式（grid-3） ==================== -->
+<section>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow center">部署方式</span>
+      <h2>三种部署，按需选择</h2>
+      <p class="lead">中小企业上云、规上企业私有化、出海企业全球节点——总有一款匹配你的规模与安全诉求。</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon">☁️</div>
+        <h3>公有云 SaaS 订阅</h3>
+        <p>
+          适合中小企业。<strong>小快轻准</strong>——极低年度租用费，培养用户心智。先小步试用，看到 ROI 再决定加注。无需自建运维团队，开箱即用。
+        </p>
+        <ul class="feature-list mt-24">
+          <li>低门槛，按年订阅</li>
+          <li>零运维，平台托管</li>
+          <li>快速上手，3 天见效果</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon accent">🔒</div>
+        <h3>私有化 / 混合云买断</h3>
+        <p>
+          适合规上企业、军工、国企。数据绝对安全 + 国产替代（信创）。OS 买断授权费 + 年度维保费，数据不出厂，自主可控。
+        </p>
+        <ul class="feature-list mt-24">
+          <li>数据不出厂，绝对安全</li>
+          <li>信创替代，国产合规</li>
+          <li>买断授权，长期自主可控</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌏</div>
+        <h3>国际化部署节点</h3>
+        <p>
+          适合中企出海。东南亚等区域中心节点，跨境协同授权费。配合"中国制造标准出海"战略，海外新厂插拔式快速落地。
+        </p>
+        <ul class="feature-list mt-24">
+          <li>区域节点，就近接入</li>
+          <li>出海合规，跨境协同</li>
+          <li>标准复制，工厂像开店</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 7. CTA Band ==================== -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <span class="eyebrow center on-dark">开始构建</span>
+      <h2>用六大引擎，构建你的工业智能底座</h2>
+      <p>无论你想自己造、找 OPC 交付，还是让官方打样——第一步都是告诉我们你的场景。游客可浏览全部内容，点击使用后引导注册与邀请码开通。</p>
+      <div class="hero-cta">
+        <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="btn btn-accent btn-lg">申请邀请码</a>
+        <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">联系商务咨询</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 8. Footer ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand" style="gap:10px;">
+          <img src="assets/galileo-logo-nav-white.png" alt="Galileo OS" class="brand-logo">
+          <span class="brand-text-block"><span class="brand-name" style="color:var(--text-inverse);">Galileo OS</span><span class="brand-sub" style="color:var(--text-inverse-3);">工业 Agent 生态</span></span>
+        </a>
+        <p class="footer-desc">思为交互旗下工业智能操作系统。以 Agent 为核心，把工艺、设备、质量、能耗的行业经验沉淀为数字员工——让每个工厂 7×24 小时智能运转，降本增效看得见。</p>
+        <div class="footer-contact">
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <span class="fc-label">客服热线</span>
+              <a href="tel:4000580097" class="fc-value">400-058-0097</a>
+            </div>
+          </div>
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <span class="fc-label">商务邮箱</span>
+              <a href="mailto:waynezheng@idmakers.cn" class="fc-value">waynezheng@idmakers.cn</a>
+            </div>
+          </div>
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <span class="fc-label">公司地址</span>
+              <span class="fc-value">成都市高新区盛安街401号凯旋南城 B 座 1502</span>
+            </div>
+          </div>
+          <div class="fc-item">
+            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <div>
+              <span class="fc-label">在线咨询</span>
+              <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="fc-value">企业微信客服 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>平台</h5>
+        <ul>
+          <li><a href="platform.html">操作系统</a></li>
+          <li><a href="agents.html">Agent 市场</a></li>
+          <li><a href="skills.html">Skill 市场</a></li>
+          <li><a href="apps.html">应用市场</a></li>
+          <li><a href="knowledge.html">知识库市场</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>解决方案</h5>
+        <ul>
+          <li><a href="solutions.html">场景方案</a></li>
+          <li><a href="industries.html">行业实践</a></li>
+          <li><a href="developers.html">开发者中心</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>生态合作</h5>
+        <ul>
+          <li><a href="partner-opc.html">成为 OPC</a></li>
+          <li><a href="developers.html">开发者计划</a></li>
+          <li><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener">申请邀请码</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>关于思为</h5>
+        <ul>
+          <li><a href="https://idmakers.cn/" target="_blank" rel="noopener">思为交互官网</a></li>
+          <li><a href="https://idmakers.cn/aboutus.html" target="_blank" rel="noopener">关于我们</a></li>
+          <li><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener">联系客服</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-locations">
+      <span class="fl-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        办公地点
+      </span>
+      <div class="fl-cities">
+        <span class="fl-city">成都</span>
+        <span class="fl-city">拉萨</span>
+        <span class="fl-city">乌鲁木齐</span>
+        <span class="fl-city">重庆</span>
+        <span class="fl-city">巴黎</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-quals">
+        <span class="fq-badge solid">国家高新技术企业</span>
+        <span class="fq-badge">国家工业互联网联盟核心单位</span>
+        <span class="fq-badge">200+ 知识产权</span>
+        <span class="fq-badge">10 年工业物联网积累</span>
+      </div>
+      <div class="footer-legal">
+        <span>© 2014–2026 四川思为交互科技有限公司 · 保留所有权利</span>
+        <div class="fl-links">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">蜀ICP备15031909号-1</a>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002007794" target="_blank" rel="noopener">川公网安备 51019002007794 号</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="admin-runtime.js"></script>
+<script src="auth-modal.js"></script>
+<script src="animate.js"></script>
+<script>
+(function () {
+  var nav = document.getElementById('topNav');
+  if (!nav) return;
+  function onScroll() {
+    if (window.scrollY > 80) { nav.classList.add('nav-scrolled'); }
+    else { nav.classList.remove('nav-scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
