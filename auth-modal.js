@@ -147,7 +147,7 @@ window.GalileoAuth = (function () {
         ) +
       '</div>' +
       '<div class="modal-footer">' +
-        '<p class="form-footer">提交即代表同意 <a href="#" onclick="return false">服务协议</a> 与 <a href="#" onclick="return false">隐私政策</a></p>' +
+        '<p class="form-footer">提交即代表同意 <a href="agreement.html" target="_blank">服务协议</a> 与 <a href="privacy.html" target="_blank">隐私政策</a></p>' +
       '</div>';
   }
 
