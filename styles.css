@@ -628,7 +628,12 @@ section.spacing-lg { padding: 160px 0; }
   background: rgba(255,255,255,0.12);
   border-color: rgba(255,255,255,0.4);
 }
-.hero-light .lead { color: var(--text-secondary); }
+.hero-light .lead { color: var(--text-inverse-2); }
+/* hero-light 内强制适配深色背景（覆盖 inline style）*/
+.hero-light strong { color: var(--accent-400) !important; }
+.hero-light [style*="text-primary"] { color: var(--accent-400) !important; }
+.hero-light [style*="text-secondary"] { color: var(--text-inverse-2) !important; }
+.hero-light [style*="text-tertiary"] { color: var(--text-inverse-3) !important; }
 
 /* Hero 数据条 */
 .hero-stats {
@@ -1534,6 +1539,12 @@ section.spacing-lg { padding: 160px 0; }
   color: var(--text-inverse);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
+/* detail-hero 内所有文字强制适配深色背景（覆盖 inline style）*/
+.detail-hero h1, .detail-hero h2, .detail-hero h3, .detail-hero h4 { color: var(--text-inverse) !important; }
+.detail-hero strong { color: var(--accent-400) !important; }
+.detail-hero [style*="text-primary"] { color: var(--accent-400) !important; }
+.detail-hero [style*="text-secondary"] { color: var(--text-inverse-2) !important; }
+.detail-hero [style*="text-tertiary"] { color: var(--text-inverse-3) !important; }
 .detail-hero-top {
   display: flex;
   gap: 24px;
