@@ -11,7 +11,7 @@ window.KNOWLEDGE_DATA = {
 /* ============== 工艺知识包（process）============== */
 "cement-kiln-process": {
   name: "水泥窑炉工艺知识包",
-  icon: "🔥",
+  icon: "",
   category: "工艺知识",
   categoryKey: "process",
   status: "live",
@@ -37,7 +37,7 @@ window.KNOWLEDGE_DATA = {
   case: {
     title: "某 5000t/d 生产线工艺调优",
     desc: "客户新工艺师无法应对原料波动，熟料强度合格率仅 88%。加载本知识包后，Agent 能在原料变化时自动推荐配料调整方案，强度合格率提升至 97%，年减少不合格品损失超 200 万元。",
-    metrics: [{ num: "88%→97%", label: "强度合格率" }, { num: "200万", label: "年减损" }, { num: "260+", label: "参数窗口" }]
+    metrics: [{ num: "88%97%", label: "强度合格率" }, { num: "200万", label: "年减损" }, { num: "260+", label: "参数窗口" }]
   },
   pricing: { model: "按订阅计费 + 调用分润", price: "3000", unit: "元/工厂/年", note: "OPC 李工持续获得分润；订阅含季度更新" },
   specs: [{ k: "知识条目", v: "3000+" }, { k: "参数窗口", v: "260+" }, { k: "案例数", v: "38 个" }, { k: "问答对", v: "2000+" }, { k: "校验状态", v: "3 位厂长交叉校验" }],
@@ -50,7 +50,7 @@ window.KNOWLEDGE_DATA = {
 
 "injection-molding-process": {
   name: "注塑成型工艺知识包",
-  icon: "🏭",
+  icon: "",
   category: "工艺知识",
   categoryKey: "process",
   status: "live",
@@ -76,7 +76,7 @@ window.KNOWLEDGE_DATA = {
   case: {
     title: "OPC 老李的招牌交付",
     desc: "某注塑厂准交率仅 76%、缺陷率 8%。老李用此知识包配置 Agent，3 天完成排产与缺陷诊断模块上线，准交率提升至 94%、缺陷率降至 2.5%。方案随后打包成本知识包上架，半年内被 23 家注塑厂订阅，老李持续获得分润。",
-    metrics: [{ num: "76%→94%", label: "准交率" }, { num: "23 家", label: "订阅工厂" }, { num: "永续", label: "分润收入" }]
+    metrics: [{ num: "76%94%", label: "准交率" }, { num: "23 家", label: "订阅工厂" }, { num: "永续", label: "分润收入" }]
   },
   pricing: { model: "按订阅计费 + OPC 分润", price: "2000", unit: "元/工厂/年", note: "OPC 老李持续获得 60% 分润；订阅含月度更新" },
   specs: [{ k: "知识条目", v: "2000+" }, { k: "缺陷图谱", v: "120+ 种" }, { k: "工艺窗口", v: "180+" }, { k: "材料数", v: "30+" }, { k: "校验", v: "OPC + 2 位主任" }],
@@ -88,7 +88,7 @@ window.KNOWLEDGE_DATA = {
 
 "chemical-reactor-process": {
   name: "化工反应釜工艺知识包",
-  icon: "🧪",
+  icon: "",
   category: "工艺知识",
   categoryKey: "process",
   status: "live",
@@ -114,7 +114,7 @@ window.KNOWLEDGE_DATA = {
   case: {
     title: "某化工厂批次一致性提升",
     desc: "客户同产品批次间收率波动达 8%，加载本知识包后，Agent 在每次投料前校验配比与温控曲线，批次波动降至 2%，年增收超 500 万元。",
-    metrics: [{ num: "8%→2%", label: "批次波动" }, { num: "500万", label: "年增收" }, { num: "90+", label: "异常案例" }]
+    metrics: [{ num: "8%2%", label: "批次波动" }, { num: "500万", label: "年增收" }, { num: "90+", label: "异常案例" }]
   },
   pricing: { model: "按订阅计费", price: "5000", unit: "元/工厂/年", note: "含季度更新与安全规程同步" },
   specs: [{ k: "知识条目", v: "2500+" }, { k: "配比公式", v: "65 组" }, { k: "异常案例", v: "90+" }, { k: "SOP", v: "25 套" }],
@@ -127,7 +127,7 @@ window.KNOWLEDGE_DATA = {
 /* ============== 故障诊断包（fault）============== */
 "equipment-fault-cement": {
   name: "水泥设备故障诊断包",
-  icon: "🔧",
+  icon: "",
   category: "故障诊断",
   categoryKey: "fault",
   status: "live",
@@ -137,7 +137,7 @@ window.KNOWLEDGE_DATA = {
   providerType: "官方",
   tags: ["回转窑", "磨机", "风机", "振动", "轴承"],
   oneLine: "水泥厂关键设备（窑/磨/风机）的故障树与振动诊断知识，含 150+ 故障案例。",
-  overview: "水泥厂关键设备（回转窑、球磨机、立磨、高温风机、除尘器）一旦故障，单日停机损失数十万。这个知识包把设备维修专家的经验结构化：每类设备的故障树（症状→可能原因→诊断步骤→处置方法）、振动频谱诊断规则、轴承/齿轮/电机常见故障模式、150+ 真实故障案例。配合预测性维护 Agent，能在故障萌芽期就给出诊断建议。",
+  overview: "水泥厂关键设备（回转窑、球磨机、立磨、高温风机、除尘器）一旦故障，单日停机损失数十万。这个知识包把设备维修专家的经验结构化：每类设备的故障树（症状可能原因诊断步骤处置方法）、振动频谱诊断规则、轴承/齿轮/电机常见故障模式、150+ 真实故障案例。配合预测性维护 Agent，能在故障萌芽期就给出诊断建议。",
   content: [
     { type: "故障树", count: "12 类设备", desc: "回转窑/磨机/风机/除尘器等的故障树与诊断路径" },
     { type: "振动诊断", count: "80+ 规则", desc: "频谱特征对应的故障类型（不平衡/不对中/轴承磨损）" },
@@ -165,7 +165,7 @@ window.KNOWLEDGE_DATA = {
 
 "lithium-equipment-fault": {
   name: "锂盐设备故障诊断包",
-  icon: "🔋",
+  icon: "",
   category: "故障诊断",
   categoryKey: "fault",
   status: "live",
@@ -202,7 +202,7 @@ window.KNOWLEDGE_DATA = {
 /* ============== 安全合规包（safety）============== */
 "chemical-safety-rules": {
   name: "化工安全规程知识包",
-  icon: "🛡️",
+  icon: "",
   category: "安全合规",
   categoryKey: "safety",
   status: "live",
@@ -240,7 +240,7 @@ window.KNOWLEDGE_DATA = {
 
 "safety-behavior-cv": {
   name: "AI 安全行为识别规则包",
-  icon: "📹",
+  icon: "",
   category: "安全合规",
   categoryKey: "safety",
   status: "live",
@@ -279,7 +279,7 @@ window.KNOWLEDGE_DATA = {
 /* ============== 质量标准包（quality）============== */
 "qc-standards-injection": {
   name: "注塑件质量检验标准包",
-  icon: "✅",
+  icon: "",
   category: "质量标准",
   categoryKey: "quality",
   status: "live",
@@ -306,7 +306,7 @@ window.KNOWLEDGE_DATA = {
   case: {
     title: "某注塑厂质检自动化",
     desc: "客户质检靠人工对照标准，慢且易出错。加载本标准包后，95% 批次自动判定放行，质检周期从 4 小时压缩至 20 分钟，客户投诉率下降 60%。",
-    metrics: [{ num: "4h→20min", label: "质检周期" }, { num: "-60%", label: "客户投诉" }, { num: "95%", label: "自动判定率" }]
+    metrics: [{ num: "4h20min", label: "质检周期" }, { num: "-60%", label: "客户投诉" }, { num: "95%", label: "自动判定率" }]
   },
   pricing: { model: "按订阅计费", price: "2500", unit: "元/工厂/年", note: "含客户规范更新；多客户按数量阶梯" },
   specs: [{ k: "标准数", v: "300+ 条规则" }, { k: "客户规范", v: "15+" }, { k: "覆盖标准", v: "GB/T 14486" }, { k: "校验", v: "3 位质量工程师" }],
@@ -318,7 +318,7 @@ window.KNOWLEDGE_DATA = {
 
 "iso-9001-quality": {
   name: "ISO 9001 质量管理体系知识包",
-  icon: "📜",
+  icon: "",
   category: "质量标准",
   categoryKey: "quality",
   status: "live",
@@ -356,7 +356,7 @@ window.KNOWLEDGE_DATA = {
 /* ============== 行业通用包（general）============== */
 "tpm-management": {
   name: "TPM 全员生产维护知识包",
-  icon: "⚙️",
+  icon: "",
   category: "管理方法",
   categoryKey: "general",
   status: "live",
@@ -369,7 +369,7 @@ window.KNOWLEDGE_DATA = {
   overview: "TPM（全员生产维护）是制造业提升设备综合效率的经典方法，但很多企业推行流于形式。这个知识包把 TPM 8 大支柱的落地方法结构化：自主保全 7 步法、专业保全体系、个别改善课题模板、OEE 提升路径、培训体系。配套指标计算工具与改善案例库，让 TPM 真正落地见效而非纸面文章。",
   content: [
     { type: "8 大支柱", count: "完整体系", desc: "自主/专业/个别改善/品质维修/初期管理等支柱的落地方法" },
-    { type: "自主保全", count: "7 步法", desc: "初期清扫→源头对策→标准制定→总点检→自主点检→整顿→自主管理" },
+    { type: "自主保全", count: "7 步法", desc: "初期清扫源头对策标准制定总点检自主点检整顿自主管理" },
     { type: "改善课题", count: "50+ 模板", desc: "OEE 提升/故障降减/换模时间缩短等课题模板" },
     { type: "案例库", count: "80+ 个", desc: "各行业 TPM 推行的真实案例与效果数据" },
     { type: "培训体系", count: "全套", desc: "各级别人员的 TPM 培训课程与考核" }
@@ -382,7 +382,7 @@ window.KNOWLEDGE_DATA = {
   case: {
     title: "某汽车零部件厂 TPM 推行",
     desc: "客户设备 OEE 长期 65% 左右停滞。引入本知识包指导 TPM 系统推行 8 个月，自主保全覆盖 90% 设备，OEE 提升至 78%，故障停机下降 40%。",
-    metrics: [{ num: "65%→78%", label: "OEE 提升" }, { num: "-40%", label: "故障停机" }, { num: "8 月", label: "见效周期" }]
+    metrics: [{ num: "65%78%", label: "OEE 提升" }, { num: "-40%", label: "故障停机" }, { num: "8 月", label: "见效周期" }]
   },
   pricing: { model: "按企业订阅", price: "5000", unit: "元/企业/年", note: "含顾问远程指导 4 次/年" },
   specs: [{ k: "支柱数", v: "8 大" }, { k: "课题模板", v: "50+" }, { k: "案例库", v: "80+" }, { k: "行业验证", v: "3 位厂长" }],
@@ -393,7 +393,7 @@ window.KNOWLEDGE_DATA = {
 
 "lean-production": {
   name: "精益生产方法论知识包",
-  icon: "🎯",
+  icon: "",
   category: "管理方法",
   categoryKey: "general",
   status: "live",
@@ -429,7 +429,7 @@ window.KNOWLEDGE_DATA = {
 
 "energy-management-rules": {
   name: "工业能耗管理规则包",
-  icon: "⚡",
+  icon: "",
   category: "管理方法",
   categoryKey: "general",
   status: "live",

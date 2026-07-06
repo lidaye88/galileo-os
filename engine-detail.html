@@ -1,192 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>引擎详情 | Galileo OS 工业智能开放平台</title>
-<meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="description" content="Galileo OS 引擎详情页：概述、技术原理、核心能力、技术规格、适用场景、引擎关系、关联 Skill、应用案例、更新日志。">
-<link rel="stylesheet" href="styles.css?v=20260705">
-</head>
-<body>
-
-<!-- ==================== 顶部导航 ==================== -->
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="brand brand-logo-only"><img src="assets/galileo-logo-new.png" alt="Galileo OS" class="brand-full-logo"><span class="brand-wordmark"><span class="bw-main">Galileo OS</span><span class="bw-sub">工业智能开放平台</span></span></a>
-    <div class="nav-links">
-      <a href="index.html">首页</a>
-      <a href="solutions.html">解决方案</a>
-      <a href="apps.html">应用市场</a>
-      <a href="agents.html">Agent 市场</a>
-      <a href="skills.html">Skill 市场</a>
-      <a href="knowledge.html">知识库</a>
-      <a href="platform.html" class="active">操作系统</a>
-      <a href="partner-opc.html">OPC 生态</a>
-    </div>
-    <div class="nav-cta">
-      <a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="btn btn-outline btn-sm">联系客服</a>
-      <a href="#" class="btn btn-accent btn-sm" onclick="GalileoAuth.showLogin()">登录</a>
-    </div>
-  </div>
-</nav>
-
-<!-- ==================== 详情主体（JS 动态渲染） ==================== -->
-<main id="detail-root">
-  <!-- 面包屑 + Hero + 双栏内容由 JS 注入 -->
-</main>
-
-<!-- ==================== CTA Band ==================== -->
-<section class="cta-band">
-  <div class="container">
-    <div class="cta-band-inner">
-      <span class="eyebrow center on-dark">接入引擎</span>
-      <h2 id="cta-title">把这个引擎接入你的工厂</h2>
-      <p>联系商务咨询接入方案，或申请试用体验 Galileo OS 的核心技术能力。</p>
-      <div class="hero-cta">
-        <button class="btn btn-accent btn-lg" id="cta-consult">咨询接入</button>
-        <a href="platform.html" class="btn btn-ghost-light btn-lg">返回操作系统</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== Footer ==================== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <!-- 品牌区（含 logo + 简介 + 联系方式 + 二维码）-->
-      <div class="footer-brand-col">
-        <a href="index.html" class="brand brand-logo-only" style="display:inline-block;margin-bottom:20px;">
-          <img src="assets/galileo-logo-new-white.png" alt="Galileo OS 工业智能开放平台" class="brand-full-logo" style="max-height:40px;width:auto;">
-        </a>
-        <p class="footer-desc">思为交互旗下工业智能开放平台。以 Agent 为核心，把工艺、设备、质量、能耗的行业经验沉淀为数字员工——让每个工厂 7×24 小时智能运转。</p>
-        <div class="footer-contact">
-          <div class="fc-item">
-            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <div><span class="fc-label">客服热线</span><a href="tel:4000580097" class="fc-value">400-058-0097</a></div>
-          </div>
-          <div class="fc-item">
-            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <div><span class="fc-label">商务邮箱</span><a href="mailto:waynezheng@idmakers.cn" class="fc-value">waynezheng@idmakers.cn</a></div>
-          </div>
-          <div class="fc-item">
-            <svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div><span class="fc-label">公司地址</span><span class="fc-value">成都市高新区盛安街401号凯旋南城 B 座 1502</span></div>
-          </div>
-        </div>
-        <!-- 二维码：从游离位置移入品牌区，改名为「思为智造+」-->
-        <div class="footer-qr">
-          <img src="assets/wechat-qr.png" alt="思为智造+ 公众号二维码" class="qr-img">
-          <div class="qr-text">
-            <span class="qr-title">思为智造+</span>
-            <span class="qr-sub">扫码关注公众号</span>
-          </div>
-        </div>
-      </div>
-      <!-- 链接列 -->
-      <div class="footer-col">
-        <h5>平台</h5>
-        <ul>
-          <li><a href="platform.html">工业智能操作系统</a></li>
-          <li><a href="agents.html">Agent 市场</a></li>
-          <li><a href="skills.html">Skill 市场</a></li>
-          <li><a href="apps.html">应用市场</a></li>
-          <li><a href="knowledge.html">知识库市场</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>解决方案</h5>
-        <ul>
-          <li><a href="solutions.html">场景方案</a></li>
-          <li><a href="industries.html">行业实践</a></li>
-          <li><a href="developers.html">开发者中心</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>生态合作</h5>
-        <ul>
-          <li><a href="partner-opc.html">成为 OPC</a></li>
-          <li><a href="developers.html">开发者计划</a></li>
-          <li><a href="#" onclick="GalileoAuth.showLogin();return false;">登录</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>关于思为</h5>
-        <ul>
-          <li><a href="https://idmakers.cn/" target="_blank" rel="noopener">思为交互官网</a></li>
-          <li><a href="https://idmakers.cn/aboutus.html" target="_blank" rel="noopener">关于我们</a></li>
-          <li><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener">联系客服</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-locations">
-      <span class="fl-label">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        办公地点
-      </span>
-      <div class="fl-cities">
-        <span class="fl-city">成都</span>
-        <span class="fl-city">拉萨</span>
-        <span class="fl-city">乌鲁木齐</span>
-        <span class="fl-city">重庆</span>
-        <span class="fl-city">巴黎</span>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-quals">
-        <span class="fq-badge solid">国家高新技术企业</span>
-        <span class="fq-badge">国家工业互联网联盟核心单位</span>
-        <span class="fq-badge">200+ 知识产权</span>
-        <span class="fq-badge">10 年工业物联网积累</span>
-      </div>
-      <div class="footer-legal">
-        <span>© 2014–2026 四川思为交互科技有限公司 · 保留所有权利</span>
-        <div class="fl-links">
-          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">蜀ICP备15031909号-1</a>
-          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002007794" target="_blank" rel="noopener">川公网安备 51019002007794 号</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ==================== 准入弹窗系统 ==================== -->
-<script src="auth-modal.js?v=20260705"></script>
-<script src="mobile-nav.js?v=20260705"></script>
-<script src="animate.js?v=20260705"></script>
-
-<!-- ==================== 引擎数据 + 渲染逻辑 ==================== -->
-<script src="engines-data.js?v=20260705"></script>
-<script src="admin-runtime.js?v=20260705"></script>
-<script>
-(function () {
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>| Galileo OS</title><meta name="robots" content="noindex, nofollow, noarchive"><meta name="description" content="Galileo OS 引擎详情页：概述、技术原理、核心能力、技术规格、适用场景、引擎关系、关联 Skill、应用案例、更新日志。"><link rel="stylesheet" href="styles.css?v=20260705"></head><body><!-- ==================== 顶部导航 ==================== --><nav class="nav"><div class="container nav-inner"><a href="index.html" class="brand brand-logo-only"><img src="assets/galileo-logo-new.png" alt="Galileo OS" class="brand-full-logo"><span class="brand-wordmark"><span class="bw-main">Galileo OS</span><span class="bw-sub"></span></span></a><div class="nav-links"><a href="index.html"></a><a href="solutions.html"></a><a href="apps.html"></a><a href="agents.html">Agent</a><a href="skills.html">Skill</a><a href="knowledge.html"></a><a href="platform.html" class="active"></a><a href="partner-opc.html">OPC</a></div><div class="nav-cta"><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener" class="btn btn-outline btn-sm"></a><a href="#" class="btn btn-accent btn-sm" onclick="GalileoAuth.showLogin()"></a></div></div></nav><!-- ==================== 详情主体（JS 动态渲染） ==================== --><main id="detail-root"><!-- 面包屑 + Hero + 双栏内容由 JS 注入 --></main><!-- ==================== CTA Band ==================== --><section class="cta-band"><div class="container"><div class="cta-band-inner"><span class="eyebrow center on-dark"></span><h2 id="cta-title"></h2><p>Galileo OS</p><div class="hero-cta"><button class="btn btn-accent btn-lg" id="cta-consult"></button><a href="platform.html" class="btn btn-ghost-light btn-lg"></a></div></div></div></section><!-- ==================== Footer ==================== --><footer class="footer"><div class="container"><div class="footer-top"><!-- 品牌区（含 logo + 简介 + 联系方式 + 二维码）--><div class="footer-brand-col"><a href="index.html" class="brand brand-logo-only" style="display:inline-block;margin-bottom:20px;"><img src="assets/galileo-logo-new-white.png" alt="Galileo OS " class="brand-full-logo" style="max-height:40px;width:auto;"></a><p class="footer-desc">Agent —— 7×24</p><div class="footer-contact"><div class="fc-item"><svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><span class="fc-label"></span><a href="tel:4000580097" class="fc-value">400-058-0097</a></div></div><div class="fc-item"><svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><span class="fc-label"></span><a href="mailto:waynezheng@idmakers.cn" class="fc-value">waynezheng@idmakers.cn</a></div></div><div class="fc-item"><svg class="fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><span class="fc-label"></span><span class="fc-value">401 B  1502</span></div></div></div><!-- 二维码：从游离位置移入品牌区，改名为「思为智造+」--><div class="footer-qr"><img src="assets/wechat-qr.png" alt="思为智造+ 公众号二维码" class="qr-img"><div class="qr-text"><span class="qr-title">+</span><span class="qr-sub"></span></div></div></div><!--  --><div class="footer-col"><h5></h5><ul><li><a href="platform.html"></a></li><li><a href="agents.html">Agent</a></li><li><a href="skills.html">Skill</a></li><li><a href="apps.html"></a></li><li><a href="knowledge.html"></a></li></ul></div><div class="footer-col"><h5></h5><ul><li><a href="solutions.html"></a></li><li><a href="industries.html"></a></li><li><a href="developers.html"></a></li></ul></div><div class="footer-col"><h5></h5><ul><li><a href="partner-opc.html">OPC</a></li><li><a href="developers.html"></a></li><li><a href="#" onclick="GalileoAuth.showLogin();return false;"></a></li></ul></div><div class="footer-col"><h5></h5><ul><li><a href="https://idmakers.cn/" target="_blank" rel="noopener"></a></li><li><a href="https://idmakers.cn/aboutus.html" target="_blank" rel="noopener"></a></li><li><a href="https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7" target="_blank" rel="noopener"></a></li></ul></div></div><div class="footer-locations"><span class="fl-label"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><div class="fl-cities"><span class="fl-city"></span><span class="fl-city"></span><span class="fl-city"></span><span class="fl-city"></span><span class="fl-city"></span></div></div><div class="footer-bottom"><div class="footer-quals"><span class="fq-badge solid"></span><span class="fq-badge"></span><span class="fq-badge">200+</span><span class="fq-badge">10</span></div><div class="footer-legal"><span>© 2014–2026  ·</span><div class="fl-links"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">ICP15031909-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002007794" target="_blank" rel="noopener">51019002007794</a></div></div></div></div></footer><!-- ==================== 准入弹窗系统 ==================== --><script src="auth-modal.js?v=20260705"></script><script src="mobile-nav.js?v=20260705"></script><script src="animate.js?v=20260705"></script><!-- ====================  +  ==================== --><script src="engines-data.js?v=20260705"></script><script src="admin-runtime.js?v=20260705"></script><script>(function () {
   var KEFU = "https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7";
 
-  // 解析 URL 参数
+  //  URL 
   function getQueryParam(name) {
     var m = new RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
     return m ? decodeURIComponent(m[1]) : null;
   }
 
-  // 状态徽章映射
+  // 
   var statusMap = {
-    live:  { cls: "badge-live",  text: "已上线" },
-    beta:  { cls: "badge-beta",  text: "内测中" },
-    soon:  { cls: "badge-soon",  text: "即将上线" },
-    invite:{ cls: "badge-invite", text: "邀约开放" }
+    live:  { cls: "badge-live",  text: "" },
+    beta:  { cls: "badge-beta",  text: "" },
+    soon:  { cls: "badge-soon",  text: "" },
+    invite:{ cls: "badge-invite", text: "" }
   };
 
-  // HTML 转义
+  // HTML 
   function esc(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
   }
 
-  // 渲染核心能力网格（capabilities）
+  // capabilities
   function renderCapabilities(caps) {
     if (!caps || !caps.length) return "";
     var cards = caps.map(function (c) {
@@ -200,7 +36,7 @@
     return '<div class="compose-relate" style="grid-template-columns:repeat(2,1fr);">' + cards + '</div>';
   }
 
-  // 渲染适用场景（feature-list）
+  // feature-list
   function renderScenarios(items) {
     if (!items || !items.length) return "";
     return '<ul class="feature-list">' + items.map(function (i) {
@@ -208,7 +44,7 @@
     }).join("") + "</ul>";
   }
 
-  // 渲染技术规格（kv-row 形式）
+  // kv-row 
   function renderTechSpecs(specs) {
     if (!specs || !specs.length) return "";
     var rows = specs.map(function (s) {
@@ -217,32 +53,32 @@
     return '<div class="sidebar-card" style="padding:0;"><div style="padding:20px 24px 0;">' + rows + '</div></div>';
   }
 
-  // 渲染关联 Skill（compose-relate 网格，链接 skill-detail）
+  //  Skillcompose-relate  skill-detail
   function renderRelatedSkills(skills) {
-    if (!skills || !skills.length) return '<p style="color:var(--text-tertiary);">该引擎暂未关联 Skill。</p>';
+    if (!skills || !skills.length) return '<p style="color:var(--text-tertiary);">Skill</p>';
     var cards = skills.map(function (s) {
       return '<a href="skill-detail.html?id=' + encodeURIComponent(s.id) + '" class="compose-relate-item" style="text-decoration:none;display:block;">' +
         '<div class="cr-name" style="color:var(--accent-600);">' + esc(s.name) + '</div>' +
-        '<div class="cr-role">查看 Skill 详情 →</div>' +
+        '<div class="cr-role">Skill  </div>' +
         '</a>';
     }).join("");
     return '<div class="compose-relate" style="grid-template-columns:repeat(2,1fr);">' + cards + '</div>';
   }
 
-  // 渲染集成关系（flow-chain）
+  // flow-chain
   function renderIntegrationFlow() {
     return '<div class="flow-chain">' +
-      '<div class="flow-node">IoT 中枢</div>' +
-      '<span class="flow-arrow">→</span>' +
-      '<div class="flow-node">数据中台</div>' +
-      '<span class="flow-arrow">→</span>' +
-      '<div class="flow-node current">本引擎</div>' +
-      '<span class="flow-arrow">→</span>' +
-      '<div class="flow-node">Agent / 应用</div>' +
+      '<div class="flow-node">IoT</div>' +
+      '<span class="flow-arrow"></span>' +
+      '<div class="flow-node"></div>' +
+      '<span class="flow-arrow"></span>' +
+      '<div class="flow-node current"></div>' +
+      '<span class="flow-arrow"></span>' +
+      '<div class="flow-node">Agent /</div>' +
       '</div>';
   }
 
-  // 渲染案例
+  // 
   function renderCase(c) {
     if (!c) return "";
     var metrics = (c.metrics || []).map(function (m) {
@@ -252,7 +88,7 @@
       '<div class="case-metrics">' + metrics + '</div>';
   }
 
-  // 渲染更新日志
+  // 
   function renderChangelog(cl) {
     if (!cl || !cl.length) return "";
     var items = cl.map(function (c) {
@@ -265,29 +101,29 @@
     return '<div class="changelog">' + items + '</div>';
   }
 
-  // 渲染侧边栏基础信息卡
+  // 
   function renderBaseInfo(e) {
     var st = statusMap[e.status] || statusMap.live;
     return '<div class="sidebar-card">' +
-      '<h4>引擎信息</h4>' +
-      '<div class="kv-row"><span class="k">编号</span><span class="v">ENGINE ' + esc(e.engineNum) + '</span></div>' +
-      '<div class="kv-row"><span class="k">状态</span><span class="v"><span class="badge ' + st.cls + '">' + st.text + '</span></span></div>' +
-      '<div class="kv-row"><span class="k">版本</span><span class="v">' + esc(e.version) + '</span></div>' +
-      '<div class="kv-row"><span class="k">更新时间</span><span class="v">' + esc(e.updatedAt) + '</span></div>' +
-      '<div class="kv-row"><span class="k">研发团队</span><span class="v">' + esc(e.provider) + '</span></div>' +
+      '<h4></h4>' +
+      '<div class="kv-row"><span class="k"></span><span class="v">ENGINE ' + esc(e.engineNum) + '</span></div>' +
+      '<div class="kv-row"><span class="k"></span><span class="v"><span class="badge ' + st.cls + '">' + st.text + '</span></span></div>' +
+      '<div class="kv-row"><span class="k"></span><span class="v">' + esc(e.version) + '</span></div>' +
+      '<div class="kv-row"><span class="k"></span><span class="v">' + esc(e.updatedAt) + '</span></div>' +
+      '<div class="kv-row"><span class="k"></span><span class="v">' + esc(e.provider) + '</span></div>' +
       '</div>';
   }
 
-  // 渲染侧边栏技术规格卡
+  // 
   function renderSidebarSpecs(specs) {
     if (!specs || !specs.length) return "";
     var rows = specs.map(function (s) {
       return '<div class="kv-row"><span class="k">' + esc(s.k) + '</span><span class="v">' + esc(s.v) + '</span></div>';
     }).join("");
-    return '<div class="sidebar-card"><h4>技术规格</h4>' + rows + '</div>';
+    return '<div class="sidebar-card"><h4></h4>' + rows + '</div>';
   }
 
-  // 全部引擎列表（用于侧边栏相关引擎）
+  // 
   function renderRelatedEngines(currentId) {
     var data = window.ENGINES_DATA;
     var html = "";
@@ -304,55 +140,55 @@
     return '<div class="compose-relate" style="grid-template-columns:1fr;">' + html + '</div>';
   }
 
-  // 主渲染
+  // 
   function render() {
     var id = getQueryParam("id");
     var root = document.getElementById("detail-root");
     var data = window.ENGINES_DATA;
 
-    // 未找到引擎
+    // 
     if (!id || !data[id]) {
       root.innerHTML = '<section class="hero-light"><div class="container narrow center">' +
-        '<span class="eyebrow center">未找到</span>' +
-        '<h1>引擎不存在</h1>' +
-        '<p class="lead" style="margin:20px 0 32px;">可能链接有误，或该引擎尚未发布。</p>' +
-        '<a href="platform.html" class="btn btn-accent btn-lg">返回操作系统</a>' +
+        '<span class="eyebrow center"></span>' +
+        '<h1></h1>' +
+        '<p class="lead" style="margin:20px 0 32px;"></p>' +
+        '<a href="platform.html" class="btn btn-accent btn-lg"></a>' +
         '</div></section>';
-      document.title = "引擎未找到 | Galileo OS";
+      document.title = " | Galileo OS";
       return;
     }
 
     var e = data[id];
     var st = statusMap[e.status] || statusMap.live;
 
-    // 更新 title
-    document.title = e.name + " · 引擎 | Galileo OS";
+    //  title
+    document.title = e.name + " ·  | Galileo OS";
 
-    // 更新 CTA Band 文案
+    //  CTA Band 
     var ctaTitle = document.getElementById("cta-title");
-    if (ctaTitle) ctaTitle.textContent = "把「" + e.name + "」接入你的工厂";
+    if (ctaTitle) ctaTitle.textContent = "" + e.name + "";
 
-    // 绑定 CTA 咨询按钮
+    //  CTA 
     var ctaConsult = document.getElementById("cta-consult");
     if (ctaConsult) {
-      ctaConsult.setAttribute("onclick", "GalileoAuth.clickUse('" + e.name.replace(/'/g, "\\'") + "接入')");
+      ctaConsult.setAttribute("onclick", "GalileoAuth.clickUse('" + e.name.replace(/'/g, "\\'") + "')");
     }
 
-    // 拼接 HTML
+    //  HTML
     var html = '';
 
-    // 1. 面包屑
+    // 1. 
     html += '<section class="hero-light" style="padding-bottom:0;">';
     html += '<div class="container">';
     html += '<div class="breadcrumb">';
-    html += '<a href="index.html">首页</a><span class="sep">/</span>';
-    html += '<a href="platform.html">工业智能操作系统</a><span class="sep">/</span>';
+    html += '<a href="index.html"></a><span class="sep">/</span>';
+    html += '<a href="platform.html"></a><span class="sep">/</span>';
     html += '<span class="current">' + esc(e.name) + '</span>';
     html += '</div>';
     html += '</div>';
     html += '</section>';
 
-    // 2. Hero 信息头
+    // 2. Hero 
     html += '<section class="detail-hero" style="padding-top:24px;">';
     html += '<div class="container">';
     html += '<div class="detail-hero-top">';
@@ -375,107 +211,107 @@
     html += '</div>';
     html += '</section>';
 
-    // 3. 双栏布局
+    // 3. 
     html += '<section style="padding-top:56px;padding-bottom:80px;">';
     html += '<div class="container">';
     html += '<div class="detail-layout">';
 
-    // —— 主内容 ——
+    // ——  ——
     html += '<div class="detail-main">';
 
-    // §01 引擎概述
+    // §01 
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">01</span>引擎概述</h2>';
+    html += '<h2><span class="sec-num">01</span></h2>';
     html += '<p>' + esc(e.overview) + '</p>';
     html += '</div>';
 
-    // §02 技术原理
+    // §02 
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">02</span>技术原理</h2>';
+    html += '<h2><span class="sec-num">02</span></h2>';
     html += '<p>' + esc(e.principle) + '</p>';
-    html += '<div class="callout callout-info"><span class="callout-icon">⚙️</span><div>这是引擎的底层实现架构，理解原理有助于评估其适用边界、性能特征与可扩展性。</div></div>';
+    html += '<div class="callout callout-info"><span class="callout-icon"></span><div></div></div>';
     html += '</div>';
 
-    // §03 核心能力
+    // §03 
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">03</span>核心能力</h2>';
-    html += '<p style="margin-bottom:8px;">引擎提供的核心能力点，每个能力都可独立评估与组合使用。</p>';
+    html += '<h2><span class="sec-num">03</span></h2>';
+    html += '<p style="margin-bottom:8px;"></p>';
     html += renderCapabilities(e.capabilities);
     html += '</div>';
 
-    // §04 技术规格
+    // §04 
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">04</span>技术规格</h2>';
-    html += '<p style="margin-bottom:8px;">吞吐、延迟、并发、兼容性等关键技术指标。</p>';
+    html += '<h2><span class="sec-num">04</span></h2>';
+    html += '<p style="margin-bottom:8px;"></p>';
     html += renderTechSpecs(e.techSpecs);
     html += '</div>';
 
-    // §05 适用场景
+    // §05 
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">05</span>适用场景</h2>';
+    html += '<h2><span class="sec-num">05</span></h2>';
     html += renderScenarios(e.scenarios);
     html += '</div>';
 
-    // §06 与其他引擎/能力的关系
+    // §06 /
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">06</span>与其他引擎 / 能力的关系</h2>';
+    html += '<h2><span class="sec-num">06</span>/ </h2>';
     html += '<p>' + esc(e.integration) + '</p>';
     html += renderIntegrationFlow();
     html += '</div>';
 
-    // §07 关联 Skill
+    // §07  Skill
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">07</span>关联 Skill</h2>';
-    html += '<p style="margin-bottom:8px;">引擎能力通过这些 Skill 暴露给上层 Agent 与应用，点击查看 Skill 详情。</p>';
+    html += '<h2><span class="sec-num">07</span>Skill</h2>';
+    html += '<p style="margin-bottom:8px;">Skill  Agent  Skill</p>';
     html += renderRelatedSkills(e.relatedSkills);
     html += '</div>';
 
-    // §08 应用案例
+    // §08 
     if (e.case) {
       html += '<div class="detail-section">';
-      html += '<h2><span class="sec-num">08</span>应用案例</h2>';
+      html += '<h2><span class="sec-num">08</span></h2>';
       html += '<div class="callout callout-info" style="margin-bottom:20px;"><div><strong>' + esc(e.case.title) + '</strong></div></div>';
       html += renderCase(e.case);
       html += '</div>';
     }
 
-    // §09 更新日志
+    // §09 
     html += '<div class="detail-section">';
-    html += '<h2><span class="sec-num">09</span>更新日志</h2>';
+    html += '<h2><span class="sec-num">09</span></h2>';
     html += renderChangelog(e.changelog);
     html += '</div>';
 
     html += '</div>'; // /.detail-main
 
-    // —— 侧边栏 ——
+    // ——  ——
     html += '<aside class="detail-sidebar">';
 
-    // CTA 卡（咨询接入）
+    // CTA 
     html += '<div class="sidebar-card" style="background:var(--ink-900);border-color:var(--ink-900);">';
-    html += '<h4 style="color:var(--accent-400);">接入这个引擎</h4>';
-    html += '<button onclick="GalileoAuth.clickUse(\'' + e.name.replace(/'/g, "\\'") + '接入\')" class="btn btn-accent btn-lg full" style="margin-bottom:8px;">咨询接入</button>';
-    html += '<button onclick="GalileoAuth.clickUse(\'' + e.name.replace(/'/g, "\\'") + '试用\')" class="btn btn-ghost-light btn-lg full">申请试用</button>';
-    html += '<p style="font-size:12px;color:var(--text-inverse-3);text-align:center;margin-top:12px;">没有邀请码？点击联系商务</p>';
+    html += '<h4 style="color:var(--accent-400);"></h4>';
+    html += '<button onclick="GalileoAuth.clickUse(\'' + e.name.replace(/'/g, "\\'") + '接入\')" class="btn btn-accent btn-lg full" style="margin-bottom:8px;"></button>';
+    html += '<button onclick="GalileoAuth.clickUse(\'' + e.name.replace(/'/g, "\\'") + '试用\')" class="btn btn-ghost-light btn-lg full"></button>';
+    html += '<p style="font-size:12px;color:var(--text-inverse-3);text-align:center;margin-top:12px;"></p>';
     html += '</div>';
 
-    // 引擎基础信息
+    // 
     html += renderBaseInfo(e);
 
-    // 技术规格
+    // 
     html += renderSidebarSpecs(e.techSpecs);
 
-    // 相关引擎
+    // 
     html += '<div class="sidebar-card">';
-    html += '<h4>其他引擎</h4>';
+    html += '<h4></h4>';
     html += renderRelatedEngines(id);
     html += '</div>';
 
-    // 相关导航
+    // 
     html += '<div class="sidebar-card">';
-    html += '<h4>相关</h4>';
-    html += '<div class="kv-row"><a href="platform.html" class="k" style="color:var(--accent-600);">← 操作系统</a></div>';
-    html += '<div class="kv-row"><a href="skills.html" class="k" style="color:var(--accent-600);">Skill 市场 →</a></div>';
-    html += '<div class="kv-row"><a href="agents.html" class="k" style="color:var(--accent-600);">Agent 市场 →</a></div>';
+    html += '<h4></h4>';
+    html += '<div class="kv-row"><a href="platform.html" class="k" style="color:var(--accent-600);"></a></div>';
+    html += '<div class="kv-row"><a href="skills.html" class="k" style="color:var(--accent-600);">Skill  </a></div>';
+    html += '<div class="kv-row"><a href="agents.html" class="k" style="color:var(--accent-600);">Agent  </a></div>';
     html += '</div>';
 
     html += '</aside>';
@@ -486,21 +322,16 @@
 
     root.innerHTML = html;
 
-    // 滚动到顶部
+    // 
     window.scrollTo(0, 0);
-    // 触发动效
+    // 
     if (window.GalileoAnimate) setTimeout(window.GalileoAnimate.refresh, 50);
   }
 
-  // 启动渲染
+  // 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", render);
   } else {
     render();
   }
-})();
-</script>
-
-<script src="customer-service.js?v=20260705"></script>
-</body>
-</html>
+})();</script><script src="customer-service.js?v=20260705"></script></body></html>

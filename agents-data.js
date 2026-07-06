@@ -9,7 +9,7 @@ window.AGENTS_DATA = {
 /* ============== 生产运营（production）============== */
 "production-scheduling": {
   name: "生产调度 Agent",
-  icon: "📊",
+  icon: "",
   category: "生产运营",
   categoryKey: "production",
   status: "live",
@@ -38,11 +38,11 @@ window.AGENTS_DATA = {
     "插单/急单/改单实时重排，保留已锁定的工单不被打乱",
     "排产结果与实际执行偏差自动追踪，闭环优化"
   ],
-  safetyBoundary: { autoExecute: "排产方案需计划员确认后下发；可配置为低风险订单自动下发", needConfirm: "插单与急单必须人工确认；常规重排可自动", approval: "支持班组长→车间主任→厂长多级审批" },
+  safetyBoundary: { autoExecute: "排产方案需计划员确认后下发；可配置为低风险订单自动下发", needConfirm: "插单与急单必须人工确认；常规重排可自动", approval: "支持班组长车间主任厂长多级审批" },
   case: {
     title: "OPC 老李 · 注塑车间排产",
     desc: "某注塑厂 8 台注塑机原靠人工排产，换模频繁、准交率仅 76%。OPC 老李用此 Agent 结合 30 年注塑经验配置约束模板，3 天完成排产模块上线，换模次数下降 40%，准交率提升至 94%。该方案随后打包为「通用注塑排产大师 Agent」上架，持续分润。",
-    metrics: [{ num: "76%→94%", label: "订单准交率" }, { num: "-40%", label: "换模次数" }, { num: "3 天", label: "上线周期" }]
+    metrics: [{ num: "76%94%", label: "订单准交率" }, { num: "-40%", label: "换模次数" }, { num: "3 天", label: "上线周期" }]
   },
   pricing: { model: "按求解次数计费", price: "0.8", unit: "元/次求解", note: "含重排与甘特图，大规模排产按工单数阶梯计费" },
   specs: [{ k: "排产规模", v: "1000+ 工单" }, { k: "求解时间", v: "典型 < 90 秒" }, { k: "重排延迟", v: "< 30 秒" }, { k: "SLA", v: "99.9%" }],
@@ -55,7 +55,7 @@ window.AGENTS_DATA = {
 
 "order-dispatch": {
   name: "订单排程 Agent",
-  icon: "🗂️",
+  icon: "",
   category: "生产运营",
   categoryKey: "production",
   status: "live",
@@ -88,7 +88,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某电子厂插单响应提速",
     desc: "客户频繁插单，原靠计划员手工重排，平均响应 4 小时且常漏算物料。部署订单排程 Agent 后，插单影响 30 秒内给出，重排方案 1 分钟下发，销售跟单满意度从 62% 升至 95%。",
-    metrics: [{ num: "4h→1min", label: "插单响应" }, { num: "62%→95%", label: "跟单满意度" }, { num: "-90%", label: "漏算物料事件" }]
+    metrics: [{ num: "4h1min", label: "插单响应" }, { num: "62%95%", label: "跟单满意度" }, { num: "-90%", label: "漏算物料事件" }]
   },
   pricing: { model: "按工单数计费", price: "0.15", unit: "元/工单", note: "含插单重排与影响分析" },
   specs: [{ k: "订单规模", v: "万级/日" }, { k: "重排延迟", v: "< 60 秒" }, { k: "影响评估", v: "< 30 秒" }],
@@ -100,7 +100,7 @@ window.AGENTS_DATA = {
 
 "line-anomaly": {
   name: "产线异常 Agent",
-  icon: "🚨",
+  icon: "",
   category: "生产运营",
   categoryKey: "production",
   status: "beta",
@@ -146,7 +146,7 @@ window.AGENTS_DATA = {
 /* ============== 设备运维（equipment）============== */
 "equipment-inspection": {
   name: "设备巡检 Agent",
-  icon: "🛠️",
+  icon: "",
   category: "设备运维",
   categoryKey: "equipment",
   status: "live",
@@ -179,7 +179,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某水泥厂巡检数字化",
     desc: "客户 120 台设备原靠纸质巡检表，漏检率 18%、数据无法分析。部署设备巡检 Agent 后，巡检全部上移动端，漏检率降至 2%，巡检数据首次可用于设备健康趋势分析。",
-    metrics: [{ num: "18%→2%", label: "漏检率" }, { num: "120 台", label: "设备全覆盖" }, { num: "100%", label: "合规留痕" }]
+    metrics: [{ num: "18%2%", label: "漏检率" }, { num: "120 台", label: "设备全覆盖" }, { num: "100%", label: "合规留痕" }]
   },
   pricing: { model: "按设备数计费", price: "30", unit: "元/设备/月", note: "含工单生成、移动端与合规档案" },
   specs: [{ k: "支持设备规模", v: "万台+" }, { k: "移动端", v: "iOS/Android/小程序" }, { k: "确认方式", v: "拍照/签名/数值/扫码" }],
@@ -191,7 +191,7 @@ window.AGENTS_DATA = {
 
 "predictive-maintenance": {
   name: "预测性维护 Agent",
-  icon: "📈",
+  icon: "",
   category: "设备运维",
   categoryKey: "equipment",
   status: "live",
@@ -236,7 +236,7 @@ window.AGENTS_DATA = {
 
 "spare-parts": {
   name: "备件推荐 Agent",
-  icon: "🔩",
+  icon: "",
   category: "设备运维",
   categoryKey: "equipment",
   status: "soon",
@@ -269,7 +269,7 @@ window.AGENTS_DATA = {
   case: {
     title: "即将上架",
     desc: "该 Agent 正在内测打磨，已在 2 家装备制造厂完成 POC，平均找备件时间从 4 小时压缩至 3 分钟。预计 2026 Q3 正式发布。",
-    metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "4h→3min", label: "找备件时间（POC）" }, { num: "2 家", label: "POC 客户" }]
+    metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "4h3min", label: "找备件时间（POC）" }, { num: "2 家", label: "POC 客户" }]
   },
   pricing: { model: "即将上架", price: "—", unit: "", note: "内测邀约中，联系商务咨询" },
   specs: [{ k: "BOM 解析", v: "自动 + 替代号匹配" }, { k: "库存查询", v: "多仓实时" }, { k: "供应商", v: "目录 + 评级" }],
@@ -279,7 +279,7 @@ window.AGENTS_DATA = {
 /* ============== 质量管理（quality）============== */
 "quality-analysis": {
   name: "质量分析 Agent",
-  icon: "🔍",
+  icon: "",
   category: "质量管理",
   categoryKey: "quality",
   status: "live",
@@ -312,7 +312,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某锂盐企业质量根因定位",
     desc: "客户产品某指标偶发超标，原靠人工排查平均 3 天定位根因。部署质量分析 Agent 后，多维钻取 10 分钟锁定到某批次原料与 3 号反应釜的交互，根因定位时间压缩 95%。",
-    metrics: [{ num: "3 天→10 分钟", label: "根因定位" }, { num: "100%", label: "口径一致" }, { num: "+SPC", label: "实时控制图" }]
+    metrics: [{ num: "3 天10 分钟", label: "根因定位" }, { num: "100%", label: "口径一致" }, { num: "+SPC", label: "实时控制图" }]
   },
   pricing: { model: "按检测数据量计费", price: "0.02", unit: "元/万条检测记录", note: "含 SPC 分析与报告" },
   specs: [{ k: "遵循标准", v: "ISO 22514" }, { k: "下钻维度", v: "5 维交叉" }, { k: "报告延迟", v: "实时" }],
@@ -324,7 +324,7 @@ window.AGENTS_DATA = {
 
 "defect-detection": {
   name: "缺陷识别 Agent",
-  icon: "👁️",
+  icon: "",
   category: "质量管理",
   categoryKey: "quality",
   status: "live",
@@ -357,7 +357,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某电子厂 PCB 缺陷检测",
     desc: "PCB 焊点缺陷原靠人工显微镜目检，漏检率 5%、每人每小时仅能检 60 片。部署缺陷识别 Agent + 边缘 AI 盒子后，检测速度提升至每片 0.8 秒，漏检率降至 0.3%，节约 12 名质检员。",
-    metrics: [{ num: "0.8 秒/片", label: "检测速度" }, { num: "5%→0.3%", label: "漏检率" }, { num: "-12 人", label: "质检人力" }]
+    metrics: [{ num: "0.8 秒/片", label: "检测速度" }, { num: "5%0.3%", label: "漏检率" }, { num: "-12 人", label: "质检人力" }]
   },
   pricing: { model: "按推理次数计费", price: "0.015", unit: "元/次推理", note: "边缘推理按盒子授权，详情咨询商务" },
   specs: [{ k: "推理延迟", v: "云端 80ms / 边缘 <50ms" }, { k: "预训练模型", v: "30+ 场景" }, { k: "缺陷类型", v: "可自定义训练" }],
@@ -369,7 +369,7 @@ window.AGENTS_DATA = {
 
 "qc-review": {
   name: "质检复核 Agent",
-  icon: "✅",
+  icon: "",
   category: "质量管理",
   categoryKey: "quality",
   status: "beta",
@@ -402,7 +402,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某汽车零部件厂质量双保险",
     desc: "客户首检误判率约 1.2%，每年因误判报废合格品损失超 200 万。部署质检复核 Agent 后，不一致判定全部触发仲裁，年度误报废损失下降 85%，客户投诉率显著降低。",
-    metrics: [{ num: "-85%", label: "误报废损失" }, { num: "1.2%→0.15%", label: "判定不一致率" }, { num: "100%", label: "仲裁留痕" }]
+    metrics: [{ num: "-85%", label: "误报废损失" }, { num: "1.2%0.15%", label: "判定不一致率" }, { num: "100%", label: "仲裁留痕" }]
   },
   pricing: { model: "按复核次数计费", price: "0.08", unit: "元/次复核", note: "含仲裁流程与审批流转" },
   specs: [{ k: "复核方式", v: "规则 + CV 双路" }, { k: "仲裁延迟", v: "实时" }, { k: "审批流", v: "多级可配" }],
@@ -415,7 +415,7 @@ window.AGENTS_DATA = {
 /* ============== 供应链协同（supply）============== */
 "supply-chain": {
   name: "供应链协同 Agent",
-  icon: "🔗",
+  icon: "",
   category: "供应链协同",
   categoryKey: "supply",
   status: "live",
@@ -448,7 +448,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某食品集团供应链协同",
     desc: "客户 6 个工厂、12 个仓原各自为政，集团周转天数 45 天、呆滞率 11%。部署供应链协同 Agent 后，全局补货与调拨协同，周转天数降至 28 天，呆滞率降至 4%。",
-    metrics: [{ num: "45→28 天", label: "周转天数" }, { num: "11%→4%", label: "呆滞率" }, { num: "6 厂 12 仓", label: "全局协同" }]
+    metrics: [{ num: "4528 天", label: "周转天数" }, { num: "11%4%", label: "呆滞率" }, { num: "6 厂 12 仓", label: "全局协同" }]
   },
   pricing: { model: "按协同节点数计费", price: "1500", unit: "元/节点/月", note: "节点=工厂或仓库，含补货与调拨建议" },
   specs: [{ k: "协同系统", v: "ERP/WMS/TMS" }, { k: "补货算法", v: "预测驱动" }, { k: "看板 KPI", v: "10+ 指标" }],
@@ -460,7 +460,7 @@ window.AGENTS_DATA = {
 
 "inventory-alert": {
   name: "库存预警 Agent",
-  icon: "📦",
+  icon: "",
   category: "供应链协同",
   categoryKey: "supply",
   status: "live",
@@ -493,7 +493,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某装备制造商呆滞压降",
     desc: "客户备件与原料呆滞率 14%，占用资金超 3000 万。部署库存预警 Agent 后，呆滞物料提前 30 天预警并联动调拨/促销，6 个月内呆滞率降至 5%，释放资金 1800 万。",
-    metrics: [{ num: "14%→5%", label: "呆滞率" }, { num: "1800 万", label: "释放资金" }, { num: "+30 天", label: "提前预警" }]
+    metrics: [{ num: "14%5%", label: "呆滞率" }, { num: "1800 万", label: "释放资金" }, { num: "+30 天", label: "提前预警" }]
   },
   pricing: { model: "按 SKU 数计费", price: "0.5", unit: "元/SKU/月", note: "含预警、处置建议与盘点联动" },
   specs: [{ k: "SKU 规模", v: "百万级" }, { k: "预警延迟", v: "实时" }, { k: "处置建议", v: "4 类自动推荐" }],
@@ -505,7 +505,7 @@ window.AGENTS_DATA = {
 
 "logistics-dispatch": {
   name: "物流调度 Agent",
-  icon: "🚚",
+  icon: "",
   category: "供应链协同",
   categoryKey: "supply",
   status: "soon",
@@ -538,7 +538,7 @@ window.AGENTS_DATA = {
   case: {
     title: "即将上架",
     desc: "该 Agent 正在内测打磨，已在 1 家快消品企业区域配送场景完成 POC，满载率从 68% 提升至 89%，单趟运输成本下降 15%。预计 2026 Q3 正式发布。",
-    metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "68%→89%", label: "满载率（POC）" }, { num: "-15%", label: "单趟成本（POC）" }]
+    metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "68%89%", label: "满载率（POC）" }, { num: "-15%", label: "单趟成本（POC）" }]
   },
   pricing: { model: "即将上架", price: "—", unit: "", note: "内测邀约中，联系商务咨询" },
   specs: [{ k: "路径算法", v: "VRPTW" }, { k: "运力撮合", v: "多目标" }, { k: "在途跟踪", v: "实时" }],
@@ -548,7 +548,7 @@ window.AGENTS_DATA = {
 /* ============== 能耗与安全（energy）============== */
 "energy-optim": {
   name: "能耗优化 Agent",
-  icon: "⚡",
+  icon: "",
   category: "能耗与安全",
   categoryKey: "energy",
   status: "live",
@@ -581,7 +581,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某水泥厂窑炉能耗优化",
     desc: "客户 5000t/d 生产线原靠人工设定风煤配比，煤耗 108 kg标煤/吨熟料。部署能耗优化 Agent 后，AI 实时推荐最优参数组合，煤耗降至 103.5，年节约标煤约 8000 吨，对应成本节省超 600 万元。",
-    metrics: [{ num: "108→103.5", label: "kg标煤/吨熟料" }, { num: "600 万", label: "年节约成本" }, { num: "4.2%", label: "能耗降幅" }]
+    metrics: [{ num: "108103.5", label: "kg标煤/吨熟料" }, { num: "600 万", label: "年节约成本" }, { num: "4.2%", label: "能耗降幅" }]
   },
   pricing: { model: "节能分润", price: "—", unit: "", note: "按节能效果分成，详情咨询商务" },
   specs: [{ k: "支持设备", v: "窑炉/空分/冷冻/压缩" }, { k: "收敛迭代", v: "10-30 次" }, { k: "推理延迟", v: "< 2 秒" }],
@@ -593,7 +593,7 @@ window.AGENTS_DATA = {
 
 "safety-inspection": {
   name: "安全巡检 Agent",
-  icon: "🛡️",
+  icon: "",
   category: "能耗与安全",
   categoryKey: "energy",
   status: "live",
@@ -638,7 +638,7 @@ window.AGENTS_DATA = {
 
 "environmental-compliance": {
   name: "环保合规 Agent",
-  icon: "🌱",
+  icon: "",
   category: "能耗与安全",
   categoryKey: "energy",
   status: "soon",
@@ -671,7 +671,7 @@ window.AGENTS_DATA = {
   case: {
     title: "即将上架",
     desc: "该 Agent 正在内测打磨，已在 1 家水泥厂完成碳排核算 POC，月度合规报表生成时间从 5 天压缩至 2 小时，核算误差 < 2%。预计 2026 Q3 正式发布。",
-    metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "5 天→2 小时", label: "报表生成（POC）" }, { num: "<2%", label: "核算误差（POC）" }]
+    metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "5 天2 小时", label: "报表生成（POC）" }, { num: "<2%", label: "核算误差（POC）" }]
   },
   pricing: { model: "即将上架", price: "—", unit: "", note: "内测邀约中，联系商务咨询" },
   specs: [{ k: "核算口径", v: "GHG Protocol + 国标" }, { k: "因子库", v: "行业内置 + 自定义" }, { k: "报表周期", v: "月/季/年" }],
@@ -681,7 +681,7 @@ window.AGENTS_DATA = {
 /* ============== 经营决策（business）============== */
 "business-dashboard": {
   name: "经营看板 Agent",
-  icon: "💼",
+  icon: "",
   category: "经营决策",
   categoryKey: "business",
   status: "live",
@@ -714,7 +714,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某水泥厂月度经营会革命",
     desc: "客户月度经营会原靠财务手工汇总 3 天，且只有数字没有归因。部署经营看板 Agent 后，数据实时上屏、归因自动解读，经营会从「念数字」变成「讨论行动方案」，决策质量显著提升。",
-    metrics: [{ num: "3 天→实时", label: "数据上屏" }, { num: "+归因", label: "从数字到原因" }, { num: "自然语言", label: "提问式分析" }]
+    metrics: [{ num: "3 天实时", label: "数据上屏" }, { num: "+归因", label: "从数字到原因" }, { num: "自然语言", label: "提问式分析" }]
   },
   pricing: { model: "按用户数计费", price: "500", unit: "元/管理层用户/月", note: "含看板、归因与问答" },
   specs: [{ k: "融合域", v: "财务/销售/生产/能耗" }, { k: "归因算法", v: "Shapley + 规则" }, { k: "刷新延迟", v: "实时" }],
@@ -726,7 +726,7 @@ window.AGENTS_DATA = {
 
 "cost-analysis": {
   name: "成本分析 Agent",
-  icon: "🧮",
+  icon: "",
   category: "经营决策",
   categoryKey: "business",
   status: "beta",
@@ -759,7 +759,7 @@ window.AGENTS_DATA = {
   case: {
     title: "某装备制造商成本透明化",
     desc: "客户原成本月底才算，且按工时均摊失真，3 个产品线长期亏而不自知。部署成本分析 Agent 后，实时归集发现 1 条产品线实际毛利为负，及时调整定价与工艺，半年扭亏。",
-    metrics: [{ num: "月度→实时", label: "成本核算" }, { num: "1 条", label: "亏损线识别" }, { num: "半年", label: "扭亏周期" }]
+    metrics: [{ num: "月度实时", label: "成本核算" }, { num: "1 条", label: "亏损线识别" }, { num: "半年", label: "扭亏周期" }]
   },
   pricing: { model: "按订单量计费", price: "0.2", unit: "元/订单", note: "含实时归集与差异分析" },
   specs: [{ k: "归集维度", v: "料/工/费逐单" }, { k: "核算延迟", v: "实时" }, { k: "下钻粒度", v: "凭证级" }],
@@ -771,7 +771,7 @@ window.AGENTS_DATA = {
 
 "order-profit": {
   name: "订单利润 Agent",
-  icon: "💹",
+  icon: "",
   category: "经营决策",
   categoryKey: "business",
   status: "soon",

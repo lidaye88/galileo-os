@@ -12,7 +12,7 @@ window.SOLUTIONS_DATA = {
 "production-management": {
   type: "scenario",
   name: "生产管理解决方案",
-  icon: "🏭",
+  icon: "",
   category: "生产管理",
   status: "live",
   version: "v4.2",
@@ -42,10 +42,10 @@ window.SOLUTIONS_DATA = {
     "执行反馈：MES 应用下发工单并采集执行结果，闭环回流数据底座，持续优化模型与排程策略。"
   ],
   expectedValue: [
-    { num: "↑ 25%", label: "订单准时交付率" },
-    { num: "↑ 18%", label: "设备综合效率 OEE" },
-    { num: "↓ 40%", label: "计划外停机响应时长" },
-    { num: "↓ 30%", label: "在制品库存占用" }
+    { num: " 25%", label: "订单准时交付率" },
+    { num: " 18%", label: "设备综合效率 OEE" },
+    { num: " 40%", label: "计划外停机响应时长" },
+    { num: " 30%", label: "在制品库存占用" }
   ],
   roles: ["老板 / 总经理（决策层）", "厂长（管理层）", "信息化负责人（IT 层）", "车间主管 / OPC（执行层）"],
   deployment: "支持 SaaS 公有云、私有化部署、混合云三种形态。中小工厂建议 SaaS 开箱即用，集团多基地推荐私有化 + 数据中台，对数据安全要求高的流程行业可选边缘+混合云。",
@@ -53,7 +53,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "OPC 老李 · 注塑车间 3 天上线排产",
     desc: "某注塑厂原排产靠人工经验，8 台注塑机换模频繁、订单准交率仅 76%、客户投诉不断。OPC 老李用排产算法 Skill 结合 30 年注塑经验配置换模矩阵与约束模板，3 天完成排产模块上线。换模次数下降 40%，准交率从 76% 提升至 94%，急单响应从半天缩短到 15 分钟。该方案随后打包为「通用注塑排产大师 Agent」上架，持续分润。",
-    metrics: [{ num: "76%→94%", label: "订单准交率" }, { num: "-40%", label: "换模次数" }, { num: "3 天", label: "上线周期" }]
+    metrics: [{ num: "76%94%", label: "订单准交率" }, { num: "-40%", label: "换模次数" }, { num: "3 天", label: "上线周期" }]
   },
   pricing: { model: "SaaS 订阅 + 排程求解量", price: "0.5", unit: "元/次排产求解", note: "基础版 3000 元/月起，含 2 车间排产与 MES；集团多基地版按工单量阶梯计费" },
   changelog: [
@@ -66,7 +66,7 @@ window.SOLUTIONS_DATA = {
 "equipment-management": {
   type: "scenario",
   name: "设备管理解决方案",
-  icon: "⚙️",
+  icon: "",
   category: "设备管理",
   status: "live",
   version: "v3.8",
@@ -121,7 +121,7 @@ window.SOLUTIONS_DATA = {
 "quality-management": {
   type: "scenario",
   name: "质量管理解决方案",
-  icon: "✅",
+  icon: "",
   category: "质量管理",
   status: "live",
   version: "v3.3",
@@ -152,7 +152,7 @@ window.SOLUTIONS_DATA = {
     "批次追溯：检测留痕结合 WMS 批次链路，客户投诉时 30 秒完成成品到原料的正反向追溯。"
   ],
   expectedValue: [
-    { num: "5%→0.3%", label: "漏检率" },
+    { num: "5%0.3%", label: "漏检率" },
     { num: "95%", label: "自动判定放行率" },
     { num: "-12 人", label: "质检人力节约" },
     { num: "0.8 秒", label: "单片检测速度" }
@@ -163,7 +163,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某电子厂 PCB · 漏检率 5% 降至 0.3%",
     desc: "某电子厂 PCB 焊点缺陷原靠人工显微镜目检，漏检率 5%、每人每小时仅能检 60 片、12 名质检员仍跟不上产线节拍。部署质量管理方案后，CV 视觉识别 Skill + 边缘 AI 盒子把检测速度提升至每片 0.8 秒，漏检率降至 0.3%，质检规则引擎让 95% 批次自动判定放行，节约 12 名质检员。批次追溯从 2 天缩短至 30 秒，客户投诉响应大幅提速。",
-    metrics: [{ num: "5%→0.3%", label: "漏检率" }, { num: "0.8 秒", label: "检测速度" }, { num: "-12 人", label: "质检人力" }]
+    metrics: [{ num: "5%0.3%", label: "漏检率" }, { num: "0.8 秒", label: "检测速度" }, { num: "-12 人", label: "质检人力" }]
   },
   pricing: { model: "按推理次数 + 规则配置", price: "0.01", unit: "元/次推理", note: "边缘盒子按硬件授权另计；质检规则集按项目一次性配置" },
   changelog: [
@@ -177,7 +177,7 @@ window.SOLUTIONS_DATA = {
 "supply-chain": {
   type: "scenario",
   name: "供应链协同解决方案",
-  icon: "🔗",
+  icon: "",
   category: "供应链协同",
   status: "beta",
   version: "v2.1",
@@ -193,7 +193,7 @@ window.SOLUTIONS_DATA = {
     "供应商协同靠邮件表格，下单、对账、交付进度不透明，扯皮不断。",
     "物流状态不可视，货物在哪、何时到全凭司机电话，无法做精准的到货计划。"
   ],
-  approach: "以供应链协同 Agent 为中枢，构建「数据打通 → 预警触达 → 协同闭环」三层能力。数据层：ERP 接口 Skill 对接 SAP/用友/金蝶/Oracle 实时同步订单、BOM、采购单，WMS 接口 Skill 同步库存与出入库流水，TMS 接口同步物流状态，三类数据在统一语义层上对齐，口径一致。预警层：库存预警 Agent 基于需求预测模型与安全库存策略，提前识别缺料与积压风险，IM 通知把预警卡片推送到采购与计划员手机，齐套分析在排产前自动校验物料是否齐全。协同层：供应商通过 SRM 应用在线接单、确认交期、上传发货、在线对账，全流程留痕，从邮件表格升级为数字协同。让供应链从黑箱变透明，从事后救火变事前预警。",
+  approach: "以供应链协同 Agent 为中枢，构建「数据打通  预警触达  协同闭环」三层能力。数据层：ERP 接口 Skill 对接 SAP/用友/金蝶/Oracle 实时同步订单、BOM、采购单，WMS 接口 Skill 同步库存与出入库流水，TMS 接口同步物流状态，三类数据在统一语义层上对齐，口径一致。预警层：库存预警 Agent 基于需求预测模型与安全库存策略，提前识别缺料与积压风险，IM 通知把预警卡片推送到采购与计划员手机，齐套分析在排产前自动校验物料是否齐全。协同层：供应商通过 SRM 应用在线接单、确认交期、上传发货、在线对账，全流程留痕，从邮件表格升级为数字协同。让供应链从黑箱变透明，从事后救火变事前预警。",
   components: {
     agents: ["供应链协同 Agent", "库存预警 Agent", "采购协同 Agent"],
     skills: ["erp-integration", "wms-integration", "prediction-model", "im-notification"],
@@ -208,7 +208,7 @@ window.SOLUTIONS_DATA = {
     "对账闭环：入库与验收数据回写 ERP，SRM 在线对账，差异自动标记，全流程留痕。"
   ],
   expectedValue: [
-    { num: "12%→3.8%", label: "呆滞库存率" },
+    { num: "12%3.8%", label: "呆滞库存率" },
     { num: "91%", label: "备货准确率" },
     { num: "-50%", label: "缺料停线次数" },
     { num: "+20%", label: "订单准交率" }
@@ -219,7 +219,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某食品厂 · 呆滞库存率 12% 降至 3.8%",
     desc: "某食品厂保质期短、库存积压即报废，原靠人工经验备货，呆滞库存率高达 12%，缺料停线每月 5 次以上。部署供应链协同方案后，预测模型结合促销与节假日特征把备货准确率提升至 91%，库存预警主动触达采购，齐套分析在排产前拦截缺料风险，呆滞库存率降至 3.8%，缺料停线下降 50%，订单准交率提升 20%。",
-    metrics: [{ num: "12%→3.8%", label: "呆滞库存率" }, { num: "91%", label: "备货准确率" }, { num: "-50%", label: "缺料停线" }]
+    metrics: [{ num: "12%3.8%", label: "呆滞库存率" }, { num: "91%", label: "备货准确率" }, { num: "-50%", label: "缺料停线" }]
   },
   pricing: { model: "SaaS 订阅 + 接口连接数", price: "2000", unit: "元/连接/月", note: "内测期 7 折，含 ERP/WMS/TMS 打通与 SRM；超量按同步条数阶梯计费" },
   changelog: [
@@ -232,14 +232,14 @@ window.SOLUTIONS_DATA = {
 "energy-management": {
   type: "scenario",
   name: "能耗管理解决方案",
-  icon: "⚡",
+  icon: "",
   category: "能耗管理",
   status: "live",
   version: "v2.6",
   updatedAt: "2026-06-08",
   provider: "思为交互 · 能源智能团队",
   tags: ["AI 能耗优化", "Modbus 采集", "窑炉寻优", "绿色生产", "双碳"],
-  oneLine: "在工艺约束与产量目标下求解最低能耗运行参数，水泥窑煤耗 108→103.5，年省 600 万。",
+  oneLine: "在工艺约束与产量目标下求解最低能耗运行参数，水泥窑煤耗 108103.5，年省 600 万。",
   overview: "高耗能设备（水泥窑、空分、冷冻站、压缩机群）的运行参数组合往往有上百万种，人工经验只能找到「能用」的参数，找不到「最省」的参数。这套方案以「全量能耗采集 + AI 寻优 + 闭环下发」构建绿色生产引擎：Modbus/PLC Skill 把电表、变频器、温控仪全量联网，分钟级能耗数据首次可视；能耗优化模型 Skill 基于工艺机理 + 数据驱动混合优化，在产量与质量约束下求解能耗最低的参数组合；边缘控制把参数建议安全下发到设备，断网仍可自治。让每一度电、每一吨煤都花在刀刃上，对标双碳目标。",
   painPoints: [
     "高耗能设备运行参数靠人工设定，煤耗/电耗长期偏高，找不到「最省」的参数组合。",
@@ -263,7 +263,7 @@ window.SOLUTIONS_DATA = {
     "效果验证：节能效果实时回流，校准模型，碳排核算 Agent 自动产出合规报表支撑双碳审计。"
   ],
   expectedValue: [
-    { num: "108→103.5", label: "kg标煤/吨熟料" },
+    { num: "108103.5", label: "kg标煤/吨熟料" },
     { num: "600 万", label: "年节约成本" },
     { num: "4.2%", label: "能耗降幅" },
     { num: "8000 吨", label: "年节约标煤" }
@@ -274,7 +274,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某水泥厂窑炉 · 煤耗 108 降至 103.5，年省 600 万",
     desc: "某水泥厂 5000t/d 生产线原靠人工设定风煤配比，煤耗 108 kg标煤/吨熟料，长期高于行业标杆。部署能耗管理方案后，2 周完成窑炉全量数据采集，能耗优化模型在产量与熟料强度约束下实时推荐最优风量、煤粉、转速参数组合，煤耗降至 103.5，年节约标煤约 8000 吨，对应成本节省超 600 万元，同时满足双碳合规审计要求。",
-    metrics: [{ num: "108→103.5", label: "kg标煤/吨熟料" }, { num: "600 万", label: "年节约成本" }, { num: "8000 吨", label: "年节约标煤" }]
+    metrics: [{ num: "108103.5", label: "kg标煤/吨熟料" }, { num: "600 万", label: "年节约成本" }, { num: "8000 吨", label: "年节约标煤" }]
   },
   pricing: { model: "订阅 + 节能分润", price: "—", unit: "按节能效果分成", note: "能耗看板与采集按设备数订阅；寻优模型按节能效果分润，与客户利益绑定，详情咨询商务" },
   changelog: [
@@ -287,7 +287,7 @@ window.SOLUTIONS_DATA = {
 "safety-management": {
   type: "scenario",
   name: "安全管理解决方案",
-  icon: "🦺",
+  icon: "",
   category: "安全管理",
   status: "invite",
   version: "v1.5",
@@ -320,7 +320,7 @@ window.SOLUTIONS_DATA = {
   expectedValue: [
     { num: "7×24", label: "全天候无死角巡检" },
     { num: "96%", label: "违规识别准确率" },
-    { num: "18→4 分钟", label: "应急响应时间" },
+    { num: "184 分钟", label: "应急响应时间" },
     { num: "-80%", label: "安全违规次数" }
   ],
   roles: ["老板 / 总经理（决策层）", "安全总监 / HSE 经理（管理层）", "信息化负责人（IT 层）", "安全员 / 班组长（执行层）"],
@@ -329,7 +329,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某化工园区 · AI 视觉安全 7×24 巡检",
     desc: "某化工园区原靠 12 名安全员轮班巡检，夜间与偏远区域覆盖不足，年均记录违规 200+ 起但漏网更多。部署安全管理方案后，复用 80 路既有摄像头，CV 视觉识别 7×24 全天候覆盖，安全帽、危险区域闯入、明火烟雾识别准确率 96%，违规预警即时触达安全员，应急响应时间从 18 分钟降至 4 分钟，安全违规次数下降 80%，HSE 合规审计零整改通过。",
-    metrics: [{ num: "96%", label: "违规识别准确率" }, { num: "18→4 分钟", label: "应急响应" }, { num: "-80%", label: "违规次数" }]
+    metrics: [{ num: "96%", label: "违规识别准确率" }, { num: "184 分钟", label: "应急响应" }, { num: "-80%", label: "违规次数" }]
   },
   pricing: { model: "邀约开放 + 摄像头数订阅", price: "—", unit: "按路数订阅", note: "当前为邀约制开放，含边缘盒子硬件 + CV 推理 + HSE 应用；应急联动预案配置另计" },
   changelog: [
@@ -343,7 +343,7 @@ window.SOLUTIONS_DATA = {
 "business-management": {
   type: "scenario",
   name: "经营管理解决方案",
-  icon: "📊",
+  icon: "",
   category: "经营管理",
   status: "live",
   version: "v2.4",
@@ -374,7 +374,7 @@ window.SOLUTIONS_DATA = {
     "决策触达：经营看板 Agent 把关键指标与建议行动推送到管理层，BI 支持自助下钻分析。"
   ],
   expectedValue: [
-    { num: "3 天→自动", label: "经营报告生成" },
+    { num: "3 天自动", label: "经营报告生成" },
     { num: "0", label: "IT 报表需求积压" },
     { num: "+归因", label: "从数字到原因" },
     { num: "100%", label: "指标口径一致" }
@@ -385,7 +385,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某水泥厂 · 月度经营会从念数字到讨论行动",
     desc: "某水泥厂月度经营会原靠财务手工汇总 3 天，且只有数字没有归因，经营会变成念数字、互相推诿。部署经营管理方案后，多域数据融合为统一语义层，经营报告自动产出含归因解读（「利润下降主因：能耗成本上升 12%，其中窑炉煤耗超标，建议参考能耗优化方案」），经营会从念数字升级为讨论行动方案，IT 报表需求积压清零，决策质量显著提升。",
-    metrics: [{ num: "3 天→自动", label: "报告生成" }, { num: "0", label: "IT 积压" }, { num: "+归因", label: "数字到原因" }]
+    metrics: [{ num: "3 天自动", label: "报告生成" }, { num: "0", label: "IT 积压" }, { num: "+归因", label: "数字到原因" }]
   },
   pricing: { model: "SaaS 订阅 + 用户数", price: "100", unit: "元/用户/月", note: "查看免费，编辑按用户收费；经营报告与归因分析按套餐订阅" },
   changelog: [
@@ -399,7 +399,7 @@ window.SOLUTIONS_DATA = {
 "warehouse-logistics": {
   type: "scenario",
   name: "仓储物流解决方案",
-  icon: "📦",
+  icon: "",
   category: "仓储物流",
   status: "soon",
   version: "v1.0",
@@ -453,7 +453,7 @@ window.SOLUTIONS_DATA = {
 "digital-twin": {
   type: "scenario",
   name: "3D 数字孪生解决方案",
-  icon: "🏛️",
+  icon: "",
   category: "3D 数字孪生",
   status: "invite",
   version: "v1.2",
@@ -469,7 +469,7 @@ window.SOLUTIONS_DATA = {
     "多基地集团无法远程透视各工厂实时状态，决策依赖层层汇报，滞后且失真。",
     "传统三维建模与实时数据脱节，模型是死的，只是好看用不上。"
   ],
-  approach: "以「建模 → 绑定 → 映射 → 推演」四步构建活的数字孪生。建模步：导入工厂既有 CAD/BIM 模型（支持 Revit、SolidWorks、CATIA、IFC 等格式），或在平台用低代码三维编辑器从零搭建，设备、产线、管线、建筑分层管理。绑定步：把每个三维节点与 IoT 数据源（PLC 点位、OPC UA 节点、Modbus 寄存器、业务系统指标）做语义绑定，建立「数字-物理」映射关系，数据更新即模型更新。映射步：实时大屏 Skill 把孪生体渲染为可漫游的三维场景，管理者点击设备即看实时运行参数、告警状态、历史曲线，多基地集团可在统一孪生空间里切换透视各工厂。推演步：在虚拟空间做新产线规划、工艺改造、排产推演的仿真，提前发现干涉与瓶颈，避免物理试错。让数字孪生从「好看的模型」升级为「能用的孪生体」。",
+  approach: "以「建模  绑定  映射  推演」四步构建活的数字孪生。建模步：导入工厂既有 CAD/BIM 模型（支持 Revit、SolidWorks、CATIA、IFC 等格式），或在平台用低代码三维编辑器从零搭建，设备、产线、管线、建筑分层管理。绑定步：把每个三维节点与 IoT 数据源（PLC 点位、OPC UA 节点、Modbus 寄存器、业务系统指标）做语义绑定，建立「数字-物理」映射关系，数据更新即模型更新。映射步：实时大屏 Skill 把孪生体渲染为可漫游的三维场景，管理者点击设备即看实时运行参数、告警状态、历史曲线，多基地集团可在统一孪生空间里切换透视各工厂。推演步：在虚拟空间做新产线规划、工艺改造、排产推演的仿真，提前发现干涉与瓶颈，避免物理试错。让数字孪生从「好看的模型」升级为「能用的孪生体」。",
   components: {
     agents: ["孪生编排 Agent", "空间分析 Agent", "仿真推演 Agent"],
     skills: ["opcua-access", "plc-readwrite", "realtime-dashboard", "modbus-access"],
@@ -513,7 +513,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "cement",
   name: "水泥建材智能工厂方案",
-  icon: "🏗️",
+  icon: "",
   category: "水泥建材",
   categoryKey: "industry",
   status: "live",
@@ -539,7 +539,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某 5000t/d 水泥生产线智能工厂",
     desc: "客户吨熟料煤耗 108 kg标煤、设备 OEE 仅 65%、强度合格率 88%。部署完整方案 6 个月后，煤耗降至 103.5、OEE 提升至 78%、合格率 97%，年综合收益超 800 万元。",
-    metrics: [{ num: "108→103.5", label: "kg标煤/吨" }, { num: "65%→78%", label: "设备 OEE" }, { num: "800万", label: "年综合收益" }]
+    metrics: [{ num: "108103.5", label: "kg标煤/吨" }, { num: "65%78%", label: "设备 OEE" }, { num: "800万", label: "年综合收益" }]
   },
   pricing: { model: "私有化授权 + 年度服务", price: "—", unit: "", note: "按生产线规模报价，含实施与培训，详情咨询商务" },
   changelog: [
@@ -552,7 +552,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "lithium-salt",
   name: "智慧锂盐解决方案",
-  icon: "🔋",
+  icon: "",
   category: "锂盐新能源",
   categoryKey: "industry",
   status: "live",
@@ -571,14 +571,14 @@ window.SOLUTIONS_DATA = {
     templates: ["锂盐行业模板"]
   },
   typicalFlow: ["原料配料与焙烧", "浸出与净化", "蒸发结晶", "包装与 RFID 赋码", "3D 仓储与物流"],
-  expectedValue: [{ num: "8%→2%", label: "批次收率波动" }, { num: "100%", label: "批次追溯覆盖" }, { num: "+15%", label: "仓储周转效率" }, { num: "-30%", label: "人工物流成本" }],
+  expectedValue: [{ num: "8%2%", label: "批次收率波动" }, { num: "100%", label: "批次追溯覆盖" }, { num: "+15%", label: "仓储周转效率" }, { num: "-30%", label: "人工物流成本" }],
   roles: ["生产总监", "工艺工程师", "质量经理", "仓库主管", "OPC"],
   deployment: "私有化部署，支持信创数据库，含 RFID 与 3D 孪生硬件集成。",
   threshold: "需邀请码开通，含硬件集成建议现场 POC。",
   case: {
     title: "某锂盐企业批次追溯与仓储自动化",
     desc: "客户批次追溯需 2 天、仓储靠人工。方案上线后追溯响应 30 秒、3D 仓储可视化、RFID 自动出入库，仓储周转效率提升 15%，追溯合规审计一次通过。",
-    metrics: [{ num: "2天→30秒", label: "追溯响应" }, { num: "+15%", label: "仓储周转" }, { num: "一次通过", label: "合规审计" }]
+    metrics: [{ num: "2天30秒", label: "追溯响应" }, { num: "+15%", label: "仓储周转" }, { num: "一次通过", label: "合规审计" }]
   },
   pricing: { model: "私有化授权 + 年度服务", price: "—", unit: "", note: "按产能与硬件范围报价，详情咨询商务" },
   changelog: [
@@ -590,7 +590,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "chemical",
   name: "智慧化工解决方案",
-  icon: "🧪",
+  icon: "",
   category: "化工",
   categoryKey: "industry",
   status: "live",
@@ -609,14 +609,14 @@ window.SOLUTIONS_DATA = {
     templates: ["化工行业模板"]
   },
   typicalFlow: ["原料检验与投料", "反应过程监控", "分离与精制", "储运与装卸", "三废处理与排放监测"],
-  expectedValue: [{ num: "零整改", label: "安全合规审计" }, { num: "8%→2%", label: "批次波动" }, { num: "-85%", label: "安全违规事件" }, { num: "100%", label: "排放达标" }],
+  expectedValue: [{ num: "零整改", label: "安全合规审计" }, { num: "8%2%", label: "批次波动" }, { num: "-85%", label: "安全违规事件" }, { num: "100%", label: "排放达标" }],
   roles: ["安全总监", "生产经理", "环保经理", "工艺工程师", "OPC"],
   deployment: "私有化部署，支持防爆终端与边缘计算，断网自治保安全。",
   threshold: "需邀请码开通，含安全评估与 HAZOP 校验。",
   case: {
     title: "某化工园区安全与批次双提升",
     desc: "客户安全违规频发、批次波动 8%。方案上线后 AI 7×24 安全巡检、批次自动校验配比，省级安全检查零整改通过，批次波动降至 2%。",
-    metrics: [{ num: "零整改", label: "省级检查" }, { num: "-85%", label: "安全违规" }, { num: "8%→2%", label: "批次波动" }]
+    metrics: [{ num: "零整改", label: "省级检查" }, { num: "-85%", label: "安全违规" }, { num: "8%2%", label: "批次波动" }]
   },
   pricing: { model: "私有化授权 + 年度服务", price: "—", unit: "", note: "按装置规模与安全等级报价" },
   changelog: [{ version: "v5.0", date: "2026-06-20", content: "AI 安全行为识别接入；HAZOP 知识库扩充；断网自治优化。" }]
@@ -626,7 +626,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "aluminum",
   name: "智慧铝业解决方案",
-  icon: "🏠",
+  icon: "",
   category: "铝业",
   categoryKey: "industry",
   status: "live",
@@ -662,7 +662,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "commercial-concrete",
   name: "智慧商砼解决方案",
-  icon: "🚚",
+  icon: "",
   category: "商砼",
   categoryKey: "industry",
   status: "live",
@@ -698,7 +698,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "civil-explosives",
   name: "智慧民爆解决方案",
-  icon: "💥",
+  icon: "",
   category: "民爆",
   categoryKey: "industry",
   status: "live",
@@ -734,7 +734,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "energy-environmental",
   name: "节能环保解决方案",
-  icon: "🌱",
+  icon: "",
   category: "节能环保",
   categoryKey: "industry",
   status: "live",
@@ -770,7 +770,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "metallurgy-industry",
   name: "冶金行业解决方案",
-  icon: "⚙️",
+  icon: "",
   category: "冶金钢铁",
   categoryKey: "industry",
   status: "live",
@@ -796,7 +796,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某特钢厂轧制成材率提升",
     desc: "客户轧制成材率长期在 94% 徘徊。方案上线工艺寻优后，关键参数自动微调，3 个月内成材率稳定至 96.2%，年增效益超 800 万元。",
-    metrics: [{ num: "94→96.2%", label: "成材率" }, { num: "800万", label: "年增效益" }, { num: "3 个月", label: "见效周期" }]
+    metrics: [{ num: "9496.2%", label: "成材率" }, { num: "800万", label: "年增效益" }, { num: "3 个月", label: "见效周期" }]
   },
   pricing: { model: "私有化 + 年服务费", price: "—", unit: "", note: "按产线规模报价" },
   changelog: [{ version: "v2.8", date: "2026-05-20", content: "轧制工艺模型升级；炉窑能耗对标库扩充。" }]
@@ -806,7 +806,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "food-industry",
   name: "食品饮料解决方案",
-  icon: "🍼",
+  icon: "",
   category: "食品饮料",
   categoryKey: "industry",
   status: "live",
@@ -832,7 +832,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某乳品厂批次追溯上线",
     desc: "客户原靠纸质记录追溯一批次需 4 小时。方案上线后扫码即查，追溯时间缩至 10 秒，保质期预警减少过期损耗 60%。",
-    metrics: [{ num: "4h→10s", label: "追溯时间" }, { num: "-60%", label: "过期损耗" }, { num: "100%", label: "合规覆盖" }]
+    metrics: [{ num: "4h10s", label: "追溯时间" }, { num: "-60%", label: "过期损耗" }, { num: "100%", label: "合规覆盖" }]
   },
   pricing: { model: "SaaS 按产线计费", price: "—", unit: "", note: "含追溯与质检模块" },
   changelog: [{ version: "v2.3", date: "2026-06-12", content: "保质期预警优化；批次追溯性能提升。" }]
@@ -842,7 +842,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "machining-industry",
   name: "机械加工解决方案",
-  icon: "🔩",
+  icon: "",
   category: "机械加工",
   categoryKey: "industry",
   status: "live",
@@ -868,7 +868,7 @@ window.SOLUTIONS_DATA = {
   case: {
     title: "某机加工厂智能排产",
     desc: "客户 20 台数控设备原靠人工排产，换型频繁导致利用率仅 58%。方案上线后排产自动优化，利用率提升至 75%，断刀废品下降 40%。",
-    metrics: [{ num: "58→75%", label: "设备利用率" }, { num: "-40%", label: "断刀废品" }, { num: "10min", label: "换型响应" }]
+    metrics: [{ num: "5875%", label: "设备利用率" }, { num: "-40%", label: "断刀废品" }, { num: "10min", label: "换型响应" }]
   },
   pricing: { model: "SaaS 按设备计费", price: "—", unit: "", note: "含排产与刀具管理" },
   changelog: [{ version: "v3.0", date: "2026-06-01", content: "刀具寿命预测上线；排产算法升级。" }]
@@ -878,7 +878,7 @@ window.SOLUTIONS_DATA = {
   type: "industry",
   industryId: "mining-industry",
   name: "矿山采选解决方案",
-  icon: "⛏️",
+  icon: "",
   category: "矿山采选",
   categoryKey: "industry",
   status: "live",
