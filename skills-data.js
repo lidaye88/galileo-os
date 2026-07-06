@@ -9,7 +9,7 @@ window.SKILLS_DATA = {
 /* ============== 数据处理（data）============== */
 "data-cleaning": {
   name: "数据清洗",
-  icon: "",
+  icon: "🧹",
   category: "数据处理",
   categoryKey: "data",
   status: "live",
@@ -58,13 +58,13 @@ const result = await galileo.skill("data-cleaning").invoke({
 console.log(result.qualityReport);
 // { missingRate: 0.012, anomalyRate: 0.034, cleanedRows: 86400 }`,
   compose: {
-    upstream: [{ icon: "", name: "PLC 读写", role: "提供原始时序数据" }, { icon: "", name: "Modbus 接入", role: "老旧仪表数据采集" }],
-    downstream: [{ icon: "", name: "异常检测", role: "基于清洗数据做异常识别" }, { icon: "", name: "预测模型", role: "用干净数据训练预测" }, { icon: "", name: "主题域建模", role: "沉淀为可复用语义层" }]
+    upstream: [{ icon: "⚙️", name: "PLC 读写", role: "提供原始时序数据" }, { icon: "🔌", name: "Modbus 接入", role: "老旧仪表数据采集" }],
+    downstream: [{ icon: "📡", name: "异常检测", role: "基于清洗数据做异常识别" }, { icon: "📈", name: "预测模型", role: "用干净数据训练预测" }, { icon: "🗂️", name: "主题域建模", role: "沉淀为可复用语义层" }]
   },
   case: {
     title: "某水泥厂窑尾温度数据治理",
     desc: "客户原有的窑尾温度数据缺失率达 8.7%，传感器偶发跳变导致能耗模型频繁误判。部署数据清洗 Skill 后，数据质量提升至 99.6%，下游能耗优化模型准确率提升 23%。",
-    metrics: [{ num: "8.7%0.4%", label: "缺失率下降" }, { num: "+23%", label: "下游模型准确率" }, { num: "99.6%", label: "数据可用率" }]
+    metrics: [{ num: "8.7%→0.4%", label: "缺失率下降" }, { num: "+23%", label: "下游模型准确率" }, { num: "99.6%", label: "数据可用率" }]
   },
   pricing: { model: "按处理数据量计费", price: "0.02", unit: "元/万行", note: "月度结算，首月免费试用 500 万行" },
   specs: [
@@ -82,7 +82,7 @@ console.log(result.qualityReport);
 
 "data-mapping": {
   name: "数据映射",
-  icon: "",
+  icon: "🗺️",
   category: "数据处理",
   categoryKey: "data",
   status: "live",
@@ -113,15 +113,15 @@ const mapping = await galileo.skill("data-mapping").invoke({
   mode: "auto_suggest"
 });
 
-// 返回推荐映射：MATNRmaterial_code, MAKTXmaterial_name`,
+// 返回推荐映射：MATNR→material_code, MAKTX→material_name`,
   compose: {
-    upstream: [{ icon: "", name: "ERP 接口", role: "提供源系统 Schema" }, { icon: "", name: "MES 接口", role: "工单字段来源" }],
-    downstream: [{ icon: "", name: "主题域建模", role: "基于映射构建语义层" }, { icon: "", name: "指标计算", role: "统一口径后算 KPI" }]
+    upstream: [{ icon: "🏢", name: "ERP 接口", role: "提供源系统 Schema" }, { icon: "🏭", name: "MES 接口", role: "工单字段来源" }],
+    downstream: [{ icon: "🗂️", name: "主题域建模", role: "基于映射构建语义层" }, { icon: "🧮", name: "指标计算", role: "统一口径后算 KPI" }]
   },
   case: {
     title: "某集团多基地主数据统一",
     desc: "客户 6 个生产基地分别使用不同 ERP，物料编码规则各异，集团层面无法做产能协同分析。使用数据映射 Skill 在 3 天内完成 6 套物料主数据的语义对齐，集团级产能看板首次可用。",
-    metrics: [{ num: "61", label: "编码体系统一" }, { num: "3 天", label: "对齐周期" }, { num: "12 万", label: "物料映射条目" }]
+    metrics: [{ num: "6→1", label: "编码体系统一" }, { num: "3 天", label: "对齐周期" }, { num: "12 万", label: "物料映射条目" }]
   },
   pricing: { model: "按映射字段数计费", price: "0.05", unit: "元/字段/月", note: "映射配置一次生成，按月订阅" },
   specs: [{ k: "AI 推断准确率", v: "92%+（Top3 命中）" }, { k: "支持系统", v: "SAP/用友/金蝶/Oracle" }, { k: "字典规模", v: "内置 5000+ 工业枚举" }],
@@ -133,7 +133,7 @@ const mapping = await galileo.skill("data-mapping").invoke({
 
 "anomaly-detection": {
   name: "异常检测",
-  icon: "",
+  icon: "📡",
   category: "数据处理",
   categoryKey: "data",
   status: "live",
@@ -166,8 +166,8 @@ const anomalies = await galileo.skill("anomaly-detection").invoke({
 // 实时输出：[{ time, severity: "high", confidence: 0.96,
 //   deviation: "+340%", cause: "bearing_wear" }]`,
   compose: {
-    upstream: [{ icon: "", name: "数据清洗", role: "先清洗再做异常检测更准" }, { icon: "", name: "PLC 读写", role: "提供实时数据流" }],
-    downstream: [{ icon: "", name: "IM 通知", role: "异常告警推送" }, { icon: "", name: "设备维护规则", role: "触发维修工单" }, { icon: "", name: "实时大屏", role: "异常闪烁联动" }]
+    upstream: [{ icon: "🧹", name: "数据清洗", role: "先清洗再做异常检测更准" }, { icon: "⚙️", name: "PLC 读写", role: "提供实时数据流" }],
+    downstream: [{ icon: "💬", name: "IM 通知", role: "异常告警推送" }, { icon: "🔧", name: "设备维护规则", role: "触发维修工单" }, { icon: "🖥️", name: "实时大屏", role: "异常闪烁联动" }]
   },
   case: {
     title: "某化工厂反应釜安全预警",
@@ -184,7 +184,7 @@ const anomalies = await galileo.skill("anomaly-detection").invoke({
 
 "subject-modeling": {
   name: "主题域建模",
-  icon: "",
+  icon: "🗂️",
   category: "数据处理",
   categoryKey: "data",
   status: "beta",
@@ -211,13 +211,13 @@ const model = await galileo.skill("subject-modeling").invoke({
 });
 // 输出：生产主题域的实体关系图 + 语义层 JSON`,
   compose: {
-    upstream: [{ icon: "", name: "数据映射", role: "先做字段对齐" }, { icon: "", name: "数据清洗", role: "干净数据建模更准" }],
-    downstream: [{ icon: "", name: "BI 报表", role: "基于语义层自助分析" }, { icon: "", name: "指标计算", role: "统一口径算 KPI" }, { icon: "", name: "经营分析", role: "跨域融合分析" }]
+    upstream: [{ icon: "🗺️", name: "数据映射", role: "先做字段对齐" }, { icon: "🧹", name: "数据清洗", role: "干净数据建模更准" }],
+    downstream: [{ icon: "📊", name: "BI 报表", role: "基于语义层自助分析" }, { icon: "🧮", name: "指标计算", role: "统一口径算 KPI" }, { icon: "🧭", name: "经营分析", role: "跨域融合分析" }]
   },
   case: {
     title: "某锂盐企业数据中台建设",
     desc: "客户原本每个报表都要从底层表手写 SQL，开发周期长、口径不一致。构建主题域模型后，业务人员可自助拖拽生成报表，报表开发周期从 2 周缩短至 2 小时。",
-    metrics: [{ num: "2 周2 小时", label: "报表开发周期" }, { num: "5 大", label: "主题域覆盖" }, { num: "100%", label: "口径一致性" }]
+    metrics: [{ num: "2 周→2 小时", label: "报表开发周期" }, { num: "5 大", label: "主题域覆盖" }, { num: "100%", label: "口径一致性" }]
   },
   pricing: { model: "内测邀约制", price: "—", unit: "", note: "当前仅对受邀客户开放，联系商务咨询开通" },
   specs: [{ k: "内置主题域", v: "5 大工业标准域" }, { k: "实体识别", v: "自动 + 人工校正" }, { k: "血缘追踪", v: "字段级" }],
@@ -230,7 +230,7 @@ const model = await galileo.skill("subject-modeling").invoke({
 /* ============== 算法模型（algo）============== */
 "scheduling-algo": {
   name: "排产算法",
-  icon: "",
+  icon: "📅",
   category: "算法模型",
   categoryKey: "algo",
   status: "live",
@@ -251,7 +251,7 @@ const model = await galileo.skill("subject-modeling").invoke({
     { name: "solverMode", type: "enum", req: false, desc: "求解模式：exact（精确）/heuristic（启发式）/auto，默认 auto", def: "auto", enum: ["exact", "heuristic", "auto"] }
   ],
   input: ["订单列表（来自 ERP）", "设备产能与工艺路径（来自 MES）", "物料齐套状态（来自 WMS）", "约束配置"],
-  output: ["排产工单序列（工单设备起止时间）", "排产甘特图数据", "设备利用率 / 订单准交率报告", "未排原因与冲突说明"],
+  output: ["排产工单序列（工单→设备→起止时间）", "排产甘特图数据", "设备利用率 / 订单准交率报告", "未排原因与冲突说明"],
   code: `// 注塑车间 7 天排产，目标：最低换模 + 最高准交
 const schedule = await galileo.skill("scheduling-algo").invoke({
   orders: erpOrders,          // 23 个订单
@@ -269,13 +269,13 @@ const schedule = await galileo.skill("scheduling-algo").invoke({
 console.log(schedule.summary);
 // { utilization: 0.87, onDelivery: 0.94, changeovers: 31 }`,
   compose: {
-    upstream: [{ icon: "", name: "ERP 接口", role: "订单来源" }, { icon: "", name: "WMS 接口", role: "物料齐套" }, { icon: "", name: "MES 接口", role: "产能与工艺" }],
-    downstream: [{ icon: "", name: "MES 接口", role: "下发工单" }, { icon: "", name: "BI 报表", role: "排产甘特图可视化" }, { icon: "", name: "IM 通知", role: "排产结果推送" }]
+    upstream: [{ icon: "🏢", name: "ERP 接口", role: "订单来源" }, { icon: "📦", name: "WMS 接口", role: "物料齐套" }, { icon: "🏭", name: "MES 接口", role: "产能与工艺" }],
+    downstream: [{ icon: "🏭", name: "MES 接口", role: "下发工单" }, { icon: "📊", name: "BI 报表", role: "排产甘特图可视化" }, { icon: "💬", name: "IM 通知", role: "排产结果推送" }]
   },
   case: {
     title: "OPC 老李 · 注塑车间排产",
     desc: "这正是 OPC 老李的招牌案例。某注塑厂原排产靠人工经验，换模频繁、准交率仅 76%。老李用此 Skill 结合 30 年注塑经验配置约束模板，3 天完成排产模块上线，换模次数下降 40%，准交率提升至 94%。该方案随后打包为「通用注塑排产大师 Agent」上架，持续分润。",
-    metrics: [{ num: "76%94%", label: "订单准交率" }, { num: "-40%", label: "换模次数" }, { num: "3 天", label: "上线周期（OPC 交付）" }]
+    metrics: [{ num: "76%→94%", label: "订单准交率" }, { num: "-40%", label: "换模次数" }, { num: "3 天", label: "上线周期（OPC 交付）" }]
   },
   pricing: { model: "按求解次数计费", price: "0.5", unit: "元/次求解", note: "大规模排产按工单数阶梯计费，详情咨询商务" },
   specs: [{ k: "求解规模", v: "支持 1000+ 工单" }, { k: "求解时间", v: "典型 < 90 秒" }, { k: "求解器", v: "MIP + 启发式混合" }, { k: "SLA", v: "99.9%" }],
@@ -288,7 +288,7 @@ console.log(schedule.summary);
 
 "prediction-model": {
   name: "预测模型",
-  icon: "",
+  icon: "📈",
   category: "算法模型",
   categoryKey: "algo",
   status: "live",
@@ -321,13 +321,13 @@ const forecast = await galileo.skill("prediction-model").invoke({
 console.log(forecast.points);
 // [{ date: "2026-07-04", value: 1280, lower: 1100, upper: 1460 }]`,
   compose: {
-    upstream: [{ icon: "", name: "数据清洗", role: "清洗后的历史数据" }, { icon: "", name: "主题域建模", role: "结构化特征来源" }],
-    downstream: [{ icon: "", name: "排产算法", role: "基于需求预测排产" }, { icon: "", name: "WMS 接口", role: "备件库存计划" }, { icon: "", name: "经营分析", role: "预测驱动决策" }]
+    upstream: [{ icon: "🧹", name: "数据清洗", role: "清洗后的历史数据" }, { icon: "🗂️", name: "主题域建模", role: "结构化特征来源" }],
+    downstream: [{ icon: "📅", name: "排产算法", role: "基于需求预测排产" }, { icon: "📦", name: "WMS 接口", role: "备件库存计划" }, { icon: "🧭", name: "经营分析", role: "预测驱动决策" }]
   },
   case: {
     title: "某食品厂需求预测降低库存",
     desc: "食品保质期短，库存积压即报废。客户原靠人工经验备货，呆滞库存率 12%。部署预测模型后，结合促销与节假日特征，备货准确率提升至 91%，呆滞库存率降至 3.8%。",
-    metrics: [{ num: "12%3.8%", label: "呆滞库存率" }, { num: "91%", label: "备货准确率" }, { num: "MAPE 8.2%", label: "预测误差" }]
+    metrics: [{ num: "12%→3.8%", label: "呆滞库存率" }, { num: "91%", label: "备货准确率" }, { num: "MAPE 8.2%", label: "预测误差" }]
   },
   pricing: { model: "按训练 + 推理计费", price: "0.3", unit: "元/千次推理", note: "训练按 GPU 时长另计" },
   specs: [{ k: "支持算法", v: "6 种自动选型" }, { k: "最大历史长度", v: "1000 万行" }, { k: "推理延迟", v: "< 200ms" }],
@@ -339,7 +339,7 @@ console.log(forecast.points);
 
 "cv-recognition": {
   name: "CV 视觉识别",
-  icon: "",
+  icon: "👁️",
   category: "算法模型",
   categoryKey: "algo",
   status: "live",
@@ -371,13 +371,13 @@ const result = await galileo.skill("cv-recognition").invoke({
 
 // [{ box: [120,80,200,160], class: "short_shot", confidence: 0.91 }]`,
   compose: {
-    upstream: [{ icon: "", name: "OPC UA 接入", role: "触发拍照信号" }, { icon: "", name: "边缘控制", role: "边缘 AI 盒子" }],
-    downstream: [{ icon: "", name: "质检规则", role: "基于缺陷判定合格" }, { icon: "", name: "IM 通知", role: "缺陷告警推送" }, { icon: "", name: "BI 报表", role: "良率分析" }]
+    upstream: [{ icon: "🌐", name: "OPC UA 接入", role: "触发拍照信号" }, { icon: "🛡️", name: "边缘控制", role: "边缘 AI 盒子" }],
+    downstream: [{ icon: "✅", name: "质检规则", role: "基于缺陷判定合格" }, { icon: "💬", name: "IM 通知", role: "缺陷告警推送" }, { icon: "📊", name: "BI 报表", role: "良率分析" }]
   },
   case: {
     title: "某电子厂 PCB 缺陷检测",
     desc: "PCB 焊点缺陷原靠人工显微镜目检，漏检率 5%、每人每小时仅能检 60 片。部署 CV 识别 Skill + 边缘 AI 盒子后，检测速度提升至每片 0.8 秒，漏检率降至 0.3%，节约 12 名质检员。",
-    metrics: [{ num: "0.8 秒/片", label: "检测速度" }, { num: "5%0.3%", label: "漏检率" }, { num: "-12 人", label: "质检人力" }]
+    metrics: [{ num: "0.8 秒/片", label: "检测速度" }, { num: "5%→0.3%", label: "漏检率" }, { num: "-12 人", label: "质检人力" }]
   },
   pricing: { model: "按推理次数计费", price: "0.01", unit: "元/次推理", note: "边缘推理按盒子授权，详情咨询商务" },
   specs: [{ k: "推理延迟", v: "云端 80ms / 边缘 <50ms" }, { k: "预训练模型", v: "30+ 工业场景" }, { k: "支持格式", v: "JPG/PNG/RTSP/RTMP" }],
@@ -389,7 +389,7 @@ const result = await galileo.skill("cv-recognition").invoke({
 
 "energy-optimization": {
   name: "能耗优化模型",
-  icon: "",
+  icon: "⚡",
   category: "算法模型",
   categoryKey: "algo",
   status: "beta",
@@ -423,13 +423,13 @@ console.log(opt.recommendation);
 // { params: { airFlow: 135000, coalFeed: 18.2, rpm: 3.8 },
 //   saving: "4.2%", confidence: 0.89 }`,
   compose: {
-    upstream: [{ icon: "", name: "数据清洗", role: "清洗历史工况数据" }, { icon: "", name: "PLC 读写", role: "实时状态采集" }],
-    downstream: [{ icon: "", name: "PLC 读写", role: "下发参数到设备" }, { icon: "", name: "经营分析", role: "能耗成本归因" }, { icon: "", name: "实时大屏", role: "能耗实时监控" }]
+    upstream: [{ icon: "🧹", name: "数据清洗", role: "清洗历史工况数据" }, { icon: "⚙️", name: "PLC 读写", role: "实时状态采集" }],
+    downstream: [{ icon: "⚙️", name: "PLC 读写", role: "下发参数到设备" }, { icon: "🧭", name: "经营分析", role: "能耗成本归因" }, { icon: "🖥️", name: "实时大屏", role: "能耗实时监控" }]
   },
   case: {
     title: "某水泥厂窑炉能耗优化",
     desc: "客户 5000t/d 生产线原靠人工设定风煤配比，煤耗 108 kg标煤/吨熟料。部署能耗优化 Skill 后，AI 实时推荐最优参数组合，煤耗降至 103.5，年节约标煤约 8000 吨，对应成本节省超 600 万元。",
-    metrics: [{ num: "108103.5", label: "kg标煤/吨熟料" }, { num: "600 万", label: "年节约成本" }, { num: "4.2%", label: "能耗降幅" }]
+    metrics: [{ num: "108→103.5", label: "kg标煤/吨熟料" }, { num: "600 万", label: "年节约成本" }, { num: "4.2%", label: "能耗降幅" }]
   },
   pricing: { model: "内测邀约制 + 节能分润", price: "—", unit: "", note: "按节能效果分成，详情咨询商务" },
   specs: [{ k: "支持设备", v: "窑炉/空分/冷冻/压缩" }, { k: "收敛迭代", v: "10-30 次" }, { k: "推理延迟", v: "< 2 秒" }],
@@ -442,7 +442,7 @@ console.log(opt.recommendation);
 /* ============== 行业知识（know）============== */
 "process-knowledge": {
   name: "工艺知识库",
-  icon: "",
+  icon: "📚",
   category: "行业知识",
   categoryKey: "know",
   status: "live",
@@ -473,8 +473,8 @@ const answer = await galileo.skill("process-knowledge").invoke({
 // answer.suggestion: "建议分两步：1) 降低煤粉喂料量 5%...
 //  answer.citations: [{ doc: "水泥窑工艺手册.pdf", page: 142 }]`,
   compose: {
-    upstream: [{ icon: "", name: "行业 SOP", role: "SOP 知识源" }, { icon: "", name: "设备维护规则", role: "故障处置知识" }],
-    downstream: [{ icon: "", name: "工艺指导 Agent", role: "为 Agent 提供工艺大脑" }, { icon: "", name: "异常检测", role: "异常时自动检索处置" }]
+    upstream: [{ icon: "📋", name: "行业 SOP", role: "SOP 知识源" }, { icon: "🔧", name: "设备维护规则", role: "故障处置知识" }],
+    downstream: [{ icon: "🤖", name: "工艺指导 Agent", role: "为 Agent 提供工艺大脑" }, { icon: "📡", name: "异常检测", role: "异常时自动检索处置" }]
   },
   case: {
     title: "某水泥厂传承老师傅经验",
@@ -491,7 +491,7 @@ const answer = await galileo.skill("process-knowledge").invoke({
 
 "quality-rules": {
   name: "质检规则",
-  icon: "",
+  icon: "✅",
   category: "行业知识",
   categoryKey: "know",
   status: "live",
@@ -523,13 +523,13 @@ const verdict = await galileo.skill("quality-rules").invoke({
 
 // verdict.result: "pass", verdict.reason: "全部指标在窗口内"`,
   compose: {
-    upstream: [{ icon: "", name: "CV 视觉识别", role: "外观缺陷数据" }, { icon: "", name: "PLC 读写", role: "尺寸/重量采集" }],
-    downstream: [{ icon: "", name: "MES 接口", role: "质检结果回写" }, { icon: "", name: "BI 报表", role: "良率分析" }, { icon: "", name: "IM 通知", role: "异常放行审批" }]
+    upstream: [{ icon: "👁️", name: "CV 视觉识别", role: "外观缺陷数据" }, { icon: "⚙️", name: "PLC 读写", role: "尺寸/重量采集" }],
+    downstream: [{ icon: "🏭", name: "MES 接口", role: "质检结果回写" }, { icon: "📊", name: "BI 报表", role: "良率分析" }, { icon: "💬", name: "IM 通知", role: "异常放行审批" }]
   },
   case: {
     title: "某锂盐企业质检自动化",
     desc: "客户原质检判定靠人工对照标准，慢且易出错。沉淀 300+ 条质检规则后，95% 的批次实现自动判定放行，仅 5% 的边界案例需人工复核，质检周期从 4 小时压缩至 20 分钟。",
-    metrics: [{ num: "95%", label: "自动判定率" }, { num: "4h20min", label: "质检周期" }, { num: "300+", label: "规则条目" }]
+    metrics: [{ num: "95%", label: "自动判定率" }, { num: "4h→20min", label: "质检周期" }, { num: "300+", label: "规则条目" }]
   },
   pricing: { model: "按判定次数计费", price: "0.05", unit: "元/次判定", note: "规则配置按项目一次性收费" },
   specs: [{ k: "规则规模", v: "单规则集 1000+ 条" }, { k: "判定延迟", v: "< 100ms" }, { k: "可追溯", v: "批次级" }],
@@ -541,7 +541,7 @@ const verdict = await galileo.skill("quality-rules").invoke({
 
 "maintenance-rules": {
   name: "设备维护规则",
-  icon: "",
+  icon: "🔧",
   category: "行业知识",
   categoryKey: "know",
   status: "live",
@@ -576,8 +576,8 @@ const tasks = await galileo.skill("maintenance-rules").invoke({
 //     cause: "振动持续偏高", parts: ["轴承-6205"] }
 // ]`,
   compose: {
-    upstream: [{ icon: "", name: "异常检测", role: "异常触发维护规则" }, { icon: "", name: "PLC 读写", role: "设备状态采集" }],
-    downstream: [{ icon: "", name: "WMS 接口", role: "备件库存查询" }, { icon: "", name: "IM 通知", role: "工单推送维修人员" }, { icon: "", name: "MES 接口", role: "维修停机同步" }]
+    upstream: [{ icon: "📡", name: "异常检测", role: "异常触发维护规则" }, { icon: "⚙️", name: "PLC 读写", role: "设备状态采集" }],
+    downstream: [{ icon: "📦", name: "WMS 接口", role: "备件库存查询" }, { icon: "💬", name: "IM 通知", role: "工单推送维修人员" }, { icon: "🏭", name: "MES 接口", role: "维修停机同步" }]
   },
   case: {
     title: "某铝业设备预测性维护",
@@ -594,7 +594,7 @@ const tasks = await galileo.skill("maintenance-rules").invoke({
 
 "industry-sop": {
   name: "行业 SOP",
-  icon: "",
+  icon: "📋",
   category: "行业知识",
   categoryKey: "know",
   status: "soon",
@@ -623,8 +623,8 @@ const session = await galileo.skill("industry-sop").start({
 // session.currentStep: { seq: 3, action: "检查润滑系统",
 //   confirmBy: "photo", timeout: "10min" }`,
   compose: {
-    upstream: [{ icon: "", name: "工艺知识库", role: "提供 SOP 知识源" }],
-    downstream: [{ icon: "", name: "IM 通知", role: "步骤确认推送" }, { icon: "", name: "BI 报表", role: "SOP 执行率统计" }]
+    upstream: [{ icon: "📚", name: "工艺知识库", role: "提供 SOP 知识源" }],
+    downstream: [{ icon: "💬", name: "IM 通知", role: "步骤确认推送" }, { icon: "📊", name: "BI 报表", role: "SOP 执行率统计" }]
   },
   case: { title: "即将上架", desc: "该 Skill 正在内测打磨，已在 2 家水泥厂完成 POC，预计 2026 Q3 正式发布。", metrics: [{ num: "Q3 2026", label: "预计发布" }, { num: "5 类", label: "SOP 模板" }, { num: "2 家", label: "POC 客户" }] },
   pricing: { model: "即将上架", price: "—", unit: "", note: "内测邀约中，联系商务咨询" },
@@ -635,7 +635,7 @@ const session = await galileo.skill("industry-sop").start({
 /* ============== 设备控制（device）============== */
 "plc-readwrite": {
   name: "PLC 读写",
-  icon: "",
+  icon: "⚙️",
   category: "设备控制",
   categoryKey: "device",
   status: "live",
@@ -668,7 +668,7 @@ const values = await galileo.skill("plc-readwrite").invoke({
 // values: { "DB1.DBX0.0": true, "DB1.DBD4": 185.3, "DB1.DBD8": 2.1 }`,
   compose: {
     upstream: [],
-    downstream: [{ icon: "", name: "数据清洗", role: "原始点位数据清洗" }, { icon: "", name: "异常检测", role: "基于点位值检测异常" }, { icon: "", name: "实时大屏", role: "实时状态展示" }, { icon: "", name: "能耗优化模型", role: "下发优化参数" }]
+    downstream: [{ icon: "🧹", name: "数据清洗", role: "原始点位数据清洗" }, { icon: "📡", name: "异常检测", role: "基于点位值检测异常" }, { icon: "🖥️", name: "实时大屏", role: "实时状态展示" }, { icon: "⚡", name: "能耗优化模型", role: "下发优化参数" }]
   },
   case: {
     title: "某铝业「哑设备」联网改造",
@@ -685,7 +685,7 @@ const values = await galileo.skill("plc-readwrite").invoke({
 
 "opcua-access": {
   name: "OPC UA 接入",
-  icon: "",
+  icon: "🌐",
   category: "设备控制",
   categoryKey: "device",
   status: "live",
@@ -715,7 +715,7 @@ const sub = await galileo.skill("opcua-access").invoke({
 // 节点变化时实时推送事件`,
   compose: {
     upstream: [],
-    downstream: [{ icon: "", name: "数据清洗", role: "节点数据清洗" }, { icon: "", name: "异常检测", role: "节点异常检测" }, { icon: "", name: "MES 接口", role: "标准化数据对接 MES" }]
+    downstream: [{ icon: "🧹", name: "数据清洗", role: "节点数据清洗" }, { icon: "📡", name: "异常检测", role: "节点异常检测" }, { icon: "🏭", name: "MES 接口", role: "标准化数据对接 MES" }]
   },
   case: {
     title: "某汽车零部件厂标准化互联",
@@ -732,7 +732,7 @@ const sub = await galileo.skill("opcua-access").invoke({
 
 "modbus-access": {
   name: "Modbus 接入",
-  icon: "",
+  icon: "🔌",
   category: "设备控制",
   categoryKey: "device",
   status: "live",
@@ -765,7 +765,7 @@ const data = await galileo.skill("modbus-access").invoke({
 // data: { power: 128.5, voltage: 380.2 }`,
   compose: {
     upstream: [],
-    downstream: [{ icon: "", name: "数据清洗", role: "原始寄存器值清洗" }, { icon: "", name: "能耗优化模型", role: "能耗数据来源" }, { icon: "", name: "指标计算", role: "能耗 KPI 计算" }]
+    downstream: [{ icon: "🧹", name: "数据清洗", role: "原始寄存器值清洗" }, { icon: "⚡", name: "能耗优化模型", role: "能耗数据来源" }, { icon: "🧮", name: "指标计算", role: "能耗 KPI 计算" }]
   },
   case: {
     title: "某化工园区能耗全采集",
@@ -782,7 +782,7 @@ const data = await galileo.skill("modbus-access").invoke({
 
 "edge-control": {
   name: "边缘控制",
-  icon: "",
+  icon: "🛡️",
   category: "设备控制",
   categoryKey: "device",
   status: "beta",
@@ -814,8 +814,8 @@ await galileo.skill("edge-control").deploy({
 });
 // 网关本地执行，断网时仍保持 85°C 恒温控制`,
   compose: {
-    upstream: [{ icon: "", name: "PLC 读写", role: "提供输入/输出点位" }, { icon: "", name: "Modbus 接入", role: "仪表数据源" }],
-    downstream: [{ icon: "", name: "CV 视觉识别", role: "边缘 AI 推理" }, { icon: "", name: "实时大屏", role: "边缘状态监控" }]
+    upstream: [{ icon: "⚙️", name: "PLC 读写", role: "提供输入/输出点位" }, { icon: "🔌", name: "Modbus 接入", role: "仪表数据源" }],
+    downstream: [{ icon: "👁️", name: "CV 视觉识别", role: "边缘 AI 推理" }, { icon: "🖥️", name: "实时大屏", role: "边缘状态监控" }]
   },
   case: {
     title: "某化工厂反应釜断网保护",
@@ -833,7 +833,7 @@ await galileo.skill("edge-control").deploy({
 /* ============== 集成连接（integ）============== */
 "erp-integration": {
   name: "ERP 接口",
-  icon: "",
+  icon: "🏢",
   category: "集成连接",
   categoryKey: "integ",
   status: "live",
@@ -863,12 +863,12 @@ const orders = await galileo.skill("erp-integration").invoke({
 });`,
   compose: {
     upstream: [],
-    downstream: [{ icon: "", name: "排产算法", role: "订单驱动排产" }, { icon: "", name: "数据映射", role: "ERP 字段对齐" }, { icon: "", name: "经营分析", role: "业财数据融合" }]
+    downstream: [{ icon: "📅", name: "排产算法", role: "订单驱动排产" }, { icon: "🗺️", name: "数据映射", role: "ERP 字段对齐" }, { icon: "🧭", name: "经营分析", role: "业财数据融合" }]
   },
   case: {
     title: "某装备制造商订单到工单闭环",
     desc: "客户原 SAP 订单与车间 MES 工单靠人工转单，延迟 1 天且易错。使用 ERP 接口 Skill 后，订单实时同步并自动触发排产，从接单到开工缩短至 2 小时，错单率降为 0。",
-    metrics: [{ num: "24h2h", label: "接单到开工" }, { num: "0", label: "错单率" }, { num: "实时", label: "数据同步" }]
+    metrics: [{ num: "24h→2h", label: "接单到开工" }, { num: "0", label: "错单率" }, { num: "实时", label: "数据同步" }]
   },
   pricing: { model: "按连接 + 同步量计费", price: "2000", unit: "元/连接/月", note: "超量按同步条数阶梯计费" },
   specs: [{ k: "支持系统", v: "SAP/用友/金蝶/Oracle" }, { k: "预置对象", v: "30+ 业务对象" }, { k: "同步模式", v: "实时 + 批量" }],
@@ -880,7 +880,7 @@ const orders = await galileo.skill("erp-integration").invoke({
 
 "mes-integration": {
   name: "MES 接口",
-  icon: "",
+  icon: "🏭",
   category: "集成连接",
   categoryKey: "integ",
   status: "live",
@@ -910,13 +910,13 @@ await galileo.skill("mes-integration").invoke({
   }
 });`,
   compose: {
-    upstream: [{ icon: "", name: "排产算法", role: "排产结果下发工单" }, { icon: "", name: "ERP 接口", role: "订单来源" }],
-    downstream: [{ icon: "", name: "BI 报表", role: "执行进度可视化" }, { icon: "", name: "实时大屏", role: "车间状态大屏" }, { icon: "", name: "IM 通知", role: "工单状态推送" }]
+    upstream: [{ icon: "📅", name: "排产算法", role: "排产结果下发工单" }, { icon: "🏢", name: "ERP 接口", role: "订单来源" }],
+    downstream: [{ icon: "📊", name: "BI 报表", role: "执行进度可视化" }, { icon: "🖥️", name: "实时大屏", role: "车间状态大屏" }, { icon: "💬", name: "IM 通知", role: "工单状态推送" }]
   },
   case: {
     title: "某电子厂排产执行闭环",
     desc: "客户排产与执行脱节，计划员不知道车间实际进度，频繁重排。MES 接口打通后，Agent 实时感知执行偏差，自动触发重排建议，计划准确率从 68% 提升至 91%。",
-    metrics: [{ num: "68%91%", label: "计划准确率" }, { num: "实时", label: "执行反馈" }, { num: "-70%", label: "重排频次" }]
+    metrics: [{ num: "68%→91%", label: "计划准确率" }, { num: "实时", label: "执行反馈" }, { num: "-70%", label: "重排频次" }]
   },
   pricing: { model: "按工单量计费", price: "0.1", unit: "元/工单", note: "包含下发与报工回收" },
   specs: [{ k: "对接系统", v: "自研/用友/宝信/中控" }, { k: "工单规模", v: "万级/日" }, { k: "同步延迟", v: "实时" }],
@@ -928,7 +928,7 @@ await galileo.skill("mes-integration").invoke({
 
 "wms-integration": {
   name: "WMS 接口",
-  icon: "",
+  icon: "📦",
   category: "集成连接",
   categoryKey: "integ",
   status: "live",
@@ -955,13 +955,13 @@ const kitted = await galileo.skill("wms-integration").invoke({
 });
 // kitted: { ready: false, missing: [{code:"M-102", short: 200}] }`,
   compose: {
-    upstream: [{ icon: "", name: "排产算法", role: "排产前齐套校验" }, { icon: "", name: "设备维护规则", role: "备件定位" }],
-    downstream: [{ icon: "", name: "ERP 接口", role: "采购补货" }, { icon: "", name: "质检规则", role: "批次质量追溯" }]
+    upstream: [{ icon: "📅", name: "排产算法", role: "排产前齐套校验" }, { icon: "🔧", name: "设备维护规则", role: "备件定位" }],
+    downstream: [{ icon: "🏢", name: "ERP 接口", role: "采购补货" }, { icon: "✅", name: "质检规则", role: "批次质量追溯" }]
   },
   case: {
     title: "某锂盐企业批次追溯",
     desc: "客户产品涉及安全关键属性，一旦出现问题需快速追溯。WMS 接口打通后，从成品到原料的全链路追溯从 2 天缩短至 30 秒，满足合规审计要求。",
-    metrics: [{ num: "2 天30 秒", label: "追溯响应" }, { num: "100%", label: "批次覆盖率" }, { num: "合规", label: "审计通过" }]
+    metrics: [{ num: "2 天→30 秒", label: "追溯响应" }, { num: "100%", label: "批次覆盖率" }, { num: "合规", label: "审计通过" }]
   },
   pricing: { model: "按查询量计费", price: "0.02", unit: "元/次查询", note: "出入库同步按条数计费" },
   specs: [{ k: "对接系统", v: "自研/SAP EWM/富勒/科箭" }, { k: "追溯粒度", v: "批次级" }, { k: "查询延迟", v: "< 500ms" }],
@@ -973,7 +973,7 @@ const kitted = await galileo.skill("wms-integration").invoke({
 
 "im-notification": {
   name: "钉钉 / 企微 / 飞书通知",
-  icon: "",
+  icon: "💬",
   category: "集成连接",
   categoryKey: "integ",
   status: "live",
@@ -999,19 +999,19 @@ await galileo.skill("im-notification").invoke({
   channel: "robot",
   message: {
     type: "card",
-    title: " 空压机振动超限",
+    title: "⚠️ 空压机振动超限",
     body: "**设备：** AC-3\\n**振动：** 5.8 mm/s（阈值 4.5）\\n**建议：** 检查轴承",
     buttons: [{ text: "立即处理", action: "assign_maintenance" }]
   }
 });`,
   compose: {
-    upstream: [{ icon: "", name: "异常检测", role: "异常触发告警" }, { icon: "", name: "设备维护规则", role: "工单触发推送" }],
+    upstream: [{ icon: "📡", name: "异常检测", role: "异常触发告警" }, { icon: "🔧", name: "设备维护规则", role: "工单触发推送" }],
     downstream: []
   },
   case: {
     title: "某水泥厂告警触达提速",
     desc: "客户原告警靠短信，打开率仅 40%、响应慢。改用 IM 卡片消息 + 互动按钮后，告警打开率 96%，平均响应时间从 18 分钟降至 4 分钟。",
-    metrics: [{ num: "96%", label: "告警打开率" }, { num: "184 分钟", label: "响应时间" }, { num: "+互动", label: "按钮直接派单" }]
+    metrics: [{ num: "96%", label: "告警打开率" }, { num: "18→4 分钟", label: "响应时间" }, { num: "+互动", label: "按钮直接派单" }]
   },
   pricing: { model: "按发送量计费", price: "0.005", unit: "元/条", note: "应用消息按平台授权费另计" },
   specs: [{ k: "支持平台", v: "钉钉/企微/飞书" }, { k: "消息类型", v: "文本/Markdown/卡片/图片" }, { k: "送达率", v: "99.5%+" }],
@@ -1024,7 +1024,7 @@ await galileo.skill("im-notification").invoke({
 /* ============== 报表看板（report）============== */
 "kpi-calc": {
   name: "指标计算",
-  icon: "",
+  icon: "🧮",
   category: "报表看板",
   categoryKey: "report",
   status: "live",
@@ -1053,8 +1053,8 @@ const oee = await galileo.skill("kpi-calc").invoke({
 });
 // oee: { value: 0.78, availability: 0.92, performance: 0.88, quality: 0.96 }`,
   compose: {
-    upstream: [{ icon: "", name: "数据清洗", role: "原始数据清洗" }, { icon: "", name: "主题域建模", role: "统一数据口径" }],
-    downstream: [{ icon: "", name: "BI 报表", role: "KPI 可视化" }, { icon: "", name: "实时大屏", role: "KPI 大屏展示" }, { icon: "", name: "经营分析", role: "KPI 归因" }]
+    upstream: [{ icon: "🧹", name: "数据清洗", role: "原始数据清洗" }, { icon: "🗂️", name: "主题域建模", role: "统一数据口径" }],
+    downstream: [{ icon: "📊", name: "BI 报表", role: "KPI 可视化" }, { icon: "🖥️", name: "实时大屏", role: "KPI 大屏展示" }, { icon: "🧭", name: "经营分析", role: "KPI 归因" }]
   },
   case: {
     title: "某集团 OEE 口径统一",
@@ -1071,7 +1071,7 @@ const oee = await galileo.skill("kpi-calc").invoke({
 
 "bi-report": {
   name: "BI 报表",
-  icon: "",
+  icon: "📊",
   category: "报表看板",
   categoryKey: "report",
   status: "live",
@@ -1101,13 +1101,13 @@ const report = await galileo.skill("bi-report").invoke({
   filters: [{ field: "month", op: "=", value: "2026-06" }]
 });`,
   compose: {
-    upstream: [{ icon: "", name: "主题域建模", role: "提供语义层" }, { icon: "", name: "指标计算", role: "KPI 数据源" }],
+    upstream: [{ icon: "🗂️", name: "主题域建模", role: "提供语义层" }, { icon: "🧮", name: "指标计算", role: "KPI 数据源" }],
     downstream: []
   },
   case: {
     title: "某装备制造商报表自助化",
     desc: "客户原报表全靠 IT 写 SQL 开发，平均交付 2 周，IT 积压 80+ 报表需求。上线 BI 报表 Skill 后，业务人员自助生成，IT 仅维护语义层，报表需求积压清零。",
-    metrics: [{ num: "2 周自助", label: "报表交付" }, { num: "0", label: "IT 需求积压" }, { num: "+15 种", label: "图表类型" }]
+    metrics: [{ num: "2 周→自助", label: "报表交付" }, { num: "0", label: "IT 需求积压" }, { num: "+15 种", label: "图表类型" }]
   },
   pricing: { model: "按用户数计费", price: "100", unit: "元/用户/月", note: "查看免费，编辑按用户收费" },
   specs: [{ k: "图表类型", v: "15+" }, { k: "数据规模", v: "亿行（列式存储）" }, { k: "权限", v: "行级控制" }],
@@ -1119,7 +1119,7 @@ const report = await galileo.skill("bi-report").invoke({
 
 "realtime-dashboard": {
   name: "实时大屏",
-  icon: "",
+  icon: "🖥️",
   category: "报表看板",
   categoryKey: "report",
   status: "live",
@@ -1151,7 +1151,7 @@ const dashboard = await galileo.skill("realtime-dashboard").deploy({
   theme: "showcase"
 });`,
   compose: {
-    upstream: [{ icon: "", name: "指标计算", role: "KPI 数据" }, { icon: "", name: "PLC 读写", role: "设备状态" }, { icon: "", name: "异常检测", role: "告警源" }],
+    upstream: [{ icon: "🧮", name: "指标计算", role: "KPI 数据" }, { icon: "⚙️", name: "PLC 读写", role: "设备状态" }, { icon: "📡", name: "异常检测", role: "告警源" }],
     downstream: []
   },
   case: {
@@ -1169,7 +1169,7 @@ const dashboard = await galileo.skill("realtime-dashboard").deploy({
 
 "business-analysis": {
   name: "经营分析",
-  icon: "",
+  icon: "🧭",
   category: "报表看板",
   categoryKey: "report",
   status: "beta",
@@ -1197,13 +1197,13 @@ const report = await galileo.skill("business-analysis").invoke({
 // 输出：Markdown 报告，含归因「利润下降主因：能耗成本上升 12%，
 //       其中窑炉煤耗超标，建议参考能耗优化 Skill」`,
   compose: {
-    upstream: [{ icon: "", name: "主题域建模", role: "多域数据基础" }, { icon: "", name: "指标计算", role: "KPI 输入" }, { icon: "", name: "预测模型", role: "趋势预测" }],
-    downstream: [{ icon: "", name: "BI 报表", role: "报告附图表" }, { icon: "", name: "IM 通知", role: "报告推送管理层" }]
+    upstream: [{ icon: "🗂️", name: "主题域建模", role: "多域数据基础" }, { icon: "🧮", name: "指标计算", role: "KPI 输入" }, { icon: "📈", name: "预测模型", role: "趋势预测" }],
+    downstream: [{ icon: "📊", name: "BI 报表", role: "报告附图表" }, { icon: "💬", name: "IM 通知", role: "报告推送管理层" }]
   },
   case: {
     title: "某水泥厂月度经营会革命",
     desc: "客户月度经营会原靠财务手工汇总 3 天，且只有数字没有归因。使用经营分析 Skill 后，报告自动产出含归因解读，经营会从「念数字」变成「讨论行动方案」，决策质量显著提升。",
-    metrics: [{ num: "3 天自动", label: "报告生成" }, { num: "+归因", label: "从数字到原因" }, { num: "自然语言", label: "提问式分析" }]
+    metrics: [{ num: "3 天→自动", label: "报告生成" }, { num: "+归因", label: "从数字到原因" }, { num: "自然语言", label: "提问式分析" }]
   },
   pricing: { model: "内测邀约制", price: "—", unit: "", note: "当前对受邀客户开放，联系商务咨询" },
   specs: [{ k: "融合域", v: "财务/销售/生产/能耗" }, { k: "归因算法", v: "Shapley + 规则" }, { k: "输出格式", v: "报告/简报/问答" }],

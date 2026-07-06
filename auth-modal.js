@@ -73,7 +73,7 @@ window.GalileoAuth = (function () {
     modal.innerHTML =
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
-        '<div class="modal-icon"></div>' +
+        '<div class="modal-icon">🔐</div>' +
         '<h3>' + (isLogin ? '登录到 Galileo OS' : '申请试用') + '</h3>' +
         '<p>' + (isLogin
           ? '登录后即可使用平台能力' + (state.pendingTarget ? '（当前：' + esc(state.pendingTarget) + '）' : '')
@@ -88,7 +88,7 @@ window.GalileoAuth = (function () {
         (isLogin ?
           // ===== 登录表单 =====
           '<div class="invite-note" style="margin-bottom:20px;background:#FEF3C7;border:1px solid #FCD34D;">' +
-            '<span class="invite-note-icon"></span>' +
+            '<span class="invite-note-icon">💡</span>' +
             '<div>平台为<strong>非开放注册</strong>，登录需管理员开通。还没有账号？<a href="#" onclick="GalileoAuth._switch(\'apply\');return false" style="color:var(--accent-600);font-weight:600;">点此申请试用 →</a></div>' +
           '</div>' +
           '<form onsubmit="return GalileoAuth._doLogin(event)">' +
@@ -108,7 +108,7 @@ window.GalileoAuth = (function () {
         :
           // ===== 申请试用登记表单（无需邀请码，直接登记）=====
           '<div class="invite-note" style="margin-bottom:20px;background:var(--accent-50);border:1px solid var(--accent-500);">' +
-            '<span class="invite-note-icon"></span>' +
+            '<span class="invite-note-icon">🚀</span>' +
             '<div>平台当前为<strong>非开放注册</strong>。填写下方信息登记试用需求，我们会在资源就绪后通过短信主动联系您开通。</div>' +
           '</div>' +
           '<form onsubmit="return GalileoAuth._doApply(event)">' +
@@ -158,7 +158,7 @@ window.GalileoAuth = (function () {
     modal.innerHTML =
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
-        '<div class="modal-icon"></div>' +
+        '<div class="modal-icon">🎟️</div>' +
         '<h3>输入邀请码后使用</h3>' +
         '<p>当前能力正在邀约开放中。请输入平台、OPC 合作伙伴或商务人员提供的邀请码。</p>' +
       '</div>' +
@@ -172,7 +172,7 @@ window.GalileoAuth = (function () {
           '<button type="submit" class="btn btn-accent btn-lg full">确认使用</button>' +
         '</form>' +
         '<div class="invite-note">' +
-          '<span class="invite-note-icon"></span>' +
+          '<span class="invite-note-icon">💡</span>' +
           '<div>没有邀请码？<a href="#" onclick="GalileoAuth.showContact(state.pendingTarget);return false" style="color:var(--accent-600);font-weight:500;">联系客服咨询开通</a>，我们会安排商务与您对接。</div>' +
         '</div>' +
       '</div>';
@@ -186,13 +186,13 @@ window.GalileoAuth = (function () {
     modal.innerHTML =
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
-        '<div class="modal-success-icon"></div>' +
+        '<div class="modal-success-icon">✅</div>' +
         '<h3>申请已提交</h3>' +
         '<p>「' + esc(t) + '」的使用申请已收到，我们会尽快为您开通。客服将通过您预留的联系方式与您对接。</p>' +
       '</div>' +
       '<div class="modal-body">' +
         '<div class="invite-note">' +
-          '<span class="invite-note-icon"></span>' +
+          '<span class="invite-note-icon">⚡</span>' +
           '<div>如果需求较急，可以<a href="' + KEFU + '" target="_blank" rel="noopener" style="color:var(--accent-600);font-weight:500;">扫码添加客服企业微信</a>，加速开通。</div>' +
         '</div>' +
       '</div>' +
@@ -208,13 +208,13 @@ window.GalileoAuth = (function () {
     modal.innerHTML =
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
-        '<div class="modal-success-icon"></div>' +
+        '<div class="modal-success-icon">✅</div>' +
         '<h3>申请已提交</h3>' +
         '<p>' + esc(rec.name) + '，试用申请已登记！我们会在 <strong>资源就绪后</strong> 通过短信（' + esc(rec.phone) + '）通知您开通，请保持手机畅通。</p>' +
       '</div>' +
       '<div class="modal-body">' +
         '<div class="invite-note">' +
-          '<span class="invite-note-icon"></span>' +
+          '<span class="invite-note-icon">⚡</span>' +
           '<div>需求比较急？可以<a href="' + KEFU + '" target="_blank" rel="noopener" style="color:var(--accent-600);font-weight:500;">点击联系客服企业微信</a>，加速开通。</div>' +
         '</div>' +
       '</div>' +
@@ -230,7 +230,7 @@ window.GalileoAuth = (function () {
     modal.innerHTML =
       '<button class="modal-close" onclick="GalileoAuth.close()">×</button>' +
       '<div class="modal-header">' +
-        '<div class="modal-icon"></div>' +
+        '<div class="modal-icon">💬</div>' +
         '<h3>联系商务咨询</h3>' +
         '<p>告诉我们您的需求，商务团队会尽快与您联系，协助您开通「' + esc(state.pendingTarget || '能力') + '」。</p>' +
       '</div>' +
