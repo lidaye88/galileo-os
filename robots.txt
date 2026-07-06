@@ -1,0 +1,17 @@
+# 演示用，禁止所有搜索引擎收录
+User-agent: *
+Disallow: /
+
+# 明确禁止主流爬虫
+User-agent: Googlebot
+Disallow: /
+User-agent: Baiduspider
+Disallow: /
+User-agent: bingbot
+Disallow: /
+User-agent: Sogou web spider
+Disallow: /
+User-agent: 360Spider
+Disallow: /
+User-agent: Yisouspider
+Disallow: /
