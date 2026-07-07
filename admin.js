@@ -37,13 +37,31 @@
     appFilter: "all"      // 申请留言筛选状态
   };
 
-  /* ============ localStorage 读写 ============ */
+  /* ============ 数据层（API + 内存缓存）============
+   * 启动时从 API 加载覆盖数据到内存 _overridesCache
+   * 所有操作先写内存（即时渲染），同时异步推送 API（全站同步）
+   * 降级：API 不可用时回退 localStorage
+   */
+  var _overridesCache = null;  // null=未加载, {}=已加载
+
   function loadOverrides() {
+    // 同步读：优先内存缓存，降级 localStorage
+    if (_overridesCache) return _overridesCache;
     try { return JSON.parse(localStorage.getItem(LS_OVERRIDES) || "{}"); }
     catch (e) { return {}; }
   }
   function saveOverrides(o) {
-    localStorage.setItem(LS_OVERRIDES, JSON.stringify(o));
+    _overridesCache = o;
+    // 同时写 localStorage 作备份
+    try { localStorage.setItem(LS_OVERRIDES, JSON.stringify(o)); } catch (e) {}
+  }
+  // 从 API 异步加载（init 时调用）
+  function loadOverridesFromAPI() {
+    if (!window.GalileoAPI) return Promise.resolve();
+    return window.GalileoAPI.getOverrides().then(function (data) {
+      _overridesCache = data || {};
+      try { localStorage.setItem(LS_OVERRIDES, JSON.stringify(_overridesCache)); } catch (e) {}
+    }).catch(function () {});
   }
   // 获取某类型合并后的数据（原始 + 覆盖）
   function mergedData(t) {
@@ -359,12 +377,22 @@
    * 存储：galileo_admin_apikeys → [{ id, key, name, scope, createdAt, status }]
    * 全站通用密钥，调用 Agent / Skill 时作鉴权凭证
    * ============================================ */
+  var _keysCache = null;
   function loadKeys() {
+    if (_keysCache) return _keysCache;
     try { return JSON.parse(localStorage.getItem(LS_KEYS) || "[]"); }
     catch (e) { return []; }
   }
   function saveKeys(arr) {
-    localStorage.setItem(LS_KEYS, JSON.stringify(arr));
+    _keysCache = arr;
+    try { localStorage.setItem(LS_KEYS, JSON.stringify(arr)); } catch (e) {}
+  }
+  function loadKeysFromAPI() {
+    if (!window.GalileoAPI) return Promise.resolve();
+    return window.GalileoAPI.getKeys().then(function (arr) {
+      _keysCache = arr || [];
+      try { localStorage.setItem(LS_KEYS, JSON.stringify(_keysCache)); } catch (e) {}
+    }).catch(function () {});
   }
   // 生成随机字符串（crypto 优先，降级 Math.random）
   function randStr(len) {
@@ -401,6 +429,8 @@
     };
     arr.unshift(rec);
     saveKeys(arr);
+    // 推送 API
+    if (window.GalileoAPI) GalileoAPI.createKey(name).catch(function(){});
     return rec;
   }
 
@@ -410,9 +440,11 @@
       return k;
     });
     saveKeys(arr);
+    if (window.GalileoAPI) GalileoAPI.updateKeyStatus(id, "revoked").catch(function(){});
   }
   function deleteKey(id) {
     saveKeys(loadKeys().filter(function (k) { return k.id !== id; }));
+    if (window.GalileoAPI) GalileoAPI.deleteKey(id).catch(function(){});
   }
 
   // 复制到剪贴板（带降级）
@@ -578,21 +610,33 @@
    * 状态：pending 待处理 → contacted 已联系 / opened 已开通 / ignored 已忽略
    * ============================================ */
   var LS_APPS = "galileo_applications";
+  var _appsCache = null;
   function loadApplications() {
+    if (_appsCache) return _appsCache;
     try { return JSON.parse(localStorage.getItem(LS_APPS) || "[]"); }
     catch (e) { return []; }
   }
   function saveApplications(arr) {
-    localStorage.setItem(LS_APPS, JSON.stringify(arr));
+    _appsCache = arr;
+    try { localStorage.setItem(LS_APPS, JSON.stringify(arr)); } catch (e) {}
+  }
+  function loadApplicationsFromAPI() {
+    if (!window.GalileoAPI) return Promise.resolve();
+    return window.GalileoAPI.getApplications().then(function (arr) {
+      _appsCache = arr || [];
+      try { localStorage.setItem(LS_APPS, JSON.stringify(_appsCache)); } catch (e) {}
+    }).catch(function () {});
   }
   function updateAppStatus(id, status) {
     saveApplications(loadApplications().map(function (a) {
       if (a.id === id) a.status = status;
       return a;
     }));
+    if (window.GalileoAPI) GalileoAPI.updateAppStatus(id, status).catch(function(){});
   }
   function deleteApplication(id) {
     saveApplications(loadApplications().filter(function (a) { return a.id !== id; }));
+    if (window.GalileoAPI) GalileoAPI.deleteApplication(id).catch(function(){});
   }
 
   var APP_STATUS = {
@@ -1057,6 +1101,14 @@
     if (val === null) ov[typeKey][itemKey] = null;  // 删除标记
     else ov[typeKey][itemKey] = val;
     saveOverrides(ov);
+    // 异步推送到 API（全站同步）
+    if (window.GalileoAPI) {
+      if (val === null) {
+        GalileoAPI.deleteOverride(typeKey, itemKey).catch(function(){});
+      } else {
+        GalileoAPI.saveOverride(typeKey, itemKey, val).catch(function(){});
+      }
+    }
   }
 
   /* ============ 新建 ============ */
@@ -1109,9 +1161,11 @@
   function resetAll() {
     confirmDialog(
       "确认重置所有修改？",
-      "将清除所有本地修改，恢复到 data.js 的原始状态。此操作不可恢复。",
+      "将清除所有线上修改，恢复到 data.js 的原始状态。此操作不可恢复，全站生效。",
       function () {
+        _overridesCache = {};
         localStorage.removeItem(LS_OVERRIDES);
+        if (window.GalileoAPI) GalileoAPI.resetOverrides().catch(function(){});
         toast("已重置，所有修改已清除", "ok");
         renderAll();
       },
@@ -1229,20 +1283,33 @@
       showLockScreen();
       return;
     }
-    // 已登录：构建界面
+    // 已登录：先显示加载中
     document.body.className = "admin-body";
     document.body.innerHTML =
       '<div class="admin-topbar" id="topbar"></div>' +
       '<div class="admin-layout">' +
         '<aside class="admin-sidenav" id="sidenav"></aside>' +
         '<section class="admin-listpane" id="listpane"></section>' +
-        '<main class="admin-editor" id="editor"></main>' +
+        '<main class="admin-editor" id="editor">' +
+          '<div class="admin-editor-empty"><p>正在从服务器加载数据...</p></div>' +
+        '</main>' +
       '</div>' +
       '<div class="admin-toast-wrap" id="toastWrap"></div>';
     renderTopbar();
-    // 默认选中第一个类型
-    if (!state.currentType) state.currentType = TYPES[0].key;
-    renderAll();
+    // 从 API 加载数据，加载完再渲染
+    Promise.all([
+      loadOverridesFromAPI(),
+      loadKeysFromAPI(),
+      loadApplicationsFromAPI()
+    ]).then(function () {
+      if (!state.currentType) state.currentType = TYPES[0].key;
+      renderAll();
+      toast("数据已从服务器同步", "ok");
+    }).catch(function () {
+      if (!state.currentType) state.currentType = TYPES[0].key;
+      renderAll();
+      toast("服务器连接失败，使用本地数据", "warn");
+    });
   }
 
   // DOM 就绪后启动

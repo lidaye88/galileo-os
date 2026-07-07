@@ -311,24 +311,42 @@ window.GalileoAuth = (function () {
     if (!company) { _tip("请填写企业名称"); return false; }
     if (!role) { _tip("请选择您的身份"); return false; }
 
-    // 生成试用申请记录，存 localStorage（后台读取）
     var rec = {
-      id: "a_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-      name: name,
-      phone: phone,
-      company: company,
-      role: role,
-      interest: interest,
-      desc: desc,
-      createdAt: new Date().toISOString(),
-      status: "pending"   // pending / contacted / opened / ignored
+      name: name, phone: phone, company: company,
+      role: role, interest: interest, desc: desc
     };
-    var arr = [];
-    try { arr = JSON.parse(localStorage.getItem(LS_APPS) || "[]"); } catch (err) {}
-    arr.unshift(rec);
-    try { localStorage.setItem(LS_APPS, JSON.stringify(arr)); } catch (err) {}
 
-    showApplySuccess(rec);
+    // 提交到 API（服务器存储，后台跨设备可见）
+    if (window.GalileoAPI && GalileoAPI.submitApplication) {
+      GalileoAPI.submitApplication(rec).then(function (res) {
+        if (res && res.id) rec.id = res.id;
+        rec.createdAt = new Date().toISOString();
+        rec.status = "pending";
+        showApplySuccess(rec);
+      }).catch(function () {
+        // API 失败，降级 localStorage
+        rec.id = "a_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+        rec.createdAt = new Date().toISOString();
+        rec.status = "pending";
+        try {
+          var arr = JSON.parse(localStorage.getItem(LS_APPS) || "[]");
+          arr.unshift(rec);
+          localStorage.setItem(LS_APPS, JSON.stringify(arr));
+        } catch (err) {}
+        showApplySuccess(rec);
+      });
+    } else {
+      // 无 API，降级 localStorage
+      rec.id = "a_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      rec.createdAt = new Date().toISOString();
+      rec.status = "pending";
+      try {
+        var arr2 = JSON.parse(localStorage.getItem(LS_APPS) || "[]");
+        arr2.unshift(rec);
+        localStorage.setItem(LS_APPS, JSON.stringify(arr2));
+      } catch (err2) {}
+      showApplySuccess(rec);
+    }
     return false;
   }
 

@@ -1,0 +1,15 @@
+{
+  "name": "galileo-os-server",
+  "version": "1.0.0",
+  "description": "Galileo OS 工业智能开放平台 - 后端 API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.0"
+  }
+}
