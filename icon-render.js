@@ -16,11 +16,25 @@
 (function () {
   "use strict";
 
-  // 判断是否 emoji（含 variation selector）
-  var EMOJI_RE = /[\u2600-\u27bf\u2702-\u27b0\uFE0F\U0001F1E0-\U0001F1FF\U0001F300-\U0001F5FF\U0001F600-\U0001F64F\U0001F680-\U0001F6FF\U0001F700-\U0001FAFF]/;
-
+  // 判断是否 emoji（用 codePointAt 检测，最可靠）
   function isEmoji(str) {
-    return EMOJI_RE.test(String(str || ""));
+    str = String(str || "");
+    for (var i = 0; i < str.length; i++) {
+      var cp = str.codePointAt(i);
+      // 基本多文种平面内的符号区
+      if (cp >= 0x2600 && cp <= 0x27BF) return true;   // 杂项符号 ☀✂✅
+      if (cp >= 0x2190 && cp <= 0x21FF) return true;   // 箭头 ←↑→
+      if (cp >= 0x2300 && cp <= 0x23FF) return true;   // 技术符号 ⌘⌚
+      if (cp >= 0x25A0 && cp <= 0x25FF) return true;   // 几何图形 ■●
+      if (cp >= 0x2B00 && cp <= 0x2BFF) return true;   // 补充箭头/符号 ⬀⬡
+      if (cp === 0xFE0F) return true;                   // variation selector
+      // 补充平面（emoji 主体区）
+      if (cp >= 0x1F1E0 && cp <= 0x1F1FF) return true;  // 旗帜
+      if (cp >= 0x1F300 && cp <= 0x1FAFF) return true;  // 所有 emoji 补充平面
+      // 处理 surrogate pair：如果是高代理项，跳过下一个字符
+      if (cp >= 0xD800 && cp <= 0xDBFF) i++;
+    }
+    return false;
   }
 
   function esc(s) {
