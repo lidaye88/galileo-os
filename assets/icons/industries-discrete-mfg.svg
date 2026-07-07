@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="24" fill="#ECFEFF"/>
+  <rect x="6" y="6" width="108" height="108" rx="20" fill="none" stroke="#0891B2" stroke-width="2" opacity="0.3"/>
+  <!-- 占位：⚙️，请替换为真实图标 -->
+  <g transform="translate(60 60)">
+    <rect x="-22" y="-22" width="44" height="44" rx="8" fill="none" stroke="#0891B2" stroke-width="3" transform="rotate(45)"/>
+    <circle r="6" fill="#0891B2"/>
+  </g>
+</svg>

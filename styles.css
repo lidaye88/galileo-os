@@ -440,6 +440,25 @@ section.spacing-lg { padding: 160px 0; }
 .card-icon.accent { background: var(--accent-50); border-color: rgba(0,217,163,0.2); }
 .card-icon.indigo { background: var(--indigo-50); border-color: rgba(79,107,237,0.15); }
 
+/* 图标图片（emoji 替换为 SVG 图片后用）*/
+.icon-img {
+  width: 26px; height: 26px;
+  object-fit: contain;
+  display: block;
+}
+.detail-hero-icon .icon-img { width: 40px; height: 40px; }
+.oc-icon .icon-img { width: 30px; height: 30px; }
+.cr-icon .icon-img { width: 22px; height: 22px; }
+/* 图片加载失败时的几何装饰兜底（icon-fallback 由 onerror 添加）*/
+.icon-fallback::before {
+  content: "";
+  width: 18px; height: 18px;
+  border: 2px solid var(--accent-500);
+  border-radius: 3px;
+  transform: rotate(45deg);
+  display: block;
+}
+
 /* 深色卡片 */
 .card-dark {
   background: rgba(255,255,255,0.03);

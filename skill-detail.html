@@ -6,7 +6,7 @@
 <title>Skill 详情 | Galileo OS 工业智能开放平台</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="description" content="Galileo OS Skill 详情页：参数、输入输出、调用示例、组合关系、案例、计费、更新日志。">
-<link rel="stylesheet" href="styles.css?v=20260707">
+<link rel="stylesheet" href="styles.css?v=20260708">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -162,9 +162,10 @@
 </footer>
 
 <!-- ==================== Skill 数据 + 渲染逻辑 ==================== -->
-<script src="skills-data.js?v=20260707"></script>
-<script src="api-client.js?v=20260707"></script>
-<script src="admin-runtime.js?v=20260707"></script>
+<script src="skills-data.js?v=20260708"></script>
+<script src="icon-render.js?v=20260708"></script>
+<script src="api-client.js?v=20260708"></script>
+<script src="admin-runtime.js?v=20260708"></script>
 <script>
 (function () {
   var KEFU = "https://work.weixin.qq.com/kfid/kfc6e28eb8ad6d63cf7";
@@ -358,7 +359,7 @@
     html += '<section class="detail-hero" style="padding-top:24px;">';
     html += '<div class="container">';
     html += '<div class="detail-hero-top">';
-    html += '<div class="detail-hero-icon">' + s.icon + '</div>';
+    html += '<div class="detail-hero-icon">' + IconRender.getHTML('skills', id, s.icon) + '</div>';
     html += '<div style="flex:1;min-width:0;">';
     html += '<div class="badges-row">';
     html += '<span class="badge ' + st.cls + '">' + st.text + '</span>';
@@ -496,9 +497,9 @@
 })();
 </script>
 
-<script src="auth-modal.js?v=20260707"></script>
-<script src="mobile-nav.js?v=20260707"></script>
-<script src="animate.js?v=20260707"></script>
-<script src="customer-service.js?v=20260707"></script>
+<script src="auth-modal.js?v=20260708"></script>
+<script src="mobile-nav.js?v=20260708"></script>
+<script src="animate.js?v=20260708"></script>
+<script src="customer-service.js?v=20260708"></script>
 </body>
 </html>
