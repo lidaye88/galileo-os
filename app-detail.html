@@ -210,21 +210,21 @@
       html += '<h4 style="margin:0 0 12px;font-size:15px;">包含的 Agent</h4>';
       html += '<div class="compose-relate">' + comp.agents.map(function (a) {
         var href = a.id ? 'agent-detail.html?id=' + esc(a.id) : 'agents.html';
-        return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon">🤖</div><div class="cr-name">' + esc(a.name) + '</div><div class="cr-role">数字化员工</div></a>';
+        return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon"><img src="assets/icons/default.svg" alt="Agent" class="icon-img"></div><div class="cr-name">' + esc(a.name) + '</div><div class="cr-role">数字化员工</div></a>';
       }).join("") + '</div>';
     }
     if (comp.skills && comp.skills.length) {
       html += '<h4 style="margin:24px 0 12px;font-size:15px;">调用的 Skill</h4>';
       html += '<div class="compose-relate">' + comp.skills.map(function (s) {
         var href = s.id ? 'skill-detail.html?id=' + esc(s.id) : 'skills.html';
-        return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon">🧩</div><div class="cr-name">' + esc(s.name) + '</div><div class="cr-role">能力单元</div></a>';
+        return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon"><img src="assets/icons/default.svg" alt="Skill" class="icon-img"></div><div class="cr-name">' + esc(s.name) + '</div><div class="cr-role">能力单元</div></a>';
       }).join("") + '</div>';
     }
     if (comp.knowledge && comp.knowledge.length) {
       html += '<h4 style="margin:24px 0 12px;font-size:15px;">加载的知识包</h4>';
       html += '<div class="compose-relate">' + comp.knowledge.map(function (k) {
         var href = k.id ? 'knowledge-detail.html?id=' + esc(k.id) : 'knowledge.html';
-        return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon">📚</div><div class="cr-name">' + esc(k.name) + '</div><div class="cr-role">经验资产</div></a>';
+        return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon"><img src="assets/icons/default.svg" alt="知识" class="icon-img"></div><div class="cr-name">' + esc(k.name) + '</div><div class="cr-role">经验资产</div></a>';
       }).join("") + '</div>';
     }
     return html;

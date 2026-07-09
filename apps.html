@@ -100,7 +100,7 @@
       </a>
 
       <div class="overview-card" style="border-color:var(--accent-500);box-shadow:0 4px 16px rgba(0,217,163,0.12);">
-        <div class="oc-icon" style="background:var(--accent-50);border-color:var(--accent-500);">APP</div>
+        <div class="oc-icon" style="background:var(--accent-50);border-color:var(--accent-500);"><img src="assets/icons/default.svg" alt="APP" class="icon-img"></div>
         <div class="oc-eyebrow">工厂在用</div>
         <h3>应用 · 业务系统</h3>
         <p>多 Agent + 多 Skill + 行业 Know-How 的完整封装。这不是概念演示，是工厂真正在用的业务系统：MES、EAM、QMS、EMS……登录即用，带完整 UI 与权限。</p>
@@ -334,7 +334,7 @@
       // 模块数
       var moduleCount = (a.modules || []).length;
       html += '<a href="app-detail.html?id=' + id + '" class="overview-card" style="text-decoration:none;color:inherit;">';
-      html += '<div class="oc-icon">' + a.icon + '</div>';
+      html += '<div class="oc-icon"><img src="assets/icons/apps-' + id + '.svg" alt="' + esc(a.name) + '" class="icon-img" onerror="this.onerror=null;this.src=\'assets/icons/default.svg\'"></div>';
       html += '<div class="flex items-center gap-8 mb-16" style="flex-wrap:wrap;">';
       html += '<span class="badge ' + st.cls + '">' + st.text + '</span>';
       html += '<span class="badge badge-invite">' + esc(a.category) + '</span>';

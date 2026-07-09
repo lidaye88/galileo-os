@@ -245,7 +245,7 @@
       html += '<div class="compose-relate">';
       agents.forEach(function (a) {
         html += '<a href="agent-detail.html?id=' + encodeURIComponent(a.id) + '" class="compose-relate-item" style="text-decoration:none;color:inherit;">' +
-          '<div class="cr-icon">🤖</div>' +
+          '<div class="cr-icon"><img src="assets/icons/default.svg" alt="Agent" class="icon-img"></div>' +
           '<div class="cr-name">' + esc(a.name) + '</div>' +
           '<div class="cr-role">查看 Agent 详情 →</div>' +
           '</a>';
@@ -258,7 +258,7 @@
       html += '<div class="compose-relate">';
       skills.forEach(function (s) {
         html += '<a href="skill-detail.html?id=' + encodeURIComponent(s.id) + '" class="compose-relate-item" style="text-decoration:none;color:inherit;">' +
-          '<div class="cr-icon">⚙️</div>' +
+          '<div class="cr-icon"><img src="assets/icons/default.svg" alt="应用" class="icon-img"></div>' +
           '<div class="cr-name">' + esc(s.name) + '</div>' +
           '<div class="cr-role">查看 Skill 详情 →</div>' +
           '</a>';

@@ -331,7 +331,7 @@
       var itemCount = k.content ? k.content.length : 0;
 
       html += '<a href="knowledge-detail.html?id=' + id + '" class="overview-card" style="text-decoration:none;color:inherit;">';
-      html += '<div class="oc-icon">' + k.icon + '</div>';
+      html += '<div class="oc-icon"><img src="assets/icons/knowledge-' + id + '.svg" alt="' + esc(k.name) + '" class="icon-img" onerror="this.onerror=null;this.src=\'assets/icons/default.svg\'"></div>';
       html += '<div class="flex items-center gap-8 mb-16" style="flex-wrap:wrap;">';
       html += '<span class="badge ' + st.cls + '">' + st.text + '</span>';
       html += providerBadge;
