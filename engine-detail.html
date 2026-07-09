@@ -306,7 +306,7 @@
       if (eid === currentId) return;
       var e = data[eid];
       html += '<a href="engine-detail.html?id=' + encodeURIComponent(eid) + '" class="compose-relate-item" style="text-decoration:none;display:block;">' +
-        '<div class="cr-icon">' + e.icon + '</div>' +
+        '<div class="cr-icon"><img src="assets/icons/default.svg" alt="引擎" class="icon-img"></div>' +
         '<div style="flex:1;min-width:0;">' +
         '<div class="cr-name" style="color:var(--accent-600);font-size:13px;">ENGINE ' + e.engineNum + ' · ' + esc(e.name) + '</div>' +
         '</div>' +

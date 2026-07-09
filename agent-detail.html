@@ -252,12 +252,12 @@
       var icon = iconMap[d] || "🔗";
       if (sid) {
         return '<a class="compose-relate-item" href="skill-detail.html?id=' + sid + '" style="text-decoration:none;display:block;">' +
-          '<div class="cr-icon">' + icon + '</div>' +
+          '<div class="cr-icon"><img src="assets/icons/default.svg" alt="" class="icon-img"></div>' +
           '<div class="cr-name">' + esc(d) + ' <span style="font-size:11px;color:var(--text-quaternary);">Skill →</span></div>' +
           '<div class="cr-role">查看该能力详情</div></a>';
       }
       return '<div class="compose-relate-item">' +
-        '<div class="cr-icon">' + icon + '</div>' +
+        '<div class="cr-icon"><img src="assets/icons/default.svg" alt="" class="icon-img"></div>' +
         '<div class="cr-name">' + esc(d) + '</div>' +
         '<div class="cr-role">能力单元</div></div>';
     }).join("") + '</div>';

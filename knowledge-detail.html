@@ -206,7 +206,7 @@
     if (!arr || !arr.length) return "";
     return '<div class="compose-relate">' + arr.map(function (r) {
       var href = r.id ? (type + '-detail.html?id=' + esc(r.id)) : (type + 's.html');
-      return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon">' + icon + '</div><div class="cr-name">' + esc(r.name) + '</div><div class="cr-role">' + esc(label) + '</div></a>';
+      return '<a href="' + href + '" class="compose-relate-item" style="text-decoration:none;color:inherit;"><div class="cr-icon"><img src="assets/icons/default.svg" alt="' + esc(label) + '" class="icon-img"></div><div class="cr-name">' + esc(r.name) + '</div><div class="cr-role">' + esc(label) + '</div></a>';
     }).join("") + '</div>';
   }
 
