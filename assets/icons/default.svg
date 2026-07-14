@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <rect width="120" height="120" rx="24" fill="#F4F5F6"/>
-  <g transform="translate(60 60)">
-    <rect x="-22" y="-22" width="44" height="44" rx="8" fill="none" stroke="#008060" stroke-width="3" transform="rotate(45)"/>
-    <circle r="6" fill="#008060"/>
+  <rect x="4" y="4" width="112" height="112" rx="24" fill="#F4F5F6"/>
+  <g transform="translate(60 42)">
+    <rect x="-20" y="-20" width="40" height="40" rx="8" fill="none" stroke="#6E7681" stroke-width="2.5" transform="rotate(45)"/>
+    <circle r="5" fill="#6E7681"/>
   </g>
+  <text x="60" y="90" font-family="-apple-system,sans-serif" font-size="13" font-weight="600" fill="#6E7681" text-anchor="middle">图标</text>
 </svg>
