@@ -1533,6 +1533,8 @@ section.spacing-lg { padding: 160px 0; }
   .footer-top { grid-template-columns: 1fr; }
   .hero { padding: 96px 0 64px; }
   .hero h1 { font-size: 28px; }
+  .hero-light { padding: 88px 0 56px; }
+  .hero-light h1 { font-size: 27px; }
   .btn-lg { padding: 12px 20px; font-size: 14px; }
   /* 详情页 hero 收紧 */
   .detail-hero { padding: 96px 0 40px !important; }

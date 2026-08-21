@@ -1267,11 +1267,31 @@
       '</div>' +
       '<div class="admin-topbar-right">' +
         '<a class="admin-btn admin-btn-ghost admin-btn-sm" href="index.html" target="_blank">打开前台</a>' +
+        '<button class="admin-btn admin-btn-ghost admin-btn-sm" id="backupBtn" title="导出申请留言+API密钥为 JSON 备份">备份数据</button>' +
         '<button class="admin-btn admin-btn-ghost admin-btn-sm" id="exportTopBtn">导出全部</button>' +
         '<button class="admin-btn admin-btn-ghost admin-btn-sm" id="logoutBtn">退出</button>' +
       '</div>';
+    document.getElementById("backupBtn").addEventListener("click", backupData);
     document.getElementById("exportTopBtn").addEventListener("click", exportAll);
     document.getElementById("logoutBtn").addEventListener("click", logout);
+  }
+
+  // 一键备份：导出申请+密钥为 JSON（防数据丢失）
+  function backupData() {
+    var backup = {
+      exportedAt: new Date().toISOString(),
+      applications: loadApplications(),
+      apiKeys: loadKeys(),
+      overrides: loadOverrides()
+    };
+    var blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "galileo-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+    toast("备份已下载（申请 " + backup.applications.length + " 条，密钥 " + backup.apiKeys.length + " 个）", "ok");
   }
 
   /* ============ 初始化 ============ */
