@@ -85,7 +85,7 @@
         </div>
         <!-- 二维码：从游离位置移入品牌区，改名为「思为智造+」-->
         <div class="footer-qr">
-          <img src="assets/wechat-qr.png" alt="思为智造+ 公众号二维码" class="qr-img">
+          <img loading="lazy" src="assets/wechat-qr.png" alt="思为智造+ 公众号二维码" class="qr-img">
           <div class="qr-text">
             <span class="qr-title">思为智造+</span>
             <span class="qr-sub">扫码关注公众号</span>
@@ -239,13 +239,13 @@
     if (compose.upstream && compose.upstream.length) {
       html += '<h4 style="margin:24px 0 8px;font-size:15px;">上游 · 数据来源</h4>';
       html += '<div class="compose-relate">' + compose.upstream.map(function (u) {
-        return '<div class="compose-relate-item"><div class="cr-icon"><img src="assets/icons/default.svg" alt="' + esc(u.name) + '" class="icon-img"></div><div class="cr-name">' + esc(u.name) + '</div><div class="cr-role">' + esc(u.role) + '</div></div>';
+        return '<div class="compose-relate-item"><div class="cr-icon"><img loading="lazy" src="assets/icons/default.svg" alt="' + esc(u.name) + '" class="icon-img"></div><div class="cr-name">' + esc(u.name) + '</div><div class="cr-role">' + esc(u.role) + '</div></div>';
       }).join("") + '</div>';
     }
     if (compose.downstream && compose.downstream.length) {
       html += '<h4 style="margin:24px 0 8px;font-size:15px;">下游 · 被谁调用</h4>';
       html += '<div class="compose-relate">' + compose.downstream.map(function (d) {
-        return '<div class="compose-relate-item"><div class="cr-icon"><img src="assets/icons/default.svg" alt="' + esc(d.name) + '" class="icon-img"></div><div class="cr-name">' + esc(d.name) + '</div><div class="cr-role">' + esc(d.role) + '</div></div>';
+        return '<div class="compose-relate-item"><div class="cr-icon"><img loading="lazy" src="assets/icons/default.svg" alt="' + esc(d.name) + '" class="icon-img"></div><div class="cr-name">' + esc(d.name) + '</div><div class="cr-role">' + esc(d.role) + '</div></div>';
       }).join("") + '</div>';
     }
     if (!html) return "<p>该 Skill 为独立能力单元，暂无固定组合关系。</p>";

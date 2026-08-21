@@ -52,7 +52,7 @@
     if (isEmoji(icon)) {
       // emoji → 渲染图片（图片不存在时浏览器会自动忽略 alt）
       var src = "assets/icons/" + esc(type) + "-" + esc(key) + ".svg";
-      return '<img src="' + src + '" alt="' + esc(icon) + '" class="icon-img" onerror="this.style.display=\'none\';this.parentElement.classList.add(\'icon-fallback\')">';
+      return '<img src="' + src + '" alt="' + esc(icon) + '" class="icon-img" loading="lazy" onerror="this.style.display=\'none\';this.parentElement.classList.add(\'icon-fallback\')">';
     }
     // 非 emoji（文字缩写如 MES）→ 保持文字
     return esc(icon);

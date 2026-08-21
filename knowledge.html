@@ -84,17 +84,17 @@
 
     <div class="grid grid-3">
       <div class="card">
-        <div class="card-icon"><img src="assets/icons/default.svg" alt="🧩" class="icon-img"></div>
+        <div class="card-icon"><img loading="lazy" src="assets/icons/default.svg" alt="🧩" class="icon-img"></div>
         <h3>Skill · 能力</h3>
         <p style="font-size:14px;">"怎么做"——一次排产计算、一次 CV 识别、一次 PLC 读写的能力单元。</p>
       </div>
       <div class="card">
-        <div class="card-icon"><img src="assets/icons/default.svg" alt="📦" class="icon-img"></div>
+        <div class="card-icon"><img loading="lazy" src="assets/icons/default.svg" alt="📦" class="icon-img"></div>
         <h3>应用 · 工具</h3>
         <p style="font-size:14px;">"用什么"——知识库、BI 报表、SOP 管理等带 UI 的成品工具系统。</p>
       </div>
       <div class="card" style="border-color:var(--accent-500);box-shadow:0 4px 16px rgba(0,217,163,0.1);">
-        <div class="card-icon accent"><img src="assets/icons/default.svg" alt="📚" class="icon-img"></div>
+        <div class="card-icon accent"><img loading="lazy" src="assets/icons/default.svg" alt="📚" class="icon-img"></div>
         <h3>知识包 · 内容</h3>
         <p style="font-size:14px;">"知道什么"——工艺手册、故障案例、安全规程等经验内容，被应用加载、被 Agent 检索。</p>
       </div>
@@ -216,7 +216,7 @@
         </div>
         <!-- 二维码：从游离位置移入品牌区，改名为「思为智造+」-->
         <div class="footer-qr">
-          <img src="assets/wechat-qr.png" alt="思为智造+ 公众号二维码" class="qr-img">
+          <img loading="lazy" src="assets/wechat-qr.png" alt="思为智造+ 公众号二维码" class="qr-img">
           <div class="qr-text">
             <span class="qr-title">思为智造+</span>
             <span class="qr-sub">扫码关注公众号</span>
@@ -331,7 +331,7 @@
       var itemCount = k.content ? k.content.length : 0;
 
       html += '<a href="knowledge-detail.html?id=' + id + '" class="overview-card" style="text-decoration:none;color:inherit;">';
-      html += '<div class="oc-icon"><img src="assets/icons/knowledge-' + id + '.svg" alt="' + esc(k.name) + '" class="icon-img" onerror="this.onerror=null;this.src=\'assets/icons/default.svg\'"></div>';
+      html += '<div class="oc-icon"><img loading="lazy" src="assets/icons/knowledge-' + id + '.svg" alt="' + esc(k.name) + '" class="icon-img" onerror="this.onerror=null;this.src=\'assets/icons/default.svg\'"></div>';
       html += '<div class="flex items-center gap-8 mb-16" style="flex-wrap:wrap;">';
       html += '<span class="badge ' + st.cls + '">' + st.text + '</span>';
       html += providerBadge;
